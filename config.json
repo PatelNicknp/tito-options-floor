@@ -1,0 +1,9 @@
+{
+  "capDollars": 200,
+  "feePerContract": 0.65,
+  "startingCash": 1000,
+  "contracts": 1,
+  "requestPauseSeconds": 0.15,
+  "stockBoxBase": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data",
+  "maxSuggestionsPerTicker": 2
+}

@@ -1,0 +1,74 @@
+# Daily research data for the Tito Options Floor. Never trades, never sends anything.
+# Times: GitHub cron is UTC. US Pacific is UTC-8 in winter (PST) and UTC-7 in summer (PDT),
+# so each run has two crons; tools' guard keeps only the one that lands in the PT window and
+# skips holidays and runs whose data was already produced (so the day's data is built once).
+#   primary  ~6:00 AM PT : 13:00 UTC (PDT) / 14:00 UTC (PST)
+#   backup   ~6:40 AM PT : 13:40 UTC (PDT) / 14:40 UTC (PST)   - only if today's data is missing
+#   catch-up ~9:00 AM PT : 16:00 UTC (PDT) / 17:00 UTC (PST)   - only if today's data is missing
+# US Stock Box's after-close full run is 6:30 PM ET (3:30 PM PT) the evening before.
+name: Daily update
+
+on:
+  schedule:
+    - cron: "0 13 * * 1-5"
+    - cron: "0 14 * * 1-5"
+    - cron: "40 13 * * 1-5"
+    - cron: "40 14 * * 1-5"
+    - cron: "0 16 * * 1-5"
+    - cron: "0 17 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Should this run go ahead? (trading day, PT window, not already done)
+        id: guard
+        run: PYTHONPATH=generator python -m tito.build --guard "${{ github.event_name }}"
+
+      - name: Tests
+        id: tests
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          python -m pip install --quiet pytest
+          python -m pytest -q
+          node --test docs/tests/logic.test.mjs
+
+      - name: Build data (up to 3 attempts; each fetch also retries with backoff)
+        id: build
+        if: steps.guard.outputs.should_run == 'true'
+        run: |
+          for attempt in 1 2 3; do
+            if ./run_generator.sh; then exit 0; fi
+            if [ "$attempt" -lt 3 ]; then echo "Attempt $attempt failed; waiting before retry"; sleep $((attempt * 120)); fi
+          done
+          exit 1
+
+      - name: Record a failed run (keeps the last good data)
+        if: failure() && steps.guard.outputs.should_run == 'true' && steps.build.outcome != 'failure'
+        run: ./run_generator.sh --record-failure "Run stopped before building data (tests or setup failed)"
+
+      - name: Commit data and status
+        if: always() && steps.guard.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/data/latest.json docs/data/status.json
+          if git diff --cached --quiet; then echo "Nothing changed"; exit 0; fi
+          git commit -m "data: daily update $(TZ=America/Los_Angeles date '+%Y-%m-%d %H:%M PT') (${{ steps.build.outcome }})"
+          for i in 1 2 3; do git pull --rebase --quiet && git push && exit 0; sleep 10; done
+          exit 1

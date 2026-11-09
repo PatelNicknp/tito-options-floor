@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tito Options Floor · DELAYED research</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Tito Options Floor <span class="badge delayed">DELAYED</span> <span class="badge research">Research only</span></h1>
+  <p class="notice"><strong>Education, not advice.</strong> Ideas use free delayed prices. This page never places, opens, closes or fills a trade.
+    Check the live chart and price in TradingView, then log paper trades yourself.</p>
+  <p id="cashline" class="small"></p>
+  <nav>
+    <button data-tab="today">Today's ideas</button>
+    <button data-tab="log">Log a trade</button>
+    <button data-tab="positions">My positions</button>
+    <button data-tab="settings">Settings &amp; data</button>
+  </nav>
+</header>
+<main>
+  <section class="tab" id="today"><div id="today-body"></div></section>
+
+  <section class="tab" id="log" hidden>
+    <h2>Log a paper trade you checked in TradingView</h2>
+    <p class="small">Saved only in this browser. Type what TradingView showed. Buy at the ask you saw; sell at the bid you saw.</p>
+    <form id="entry-form" class="form">
+      <fieldset><legend>Buy to open</legend>
+        <label>Ticker <input name="ticker" required></label>
+        <label>Expiry <input name="expiry" type="date" required></label>
+        <label>Strike <input name="strike" type="number" step="0.5" required></label>
+        <label>Type <select name="optionType"><option value="CALL">Call</option></select></label>
+        <label>Side <select name="side"><option value="BUY_TO_OPEN">Buy to open</option></select></label>
+        <label>Contracts <input name="qty" type="number" step="1" min="1" value="1" required></label>
+        <label>Live bid seen <input name="bid" type="number" step="0.01" required></label>
+        <label>Live ask seen <input name="ask" type="number" step="0.01" required></label>
+        <label>Buy price used (= ask) <input name="fill" type="number" step="0.01" required></label>
+        <label>Fees ($) <input name="fees" type="number" step="0.01" required></label>
+        <label>Live stock price seen <input name="stockPrice" type="number" step="0.01" required></label>
+        <label>Time seen (Pacific Time) <input name="timeSeen" type="datetime-local" required></label>
+        <label>What did TradingView show?
+          <select name="dataStatus" required><option value="">Choose…</option><option value="realtime">Real-time (no "Data is delayed" message)</option><option value="delayed">Delayed ("Data is delayed")</option></select></label>
+        <label>Source <select name="source"><option value="TradingView">TradingView</option></select></label>
+        <label>Sector <input name="sector" required></label>
+        <label>Next earnings date <input name="nextEarnings" type="date"></label>
+        <label>Pivot (base high) <input name="pivot" type="number" step="0.01" required></label>
+        <label>Stop level <input name="stop" type="number" step="0.01"></label>
+        <label>Target <input name="target" type="number" step="0.01"></label>
+        <label class="wide">Screenshot note (optional) <input name="screenshotNote"></label>
+        <input type="hidden" name="signalSession"><input type="hidden" name="suggestionId">
+      </fieldset>
+      <button class="primary" type="submit">Check and save entry</button>
+      <div id="entry-msg"></div>
+    </form>
+    <form id="exit-form" class="form">
+      <fieldset><legend>Sell to close (whole position)</legend>
+        <label>Position <select name="position" id="exit-position" required></select></label>
+        <label>Side <select name="side"><option value="SELL_TO_CLOSE">Sell to close</option></select></label>
+        <label>Contracts <input name="qty" type="number" step="1" min="1" required></label>
+        <label>Live bid seen <input name="bid" type="number" step="0.01" required></label>
+        <label>Live ask seen <input name="ask" type="number" step="0.01" required></label>
+        <label>Sell price used (= bid) <input name="fill" type="number" step="0.01" required></label>
+        <label>Fees ($) <input name="fees" type="number" step="0.01" required></label>
+        <label>Time seen (Pacific Time) <input name="timeSeen" type="datetime-local" required></label>
+        <label>What did TradingView show?
+          <select name="dataStatus" required><option value="">Choose…</option><option value="realtime">Real-time (no "Data is delayed" message)</option><option value="delayed">Delayed ("Data is delayed")</option></select></label>
+        <label>Source <select name="source"><option value="TradingView">TradingView</option></select></label>
+        <label>Reason <select name="reason" required><option value="">Choose…</option><option>Stop</option><option>Failed breakout</option><option>Target</option><option>Trend trail</option><option>Time stop</option><option>Expiry</option><option>Earnings</option><option>Ex-dividend</option><option>Other</option></select></label>
+        <label class="wide">Screenshot note (optional) <input name="screenshotNote"></label>
+      </fieldset>
+      <button class="primary" type="submit">Check and save exit</button>
+      <div id="exit-msg"></div>
+    </form>
+  </section>
+
+  <section class="tab" id="positions" hidden><div id="positions-body"></div></section>
+
+  <section class="tab" id="settings" hidden>
+    <h2>Settings</h2>
+    <form id="settings-form" class="form"><fieldset>
+      <label>Max loss per trade ($, incl. fees) <input id="set-cap" type="number" step="1" min="1"></label>
+      <label>Fee per contract, each side ($) <input id="set-fee" type="number" step="0.01" min="0"></label>
+      <label>Starting paper cash ($) <input id="set-cash" type="number" step="1" min="1"></label>
+    </fieldset>
+    <p class="small">Dollars only. Changes apply to future trades only, and the max loss never goes above your paper cash.</p>
+    <button class="primary" type="submit">Save settings</button> <span id="settings-msg"></span></form>
+    <h2>Back up your private log</h2>
+    <p><button id="export" type="button">Export log (JSON)</button> <label>Import log: <input id="import" type="file" accept="application/json"></label></p>
+    <div id="sources-body"></div>
+  </section>
+</main>
+<footer><p class="small"><span class="badge delayed">DELAYED</span> <span class="badge research">Research only</span>
+  Data: daily candles, stock lists, sectors, market_ok and earnings dates from US Stock Box; newest bars when Stock Box's are not final, sector ETF candles and the 13-week T-bill rate from Yahoo Finance; option quotes from Cboe delayed quotes. Updated automatically each US trading day about 6:00 AM PT, not live. Education, not advice.</p></footer>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
