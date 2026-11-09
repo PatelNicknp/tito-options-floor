@@ -311,10 +311,10 @@ def guard(status_path: Path, event: str) -> bool:
     if not ((5, 45) <= (now.hour, now.minute) < (13, 0)):
         print(f"skip: {now.strftime('%H:%M')} PT is outside the 5:45 AM-1:00 PM PT run window (other DST twin)")
         return False
-    done = read_json(status_path).get("lastSuccessSession")
+    st = read_json(status_path)
     want = expected_session(datetime.now(ET)).isoformat()
-    if done == want:
-        print(f"skip: data for session {want} was already produced")
+    if st.get("lastSuccessSession") == want and str(st.get("lastSuccessPT", "")).startswith(now.date().isoformat()):
+        print(f"skip: today's data (session {want}) was already produced at {st.get('lastSuccessPT')}")
         return False
     return True
 

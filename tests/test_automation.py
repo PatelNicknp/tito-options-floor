@@ -132,8 +132,10 @@ def test_guard(tmp_path, monkeypatch):
     monkeypatch.setattr(build, "datetime", Clock)
     Clock.now_value = datetime.fromisoformat("2026-11-09T14:00:00+00:00")
     assert build.guard(st, "schedule") is True            # Mon 6:00 AM PST, nothing produced yet
-    st.write_text(json.dumps({"lastSuccessSession": "2026-11-06"}))
-    assert build.guard(st, "schedule") is False           # backup run: already produced
+    st.write_text(json.dumps({"lastSuccessSession": "2026-11-06", "lastSuccessPT": "2026-11-08 10:34 PM PT"}))
+    assert build.guard(st, "schedule") is True            # produced on Sunday night: Monday's run still goes
+    st.write_text(json.dumps({"lastSuccessSession": "2026-11-06", "lastSuccessPT": "2026-11-09 06:03 AM PT"}))
+    assert build.guard(st, "schedule") is False           # backup run: today's data already produced
     Clock.now_value = datetime.fromisoformat("2026-11-09T13:00:00+00:00")
     st.write_text("{}")
     assert build.guard(st, "schedule") is False           # 5:00 AM PST: the other DST twin
