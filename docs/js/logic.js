@@ -241,6 +241,46 @@ export function prevTradingDay(day) {
   return iso(d);
 }
 
+/** One failed market check, in a sentence. The numbers come from the data file; the rules are unchanged. */
+export function plainGateFailure(check) {
+  const value = String(check?.value || "");
+  const spy = value.match(/SPY ([\d.]+), 50-day ([\d.]+) \(10 sessions ago ([\d.]+)\)/);
+  if (spy) {
+    const px = Number(spy[1]);
+    const sma = Number(spy[2]);
+    const prev = Number(spy[3]);
+    const where = px < sma
+      ? `SPY (${spy[1]}) is below its 50-day average (${spy[2]})`
+      : `SPY (${spy[1]}) is not above its 50-day average (${spy[2]})`;
+    const slope = sma < prev
+      ? `that average is falling (it was ${spy[3]} ten sessions ago)`
+      : `that average is not rising (it was ${spy[3]} ten sessions ago)`;
+    return `${where}, and ${slope}.`;
+  }
+  if (/market_ok\s*=\s*no/i.test(value)) return "US Stock Box market_ok is no.";
+  const name = check?.name || "A check";
+  return value ? `${name}: ${value}.` : `${name}.`;
+}
+
+/** Why today's list is empty, or null when there are ideas. */
+export function emptyDay(data) {
+  if (!data?.noTradeToday) return null;
+  const failed = (data.gate?.checks || []).filter((c) => !c.pass);
+  const funnel = data.funnel || {};
+  const checked = Number(funnel.tickers || 0);
+  const passed = Number(funnel.stockRulesPass || 0);
+  const session = data.entrySession || "this";
+  return {
+    title: "No ideas today",
+    lead: failed.length
+      ? `No ideas for the ${session} session because the market check failed, so this page suggests no trades.`
+      : `No ideas for the ${session} session. No stock and contract passed every rule.`,
+    reasons: failed.map(plainGateFailure),
+    funnel: `${passed} of ${checked} stocks passed the stock rules.`,
+    note: "No trade today. This is a finished result, not a broken page. Waiting is a valid result.",
+  };
+}
+
 // Is the published data current? today = PT date "YYYY-MM-DD", minutes = PT minutes since midnight.
 // The daily run is about 6:00 AM PT; after 7:00 AM PT on a trading day the ideas must be for today.
 export function freshness(status, data, today, minutes) {

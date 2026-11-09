@@ -141,6 +141,14 @@ def test_guard(tmp_path, monkeypatch):
     assert build.guard(st, "schedule") is False           # 5:00 AM PST: the other DST twin
     Clock.now_value = datetime.fromisoformat("2026-11-26T14:00:00+00:00")
     assert build.guard(st, "schedule") is False           # Thanksgiving
+    Clock.now_value = datetime.fromisoformat("2026-11-09T14:00:00+00:00")
+    st.write_text("{}")
+    assert build.guard(st, "workflow_dispatch", "manual") is True
+    assert build.guard(st, "workflow_dispatch", "keeper") is True
+    st.write_text(json.dumps({"lastSuccessSession": "2026-11-06", "lastSuccessPT": "2026-11-09 06:03 AM PT"}))
+    assert build.guard(st, "workflow_dispatch", "keeper") is False
+    assert build.guard(st, "workflow_dispatch", "watchdog") is False
+    assert build.guard(st, "workflow_dispatch", "") is True   # the button still runs
 
 
 def test_next_run_pt():
@@ -150,8 +158,82 @@ def test_next_run_pt():
 
 
 def test_workflow_permissions_and_schedule():
-    wf = (Path(__file__).resolve().parents[1] / ".github/workflows/update.yml").read_text()
+    root = Path(__file__).resolve().parents[1]
+    wf = (root / ".github/workflows/update.yml").read_text()
     assert "contents: write" in wf and "pages: write" not in wf and "id-token" not in wf and "secrets." not in wf
-    for cron in ("0 13 * * 1-5", "0 14 * * 1-5", "40 13 * * 1-5", "40 14 * * 1-5"):
+    for cron in ("0 13 * * 1-5", "0 14 * * 1-5", "40 13 * * 1-5", "40 14 * * 1-5", "0 16 * * 1-5", "0 17 * * 1-5"):
         assert cron in wf
-    assert "concurrency:" in wf and "workflow_dispatch" in wf
+    assert "concurrency:" in wf and "workflow_dispatch" in wf and "github.token" in wf
+    assert "git fetch origin main" in wf
+    for name in ("update.yml", "keeper.yml", "watchdog.yml"):
+        text = (root / ".github/workflows" / name).read_text()
+        assert "secrets." not in text and "pages: write" not in text and "id-token" not in text
+    wd = (root / ".github/workflows/watchdog.yml").read_text()
+    for cron in ("15 13 * * 1-5", "55 14 * * 1-5", "15 17 * * 1-5", "45 19 * * 1-5", "45 20 * * 1-5"):
+        assert cron in wd
+    keeper_yml = (root / ".github/workflows/keeper.yml").read_text()
+    assert "update-keeper" in keeper_yml and "timeout-minutes: 350" in keeper_yml and "github.token" in keeper_yml
+    src = (root / "generator/tito/keeper.py").read_text().lower()
+    for bad in ("yahoo", "cboe", "query1", "finance.yahoo", "stockbox"):
+        assert bad not in src
+
+
+def test_keeper_makes_up_a_missing_day_and_stops():
+    from datetime import timedelta, timezone
+    from tito import keeper
+    from tito.sources import PT
+    missing = {"lastSuccessSession": "2026-11-06", "lastSuccessPT": "2026-11-08 10:34 PM PT"}
+    ready = {"lastSuccessSession": "2026-11-06", "lastSuccessPT": "2026-11-09 06:03 AM PT"}
+    morning = datetime(2026, 11, 9, 6, 15, tzinfo=PT)
+    assert keeper.decide(morning, missing, [])[0] == "dispatch"          # Sunday night's file is not Monday's run
+    assert keeper.decide(datetime(2026, 11, 9, 6, 55, tzinfo=PT), ready, [])[0] == "none"
+    assert keeper.decide(datetime(2026, 11, 9, 6, 5, tzinfo=PT), missing, [])[0] == "none"
+    assert keeper.decide(datetime(2026, 11, 9, 13, 0, tzinfo=PT), missing, [])[0] == "none"
+    assert keeper.decide(datetime(2026, 11, 26, 9, 0, tzinfo=PT), missing, [])[0] == "none"  # Thanksgiving
+    assert keeper.decide(morning, None, [])[0] == "none"
+    active = [{"id": 9, "status": "in_progress", "created_at": "2026-11-09T14:05:00Z"}]
+    assert keeper.decide(morning, missing, active)[0] == "none"
+    recent = [{"id": 1, "status": "completed", "conclusion": "failure", "created_at": "2026-11-09T14:15:00Z"}]
+    assert keeper.decide(datetime(2026, 11, 9, 6, 25, tzinfo=PT), missing, recent)[0] == "none"
+    assert keeper.decide(datetime(2026, 11, 9, 6, 55, tzinfo=PT), missing, recent)[0] == "dispatch"
+    failed_twice = recent + [{"id": 2, "status": "completed", "conclusion": "timed_out", "created_at": "2026-11-09T15:10:00Z"}]
+    assert keeper.decide(datetime(2026, 11, 9, 9, 15, tzinfo=PT), missing, failed_twice)[0] == "gave_up"
+    assert "keeper is live" in keeper.watchdog_action(morning, missing, [], [{"id": 4, "status": "queued"}])[1]
+    assert keeper.next_check_after(datetime(2026, 11, 6, 13, 0, tzinfo=PT), 15) == datetime(2026, 11, 9, 6, 15, tzinfo=PT)
+    assert keeper.next_check_after(datetime(2026, 11, 25, 13, 0, tzinfo=PT), 15) == datetime(2026, 11, 27, 6, 15, tzinfo=PT)
+    assert keeper.should_start_keeper([], True)[0] is True
+    assert keeper.should_start_keeper([{"id": 4, "status": "in_progress"}], True)[0] is False
+    assert keeper.should_yield("5", [{"id": 8, "status": "queued"}])[0] is True
+    assert keeper.self_heal_on({}) is True and keeper.self_heal_on({"selfHeal": False}) is False
+
+    start = datetime(2026, 11, 9, 6, 20, tzinfo=PT)
+
+    class Clock:
+        def __init__(self):
+            self.t = start
+        def __call__(self):
+            return self.t
+        def sleep(self, seconds):
+            self.t += timedelta(seconds=seconds)
+
+    clock = Clock()
+    state = {"status": dict(missing), "runs": []}
+    dispatched = []
+
+    def load_state():
+        return state["status"], list(state["runs"]), []
+
+    def dispatch_update(reason):
+        dispatched.append(reason)
+        stamp = clock().astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+        state["runs"].append({"id": len(state["runs"]) + 1, "status": "completed", "conclusion": "success", "created_at": stamp})
+        state["status"] = dict(ready)
+        return True
+
+    chained = []
+    result = keeper.run_keeper(
+        clock, clock.sleep, load_state, dispatch_update, lambda: chained.append(clock()) or True,
+        settings={"chunk_min": 330, "check_after_min": 15, "max_tries": 2, "min_gap_min": 15, "lookback_min": 20},
+        my_id="1",
+    )
+    assert result == "handoff" and dispatched == ["keeper"] and chained

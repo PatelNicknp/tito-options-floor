@@ -1,0 +1,58 @@
+name: Update watchdog
+
+# Separate crons from update.yml, so a dropped Daily update schedule is not the only clock.
+# Each slot only checks this repo's status.json and Actions runs. It dispatches one Daily
+# update when today's data is missing, nothing is already running, and the keeper is not
+# live. It never reads Yahoo, Cboe, or Stock Box. At most two build attempts per day.
+on:
+  schedule:
+    # 6:15, 6:55, 9:15, 11:45, and 12:45 PT, listed twice for PDT (UTC-7) and PST (UTC-8).
+    # The script ignores the twin that lands outside 6:10 AM–1:00 PM PT.
+    - cron: "15 13 * * 1-5"
+    - cron: "15 14 * * 1-5"
+    - cron: "55 13 * * 1-5"
+    - cron: "55 14 * * 1-5"
+    - cron: "15 16 * * 1-5"
+    - cron: "15 17 * * 1-5"
+    - cron: "45 18 * * 1-5"
+    - cron: "45 19 * * 1-5"
+    - cron: "45 20 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only print the decision. Do not start an update."
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: update-watchdog
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Dispatch one update if today's data is missing
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: PYTHONPATH=generator python -m tito.keeper check
+
+      - name: Start a keeper if none is live
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+        run: PYTHONPATH=generator python -m tito.keeper ensure-keeper

@@ -5,6 +5,9 @@
 #   primary  ~6:00 AM PT : 13:00 UTC (PDT) / 14:00 UTC (PST)
 #   backup   ~6:40 AM PT : 13:40 UTC (PDT) / 14:40 UTC (PST)   - only if today's data is missing
 #   catch-up ~9:00 AM PT : 16:00 UTC (PDT) / 17:00 UTC (PST)   - only if today's data is missing
+# These six crons are real schedules. The guard does not run unless GitHub creates the run.
+# A new or changed schedule can miss its first day, and a busy minute can drop one cron,
+# so watchdog.yml (its own crons) and keeper.yml make up a day whose file is still missing.
 # US Stock Box's after-close full run is 6:30 PM ET (3:30 PM PT) the evening before.
 name: Daily update
 
@@ -17,9 +20,16 @@ on:
     - cron: "0 16 * * 1-5"
     - cron: "0 17 * * 1-5"
   workflow_dispatch:
+    inputs:
+      reason:
+        description: "manual, keeper, keeper_retry, or watchdog"
+        required: false
+        default: manual
+        type: string
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: daily-update
@@ -29,8 +39,16 @@ jobs:
   update:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    env:
+      # A make-up says so. A button press is "manual". A cron stays "schedule".
+      TITO_TRIGGER: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.reason || github.event_name }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Read the status file that is on main now
+        run: |
+          git fetch origin main --quiet || echo "Could not refresh status; using this run's copy"
+          git checkout origin/main -- docs/data/status.json || true
 
       - uses: actions/setup-python@v5
         with:
@@ -38,7 +56,7 @@ jobs:
 
       - name: Should this run go ahead? (trading day, PT window, not already done)
         id: guard
-        run: PYTHONPATH=generator python -m tito.build --guard "${{ github.event_name }}"
+        run: PYTHONPATH=generator python -m tito.build --guard "${{ github.event_name }}" --reason "${{ github.event_name == 'workflow_dispatch' && github.event.inputs.reason || '' }}"
 
       - name: Tests
         id: tests
@@ -72,3 +90,9 @@ jobs:
           git commit -m "data: daily update $(TZ=America/Los_Angeles date '+%Y-%m-%d %H:%M PT') (${{ steps.build.outcome }})"
           for i in 1 2 3; do git pull --rebase --quiet && git push && exit 0; sleep 10; done
           exit 1
+
+      - name: Start the keeper if none is live
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: PYTHONPATH=generator python -m tito.keeper ensure-keeper

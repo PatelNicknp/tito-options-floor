@@ -1,0 +1,34 @@
+name: Update keeper
+
+# The page's own clock, so a dropped GitHub cron does not leave the file stale.
+# One keeper is alive: it sleeps until 15 minutes after each Pacific slot, and if today's
+# data is still missing it dispatches exactly one Daily update with this workflow's own
+# GITHUB_TOKEN (reason=keeper). It reads no prices. After about 5.5 hours it starts the
+# next keeper and exits (hosted jobs stop at 6 hours). selfHeal:false in config.json
+# stops the chain. The daily update and the watchdog start a keeper when none is live.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: update-keeper
+  cancel-in-progress: false
+
+jobs:
+  keep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Sleep to each slot and make up a missed day
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: PYTHONPATH=generator python -u -m tito.keeper keeper

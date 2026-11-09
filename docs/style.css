@@ -72,6 +72,13 @@ button:focus-visible, input:focus, select:focus, summary:focus-visible { outline
   box-shadow: var(--shadow-card); padding: var(--space-5); text-align: center; margin: var(--space-4) 0; }
 .notrade h2 { font-size: 1.75rem; margin: 0 0 var(--space-2); }
 .notrade p:last-child { font-size: 0.875rem; color: var(--muted); margin: 0; }
+.empty-day { background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--accent); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card); padding: var(--space-4) var(--space-5); margin: 0 0 var(--space-4); }
+.empty-day h2 { font-size: 1.5rem; margin: 0 0 var(--space-2); }
+.empty-day p { color: var(--text); }
+.empty-day ul { margin: 0 0 var(--space-3); padding-left: 1.25rem; }
+.empty-day li { margin: 0 0 var(--space-2); color: var(--text); }
+.empty-day p:last-child { color: var(--muted); font-size: 0.875rem; margin: 0; }
 
 /* Tables */
 .table-wrap { overflow-x: auto; }
