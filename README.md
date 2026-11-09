@@ -47,12 +47,21 @@ The trade log and settings live only in the browser's localStorage (`tito-floor-
 - Runs on US trading days at about **6:00 AM PT** (13:00 and 14:00 UTC crons; a guard keeps only the one in the
   PT window, so it works through daylight saving). Backup at about **6:40 AM PT** and catch-up at about
   **9:00 AM PT**, each only if that day's data is still missing. Plus the manual "Run workflow" button.
+  Those backup and catch-up times are real crons. The guard only runs after GitHub has created a run, so it
+  cannot fill in a cron GitHub never started.
+- GitHub may not run a schedule on the day it is added or changed, and it can drop a cron at a busy minute
+  (especially at the top of the hour). `watchdog.yml` is a second set of crons (6:15, 6:55, 9:15, 11:45,
+  12:45 PT, both PST and PDT). Each one only looks at `status.json` and dispatches the daily build when
+  today's file is missing. `keeper.yml` is a long-running job that sleeps until those same slots and
+  dispatches a missed run with the workflow's own `GITHUB_TOKEN`. At most two build attempts a day, and a
+  second run waits until the first finishes. `selfHeal` in `config.json` turns the make-up off.
 - Market holidays (NYSE 2026-2027 list in `calendar_us.py` / `logic.js`) and weekends are skipped.
   **Add the 2028 holidays before 2028.**
 - Self-healing: each network fetch retries with exponential backoff (2s, 4s, 8s; no retry on 404); the whole
   build retries 3 times in the job; runs never overlap (concurrency group); a failed run keeps the last good
   `latest.json`, writes `docs/data/status.json` (last run, result, last success, next run), and the page shows a
-  red "Out of date" banner with the last success time.
+  red "Out of date" banner with the last success time. An empty idea list is a finished result: the top of the
+  page says which market check failed and how many stocks passed the rules.
 - Permissions: `contents: write` only. No secrets. The job commits `docs/data/` and GitHub Pages rebuilds.
 - Keepalive: GitHub disables scheduled workflows in a public repo after 60 days with no repository activity.
   Every run that goes ahead commits `status.json` (its run time always changes), so there is a commit every

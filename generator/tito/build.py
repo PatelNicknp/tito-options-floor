@@ -19,6 +19,11 @@ from tito.sources import ET, PT, Fetcher, cboe_chain, completed_only, now_pt, st
 LABEL = "DELAYED · research only · not advice"
 DISCLAIMER = ("Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, "
               "closes or fills any trade. Check the live chart and price in TradingView before you log anything.")
+SCHEDULE = ("US trading days about 6:00 AM PT; backup 6:40 AM PT and 9:00 AM PT if that day's data is still missing; "
+            "a keeper makes up a dropped GitHub cron")
+# workflow_dispatch reasons that must obey the same "once per day" rule as a cron.
+# A button press (reason manual, or no reason) always runs.
+MAKEUP_REASONS = frozenset({"keeper", "keeper_retry", "watchdog"})
 
 
 def yahoo_symbol(t: str) -> str:
@@ -285,6 +290,17 @@ def run_url() -> str | None:
     return None
 
 
+def trigger_name() -> str:
+    """Honest label for status.json: keeper / watchdog when a make-up started the run, otherwise the event."""
+    return os.environ.get("TITO_TRIGGER") or os.environ.get("GITHUB_EVENT_NAME") or "local"
+
+
+def data_already_produced(status: dict, now_pt: datetime) -> bool:
+    """Today's file is on main when the last success is this PT date and the session the morning run expects."""
+    want = expected_session(now_pt.astimezone(ET)).isoformat()
+    return status.get("lastSuccessSession") == want and str(status.get("lastSuccessPT", "")).startswith(now_pt.date().isoformat())
+
+
 def read_json(path: Path) -> dict:
     try:
         return json.loads(path.read_text())
@@ -299,10 +315,12 @@ def write_json(path: Path, payload: dict) -> None:
     tmp.replace(path)
 
 
-def guard(status_path: Path, event: str) -> bool:
-    """Should this workflow trigger run? Manual runs always do. Scheduled runs: US trading day (PT),
-    between 5:45 AM and 1:00 PM PT, and only if today's data has not been produced yet."""
-    if event != "schedule":
+def guard(status_path: Path, event: str, reason: str = "") -> bool:
+    """Should this workflow trigger run? A button press always does. Scheduled runs, and make-up
+    dispatches (keeper / watchdog), run on a US trading day between 5:45 AM and 1:00 PM PT, and only
+    if today's data has not already been produced. The guard cannot stop GitHub from creating a run;
+    it only skips the fetch once a run exists."""
+    if event != "schedule" and reason not in MAKEUP_REASONS:
         return True
     now = datetime.now(PT)
     if not is_trading_day(now.date()):
@@ -312,9 +330,8 @@ def guard(status_path: Path, event: str) -> bool:
         print(f"skip: {now.strftime('%H:%M')} PT is outside the 5:45 AM-1:00 PM PT run window (other DST twin)")
         return False
     st = read_json(status_path)
-    want = expected_session(datetime.now(ET)).isoformat()
-    if st.get("lastSuccessSession") == want and str(st.get("lastSuccessPT", "")).startswith(now.date().isoformat()):
-        print(f"skip: today's data (session {want}) was already produced at {st.get('lastSuccessPT')}")
+    if data_already_produced(st, now):
+        print(f"skip: today's data (session {st.get('lastSuccessSession')}) was already produced at {st.get('lastSuccessPT')}")
         return False
     return True
 
@@ -326,17 +343,19 @@ def main() -> int:
     ap.add_argument("--status", default="docs/data/status.json")
     ap.add_argument("--limit", type=int, default=None, help="check only the first N tickers (for quick runs)")
     ap.add_argument("--guard", metavar="EVENT", help="only decide whether a workflow run should go ahead")
+    ap.add_argument("--reason", default="", help="workflow_dispatch reason: manual, keeper, keeper_retry, or watchdog")
     ap.add_argument("--record-failure", metavar="MESSAGE", help="only mark the latest run as failed in the status file")
     args = ap.parse_args()
     out, status_path = Path(args.out), Path(args.status)
     if args.record_failure:
         status = read_json(status_path)
-        status.update({"lastRunPT": now_pt(), "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"), "runUrl": run_url(),
-                       "nextRunPT": next_run_pt(datetime.now(PT)), "lastRunResult": "failed", "lastError": args.record_failure[:300]})
+        status.update({"lastRunPT": now_pt(), "trigger": trigger_name(), "runUrl": run_url(),
+                       "nextRunPT": next_run_pt(datetime.now(PT)), "schedule": SCHEDULE,
+                       "lastRunResult": "failed", "lastError": args.record_failure[:300]})
         write_json(status_path, status)
         return 0
     if args.guard:
-        ok = guard(status_path, args.guard)
+        ok = guard(status_path, args.guard, args.reason)
         print(f"should_run={'true' if ok else 'false'}")
         if os.environ.get("GITHUB_OUTPUT"):
             with open(os.environ["GITHUB_OUTPUT"], "a") as fh:
@@ -345,8 +364,8 @@ def main() -> int:
     config = json.loads(Path(args.config).read_text())
     status = read_json(status_path)
     now = datetime.now(PT)
-    status.update({"lastRunPT": now_pt(), "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"), "runUrl": run_url(),
-                   "nextRunPT": next_run_pt(now), "schedule": "US trading days about 6:00 AM PT; backup 6:40 AM PT and 9:00 AM PT if needed"})
+    status.update({"lastRunPT": now_pt(), "trigger": trigger_name(), "runUrl": run_url(),
+                   "nextRunPT": next_run_pt(now), "schedule": SCHEDULE})
     try:
         report = run(config, args.limit)
     except Exception as exc:  # noqa: BLE001 - keep last good data, record the failure

@@ -119,7 +119,7 @@ test("labels: DELAYED, research only, quote time not provided", () => {
   assert.ok(skip.includes("Skip if live ask above $1.98"));
 });
 
-import { freshness, prevTradingDay } from "../js/logic.js";
+import { emptyDay, freshness, plainGateFailure, prevTradingDay } from "../js/logic.js";
 
 test("freshness: current data, failed run, and out-of-date data", () => {
   const data = { entrySession: "2026-11-09", generatedAtPT: "2026-11-09 06:02 AM PT" };
@@ -137,4 +137,34 @@ test("freshness: current data, failed run, and out-of-date data", () => {
   assert.equal(freshness(failed, { ...data, entrySession: "2026-11-10" }, "2026-11-10", 8 * 60).state, "warn");
   assert.equal(freshness(null, null, "2026-11-10", 0).state, "failed");
   assert.equal(prevTradingDay("2026-11-30"), "2026-11-27");
+});
+
+test("an empty day says why, at the top, and a full day does not", () => {
+  const data = {
+    generatedAtPT: "2026-11-08 10:34 PM PT", signalSession: "2026-11-06", entrySession: "2026-11-09", entryWindowPT: "7:00 AM – 12:30 PM PT",
+    gate: { checks: [
+      { name: "Market: SPY above a rising 50-day average", pass: false, value: "SPY 735.29, 50-day 765.15 (10 sessions ago 766.90)" },
+      { name: "US Stock Box market_ok", pass: false, value: "market_ok = no on 31 buy setups" },
+      { name: "US Stock Box prices are from the last completed session", pass: true, value: "same session" },
+    ] },
+    noTradeToday: true,
+    funnel: { tickers: 515, withFreshCandles: 515, stockRulesPass: 0, earningsPass: 0, withContracts: 0 },
+    suggestions: [], blocked: [], nearMisses: [],
+  };
+  const day = emptyDay(data);
+  assert.match(day.lead, /market check failed/);
+  assert.match(day.reasons[0], /SPY \(735\.29\) is below its 50-day average \(765\.15\)/);
+  assert.match(day.reasons[0], /that average is falling/);
+  assert.match(day.reasons[1], /market_ok is no/);
+  assert.equal(day.funnel, "0 of 515 stocks passed the stock rules.");
+  assert.match(day.note, /not a broken page/);
+  const html = R.renderToday(data, S, 1000, { state: "ok", message: "" });
+  assert.ok(html.indexOf('id="empty-day"') < html.indexOf("Market check"));
+  assert.match(html, /No ideas today/);
+  assert.ok(!html.includes("Out of date"));
+  assert.match(plainGateFailure({ value: "SPY 10, 50-day 9 (10 sessions ago 8)" }), /not above its 50-day average/);
+  assert.match(plainGateFailure({ value: "SPY 10, 50-day 11 (10 sessions ago 10)" }), /not rising/);
+  const stale = R.renderToday(data, S, 1000, { state: "failed", message: "Data is out of date." });
+  assert.ok(stale.indexOf("Out of date") < stale.indexOf('id="empty-day"'));
+  assert.equal(emptyDay({ noTradeToday: false, suggestions: [{}] }), null);
 });

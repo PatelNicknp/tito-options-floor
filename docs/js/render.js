@@ -1,5 +1,5 @@
 // Pure HTML builders (strings). Every price view carries the DELAYED label and its times.
-import { maxEntryAsk } from "./logic.js";
+import { emptyDay, maxEntryAsk } from "./logic.js";
 
 export const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const money = (v) => (v === null || v === undefined || Number.isNaN(Number(v)) ? "n/a" : `${Number(v) < 0 ? "−" : ""}$${Math.abs(Number(v)).toFixed(2)}`);
@@ -70,14 +70,23 @@ export function renderFreshness(f) {
   return `<div class="stale ${f.state === "failed" ? "stale-bad" : "stale-warn"}" role="alert"><strong>${f.state === "failed" ? "Out of date" : "Update problem"}.</strong> ${esc(f.message)}</div>`;
 }
 
+export function renderEmptyDay(data) {
+  const day = emptyDay(data);
+  if (!day) return "";
+  const items = day.reasons.map((r) => `<li>${esc(r)}</li>`).join("");
+  return `<section class="empty-day" id="empty-day"><h2>${esc(day.title)}</h2><p>${esc(day.lead)}</p>
+    ${items ? `<ul>${items}</ul>` : ""}<p><strong>${esc(day.funnel)}</strong></p><p>${esc(day.note)}</p></section>`;
+}
+
 export function renderToday(data, settings, cash, fresh) {
   if (!data) return `${renderFreshness(fresh)}<p>No data file yet.</p>`;
   const head = renderFreshness(fresh) + `<div class="banner">${delayedBadge()} Built ${esc(data.generatedAtPT)} from the ${esc(data.signalSession)} daily candles. Ideas are for the ${esc(data.entrySession)} session, ${esc(data.entryWindowPT)}.</div>`;
   const gate = data.gate.checks.map((c) => `<li class="${c.pass ? "good" : "bad"}">${c.pass ? "✓" : "✗"} ${esc(c.name)}: ${esc(c.value)}</li>`).join("");
+  const empty = renderEmptyDay(data);
   let body;
   if (data.noTradeToday) {
-    body = `<section class="notrade"><h2>No trade today</h2><p>No stock and contract passed every rule. Waiting is a valid result.</p>
-      <p>Funnel: ${data.funnel.tickers} stocks checked → ${data.funnel.withFreshCandles} with fresh candles → ${data.funnel.stockRulesPass} passed the chart rules → ${data.funnel.earningsPass} also cleared earnings → ${data.funnel.withContracts} had a contract that passed.</p></section>`;
+    const f = data.funnel;
+    body = `<p class="small">Checked ${f.tickers} stocks: ${f.withFreshCandles} with fresh candles, ${f.stockRulesPass} passed the chart rules, ${f.earningsPass} also cleared earnings, ${f.withContracts} had a contract that passed.</p>`;
   } else {
     body = `<h2>Ideas to check in TradingView</h2>` + data.suggestions.map((i) => renderIdea(i, settings, cash, true)).join("");
   }
@@ -85,7 +94,7 @@ export function renderToday(data, settings, cash, fresh) {
     ? `<details class="blocked"><summary>Blocked today (${data.blocked.length}) (for learning — you can't log these)</summary><p class="bad">The market check above failed, so these are not suggestions.</p>${data.blocked.map((i) => renderIdea(i, settings, cash, false)).join("")}</details>` : "";
   const near = (data.nearMisses || []).length
     ? `<details><summary>Close, but one rule failed (${data.nearMisses.length})</summary><ul>${data.nearMisses.map((n) => `<li><strong>${esc(n.ticker)}</strong> — ${esc(n.failed)}: ${esc(n.detail)}</li>`).join("")}</ul></details>` : "";
-  return `${head}<section><h2>Market check</h2><ul class="checks">${gate}</ul></section>${body}${blocked}${near}`;
+  return `${head}${empty}<section><h2>Market check</h2><ul class="checks">${gate}</ul></section>${body}${blocked}${near}`;
 }
 
 export function renderStatus(status) {
