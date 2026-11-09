@@ -1,11 +1,11 @@
 {
- "lastRunPT": "2026-11-08 10:22 PM PT",
- "trigger": "local",
- "runUrl": null,
+ "lastRunPT": "2026-11-08 10:30 PM PT",
+ "trigger": "workflow_dispatch",
+ "runUrl": "https://github.com/PatelNicknp/tito-options-floor/actions/runs/42573387373",
  "nextRunPT": "2026-11-09 06:00 AM PT",
  "schedule": "US trading days about 6:00 AM PT; backup 6:40 AM PT and 9:00 AM PT if needed",
  "lastRunResult": "success",
  "lastError": null,
- "lastSuccessPT": "2026-11-08 10:27 PM PT",
+ "lastSuccessPT": "2026-11-08 10:34 PM PT",
  "lastSuccessSession": "2026-11-06"
 }

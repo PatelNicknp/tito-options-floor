@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-08 10:27 PM PT",
+ "generatedAtPT": "2026-11-08 10:34 PM PT",
  "signalSession": "2026-11-06",
  "entrySession": "2026-11-09",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "updated 2026-11-06 07:30 PT, prices as of 2026-11-06, mode hourly"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "1725 rows",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "106 rows",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "7 rows",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "31 rows",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "524 rows",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "Stock Box run 2026-11-06 07:30 PT (hourly); last bar trusted as complete: False"
   },
   {
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.00%",
-   "retrievedAtPT": "2026-11-08 10:22 PM PT",
+   "retrievedAtPT": "2026-11-08 10:30 PM PT",
    "sourceTime": "2026-11-06"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "516 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-08 10:27 PM PT",
+   "retrievedAtPT": "2026-11-08 10:34 PM PT",
    "sourceTime": "session close 2026-11-06 1:00 PM PT"
   },
   {
@@ -154,7 +154,7 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "not needed (no stock passed)",
-   "retrievedAtPT": "2026-11-08 10:27 PM PT",
+   "retrievedAtPT": "2026-11-08 10:34 PM PT",
    "sourceTime": "not provided"
   }
  ],
