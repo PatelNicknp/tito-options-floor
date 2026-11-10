@@ -68,6 +68,48 @@ export function renderIdea(idea, settings, cash, canLog) {
   </article>`;
 }
 
+
+export function renderSetup(row) {
+  const tag = row.marketAgainst ? `<span class="badge market">Market against you</span> ` : "";
+  const market = row.marketAgainst ? `<p class="market-note">${esc(row.marketNote || "The market is weak, so breakouts fail more often.")}</p>` : "";
+  const below = row.pctBelowPivot > 0
+    ? `${Math.abs(row.pctBelowPivot).toFixed(2)}% below pivot`
+    : row.pctBelowPivot < 0
+      ? `${Math.abs(row.pctBelowPivot).toFixed(2)}% above pivot`
+      : "at the pivot";
+  const why = row.status === "light_volume"
+    ? "Broke out above the pivot, but volume was below 1.25× the 50-day average."
+    : "Has a tight base but has not yet closed above the pivot.";
+  const earnClass = row.earningsSoon ? "setup-earn warn" : "setup-earn";
+  const earn = row.earningsSoon
+    ? `Earnings warning: ${esc(row.earningsNote || row.nextEarnings || "date unknown")} (within 15 trading days or unknown).`
+    : `Next earnings: ${esc(row.nextEarnings || "unknown")}.`;
+  const shares = Number(row.volumeNeeded).toLocaleString("en-US");
+  return `<article class="card setup" data-ticker="${esc(row.ticker)}">
+    <h3>${tag}${esc(row.ticker)} <span class="muted">${esc(row.company)} · ${esc(row.sector)}</span></h3>
+    ${market}
+    <p>${why}</p>
+    <dl class="facts">
+      <div><dt>Last close</dt><dd>${money(row.close)}</dd></div>
+      <div><dt>Pivot / breakout price</dt><dd>${money(row.pivot)}</dd></div>
+      <div><dt>Distance to pivot</dt><dd>${esc(below)}</dd></div>
+      <div><dt>Base</dt><dd>${esc(row.baseLength)} sessions, depth ${esc(row.depthPct)}%</dd></div>
+      <div><dt>Volume needed on breakout</dt><dd>${shares} shares (1.25× the 50-day average)</dd></div>
+    </dl>
+    <p class="${earnClass}">${earn}</p>
+    <p class="setup-note">Not a trade yet. Set a TradingView alert at ${money(row.pivot)}.</p>
+  </article>`;
+}
+
+export function renderSetups(list) {
+  if (!list || !list.length) return "";
+  return `<section class="setups" id="setting-up">
+    <h2>Setting up (${list.length})</h2>
+    <p>These stocks have a qualifying tight base but are not trade ideas. No contract is suggested, and nothing is filled from this list. Sorted closest to the pivot first.</p>
+    ${list.map(renderSetup).join("")}
+  </section>`;
+}
+
 export function renderFreshness(f) {
   if (!f || f.state === "ok") return "";
   return `<div class="stale ${f.state === "failed" ? "stale-bad" : "stale-warn"}" role="alert"><strong>${f.state === "failed" ? "Out of date" : "Update problem"}.</strong> ${esc(f.message)}</div>`;
@@ -107,7 +149,8 @@ export function renderToday(data, settings, cash, fresh) {
     ? `<details class="blocked"><summary>Blocked today (${data.blocked.length}) (for learning — you can't log these)</summary><p class="bad">The market check above failed, so these are not suggestions.</p>${data.blocked.map((i) => renderIdea(i, settings, cash, false)).join("")}</details>` : "";
   const near = (data.nearMisses || []).length
     ? `<details><summary>Close, but one rule failed (${data.nearMisses.length})</summary><ul>${data.nearMisses.map((n) => `<li><strong>${esc(n.ticker)}</strong> — ${esc(n.failed)}: ${esc(n.detail)}</li>`).join("")}</ul></details>` : "";
-  return `${head}${empty}<section><h2>Market check</h2><ul class="checks">${gate}</ul></section>${body}${blocked}${near}`;
+  const setups = renderSetups(data.settingUp);
+  return `${head}${empty}<section><h2>Market check</h2><ul class="checks">${gate}</ul></section>${body}${setups}${blocked}${near}`;
 }
 
 export function renderStatus(status) {
@@ -131,6 +174,7 @@ export function renderRules() {
       <li>A suggestion must pass the stock rules (breakout, volume, moving averages, chase limit, sector, relative strength) and the contract rules (35–70 days to expiry, delta 0.35–0.60, open interest at least 500, volume at least 50, IV at most 1.3× realized volatility, skew, earnings at least 15 trading days away, and the price ceiling X). At most 3 open positions and 1 per sector.</li>
       <li><strong>Test rule:</strong> breakout-day volume must be at least 1.25× the prior 50-day average (was 1.50×).</li>
       <li><strong>Test rule:</strong> the tight base may be 5–40 sessions (was 10–40). Depth still ≤ 25%. For bases of 10 or more sessions the last-10 range must still be ≤ 60% of the base. For a shorter 5–9 session base the last half of the base is used instead (rounded up, at least 2 sessions), because a last-10 window would be longer than the base, and using the whole short base would ask a range to be 60% of itself. Volume dry-up uses that same trailing slice. No other rule was loosened.</li>
+      <li><strong>Setting up</strong> is a watch list, not a trade list: stocks with a qualifying tight base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar (1.25× the 50-day average). Each row shows the volume needed on a breakout as a share count and says “Not a trade yet. Set a TradingView alert at $pivot.” No contract is suggested and nothing is filled from this list. Sorted closest to the pivot first. Earnings within 15 trading days (or unknown) are flagged. If the market check fails, the same Market against you tag is shown.</li>
       <li>When the S&amp;P 500 / market_ok check is the only rule that fails (SPY below a falling 50-day average, or Stock Box market_ok is no), ideas that passed everything else are still shown, tagged <span class="badge market">Market against you</span>. The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.</li>
       <li>Your adjustable max loss per trade stays at the amount you set (default $200 including fees). It is not lowered on tagged ideas, and no extra relative-strength filter is added.</li>
       <li>If something else in the market check fails (for example the interest rate or the session date), those ideas stay in a learning-only list and cannot be logged from this page.</li>

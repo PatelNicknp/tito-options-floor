@@ -140,3 +140,13 @@ section.against > h2 { margin-top: 0; }
 .market-note { color: var(--warn); font-weight: 600; }
 #rules-text { padding-left: 20px; }
 #rules-text li { margin-bottom: var(--space-2); }
+
+/* Setting up watch list (not trade ideas) */
+section.setups { margin-top: var(--space-5); }
+section.setups > h2 { margin-top: 0; }
+.card.setup { border-top: 4px solid var(--accent); }
+.setup-note { font-weight: 700; color: var(--text); }
+.setup-earn.warn { color: var(--warn); font-weight: 600; }
+@media (max-width: 599px) {
+  section.setups .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

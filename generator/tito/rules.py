@@ -1,6 +1,8 @@
 """Daily-candle stock rules from the Page (all 'Ours' settings). Pure functions."""
 from __future__ import annotations
 
+import math
+
 from tito.indicators import ret, sma
 
 SECTOR_ETF = {
@@ -190,3 +192,53 @@ def classify_breakout_fail(bars: list[dict], min_length: int | None = None) -> d
                 "detail": "a tight base exists but the last close was not above the pivot"}
     return {"kind": "base", "volRatio": vol_ratio, "length": None,
             "detail": f"no qualifying {lo_len}–{BASE_LEN_MAX} session tight base (depth, tightness or dry-up)"}
+
+
+def find_setup(bars: list[dict], min_length: int | None = None) -> dict | None:
+    """A qualifying tight base that is not yet a completed breakout.
+
+    Waiting: close has not printed above the pivot.
+    Light volume: close is above the pivot but breakout-day volume is below BREAKOUT_VOL_MIN.
+    A completed breakout (close above pivot and volume at the bar) is not a setup.
+    """
+    lo_len = BASE_LEN_MIN if min_length is None else min_length
+    if len(bars) < 92:
+        return None
+    last = bars[-1]
+    vols = [b["volume"] for b in bars]
+    avg50 = sum(vols[-51:-1]) / 50
+    if avg50 <= 0:
+        return None
+    vol_ratio = last["volume"] / avg50
+    best = None
+    for length in range(lo_len, BASE_LEN_MAX + 1):
+        window = bars[-1 - length:-1]
+        stats = _window_stats(window, avg50)
+        if stats is None:
+            continue
+        hi, lo, depth, tight, dry = stats
+        if depth <= 0.25 and tight and dry:
+            best = {"length": length, "pivot": hi, "low": lo, "depth": depth}
+    if best is None:
+        return None
+    pivot = best["pivot"]
+    close = last["close"]
+    above = close > pivot
+    if above and vol_ratio >= BREAKOUT_VOL_MIN:
+        return None
+    needed = math.ceil(BREAKOUT_VOL_MIN * avg50 - 1e-9)
+    return {
+        "length": best["length"],
+        "pivot": round(pivot, 2),
+        "low": round(best["low"], 2),
+        "depth": best["depth"],
+        "close": close,
+        "date": last["date"],
+        "volRatio": vol_ratio,
+        "avg50Volume": avg50,
+        "lastVolume": last["volume"],
+        "volumeNeeded": int(needed),
+        "pctBelowPivot": (pivot - close) / pivot * 100,
+        "status": "light_volume" if above else "waiting",
+    }
+

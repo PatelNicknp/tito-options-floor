@@ -199,3 +199,27 @@ test("an empty day says why, at the top, and a full day does not", () => {
   assert.ok(stale.indexOf("Out of date") < stale.indexOf('id="empty-day"'));
   assert.equal(emptyDay({ noTradeToday: false, suggestions: [{}] }), null);
 });
+
+test("Setting up watch list is separate, has the alert note, and suggests no contract", () => {
+  const row = {
+    ticker: "CME", company: "CME Group", sector: "Financials", close: 270, pivot: 272.5,
+    pctBelowPivot: 0.92, baseLength: 12, depthPct: 8.4, volumeNeeded: 1500000, status: "waiting",
+    nextEarnings: "2027-02-01", earningsSoon: false, earningsNote: "ok",
+    note: "Not a trade yet. Set a TradingView alert at $272.50.",
+    marketAgainst: true, marketNote: "The market is weak, so breakouts fail more often.",
+  };
+  const html = R.renderSetups([row]);
+  assert.match(html, /id="setting-up"/);
+  assert.match(html, /Setting up \(1\)/);
+  assert.match(html, /Not a trade yet\. Set a TradingView alert at \$272\.50/);
+  assert.match(html, /1,500,000 shares/);
+  assert.match(html, /0\.92% below pivot/);
+  assert.match(html, /Market against you/);
+  assert.ok(!html.includes("log this trade"));
+  assert.ok(!html.includes("data-log"));
+  assert.ok(!html.includes("CALL"));
+  const light = R.renderSetup({ ...row, ticker: "DGX", status: "light_volume", pctBelowPivot: -0.4, pivot: 180, note: "Not a trade yet. Set a TradingView alert at $180.00." });
+  assert.match(light, /Broke out above the pivot/);
+  assert.match(light, /0\.40% above pivot/);
+  assert.equal(R.renderSetups([]), "");
+});

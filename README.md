@@ -53,6 +53,13 @@ the base is used instead (rounded up, at least 2 sessions): a last-10 window wou
 and using the whole short base would ask a range to be 60% of itself. Volume dry-up uses that same trailing
 slice. No other rule was loosened.
 
+**Setting up** is a watch list on Today's ideas, separate from trade ideas: stocks with a qualifying tight
+base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar.
+Each name shows last close, pivot, distance to the pivot, base length and depth, the share count needed
+on the breakout (1.25× the 50-day average), earnings (with a warning if within 15 trading days), and
+“Not a trade yet. Set a TradingView alert at $pivot.” No contract is suggested and nothing is filled
+from this list. Sorted closest to the pivot first.
+
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.
 The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.

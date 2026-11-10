@@ -182,6 +182,7 @@ def run(config: dict, limit: int | None = None) -> dict:
     marks: dict[str, dict] = {}
     passed: list[dict] = []
     near: list[dict] = []
+    setting_up: list[dict] = []
     funnel = {"tickers": len(tickers), "withFreshCandles": 0, "stockRulesPass": 0, "earningsPass": 0, "withContracts": 0}
     for i, t in enumerate(tickers):
         bars, _src = candles(t, f"{base}/ohlc/{t}.csv")
@@ -209,6 +210,36 @@ def run(config: dict, limit: int | None = None) -> dict:
                            "closes": closes, "nextEarnings": next_earn.get(t)})
         elif len(fails) == 1:
             near.append({"ticker": t, "company": company_of.get(t, ""), "failed": fails[0]["name"], "detail": fails[0]["value"]})
+        if not signal:
+            setup = rules.find_setup(bars)
+            extra = [c for c in checks if not c["pass"] and c["name"] not in (
+                "Tight base then breakout on volume",
+                "No earnings within 15 trading days",
+            )]
+            if setup and setup["status"] == "light_volume" and (setup["close"] / setup["pivot"] - 1) > rules.CHASE_SIGNAL_MAX:
+                extra.append(rules.check("Signal-day chase limit", False,
+                                         f"{(setup['close'] / setup['pivot'] - 1) * 100:.1f}% above pivot", "≤ 4% above pivot"))
+            if setup and not extra:
+                pivot = setup["pivot"]
+                setting_up.append({
+                    "ticker": t,
+                    "company": company_of.get(t, ""),
+                    "sector": sector,
+                    "close": round(setup["close"], 2),
+                    "pivot": pivot,
+                    "pctBelowPivot": round(setup["pctBelowPivot"], 2),
+                    "baseLength": setup["length"],
+                    "depthPct": round(setup["depth"] * 100, 1),
+                    "volumeNeeded": setup["volumeNeeded"],
+                    "avg50Volume": int(round(setup["avg50Volume"])),
+                    "lastVolume": int(round(setup["lastVolume"])),
+                    "volRatio": round(setup["volRatio"], 2),
+                    "status": setup["status"],
+                    "nextEarnings": next_earn.get(t),
+                    "earningsSoon": not e_ok,
+                    "earningsNote": e_text,
+                    "note": f"Not a trade yet. Set a TradingView alert at ${pivot:.2f}.",
+                })
         if (i + 1) % 100 == 0:
             print(f"  checked {i + 1}/{len(tickers)}", flush=True)
 
@@ -262,6 +293,13 @@ def run(config: dict, limit: int | None = None) -> dict:
     else:
         blocked = ideas
     near.sort(key=lambda r: r["failed"])
+    setting_up.sort(key=lambda r: abs(r["pctBelowPivot"]))
+    if kind == "market_against":
+        for row in setting_up:
+            row["marketAgainst"] = True
+            row["tag"] = MARKET_AGAINST_BADGE
+            row["marketNote"] = MARKET_AGAINST_NOTE
+    funnel["settingUp"] = len(setting_up)
     if funnel["withFreshCandles"] < 0.8 * funnel["tickers"]:
         raise RuntimeError(f"Only {funnel['withFreshCandles']} of {funnel['tickers']} stocks had fresh candles; keeping the last good data.")
     return {
@@ -282,6 +320,7 @@ def run(config: dict, limit: int | None = None) -> dict:
         "suggestions": suggestions,
         "marketAgainst": market_against,
         "blocked": blocked,
+        "settingUp": setting_up,
         "nearMisses": near[:25],
         "provenance": provenance(candle_sources, trusted, meta),
         "expectedSession": expected.isoformat(),
@@ -410,7 +449,7 @@ def main() -> int:
                    "lastSuccessSession": report["signalSession"]})
     write_json(status_path, status)
     print(f"Wrote {out}: gate {report['gate'].get('kind', 'pass')}, {len(report['suggestions'])} suggestion(s), "
-          f"{len(report.get('marketAgainst') or [])} tagged (market against), {len(report['blocked'])} blocked setup(s), funnel {report['funnel']}")
+          f"{len(report.get('marketAgainst') or [])} tagged (market against), {len(report.get('settingUp') or [])} setting up, {len(report['blocked'])} blocked setup(s), funnel {report['funnel']}")
     for w in report["warnings"]:
         print("  note:", w)
     return 0

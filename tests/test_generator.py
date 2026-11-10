@@ -208,7 +208,7 @@ def test_published_file_has_no_fills_and_is_labelled():
     assert data["label"].startswith("DELAYED")
     for key in ('"fills"', '"trades"', '"positions"', '"ledger"', '"fillType"'):
         assert key not in text
-    for idea in data["suggestions"] + data.get("marketAgainst", []) + data["blocked"]:
+    for idea in data["suggestions"] + data.get("marketAgainst", []) + data["blocked"] + data.get("settingUp", []):
         if idea.get("quoteSource"):
             assert idea["quoteSource"]["quoteTime"] == "quote time not provided"
             assert idea["quoteSource"]["retrievedAtPT"].endswith("PT")
@@ -245,3 +245,33 @@ def test_classify_gate_market_against_only():
     assert classify_gate([{"name": market["name"], "pass": True}, mok, session, rate]) == "market_against"
     assert classify_gate([market, mok, {**session, "pass": False}, rate]) == "blocked"
     assert classify_gate([market, mok, session, {**rate, "pass": False}]) == "blocked"
+
+
+def test_find_setup_waiting_and_light_volume():
+    waiting = make_bars()
+    waiting[-1] = dict(waiting[-1], close=waiting[-2]["close"])
+    setup = rules.find_setup(waiting)
+    assert setup is not None and setup["status"] == "waiting"
+    assert setup["close"] <= setup["pivot"]
+    assert setup["volumeNeeded"] == int(__import__("math").ceil(rules.BREAKOUT_VOL_MIN * setup["avg50Volume"] - 1e-9))
+    light = make_bars(breakout=False)
+    setup = rules.find_setup(light)
+    assert setup is not None and setup["status"] == "light_volume"
+    assert setup["close"] > setup["pivot"]
+    assert setup["volRatio"] < rules.BREAKOUT_VOL_MIN
+    assert rules.find_setup(make_bars()) is None  # completed breakout is not a setup
+
+
+def test_setting_up_list_has_no_contracts_or_fills():
+    data = json.loads((ROOT / "docs" / "data" / "latest.json").read_text()) if (ROOT / "docs" / "data" / "latest.json").exists() else {}
+    for row in data.get("settingUp") or []:
+        assert "contracts" not in row and "fill" not in row
+        assert row["note"].startswith("Not a trade yet. Set a TradingView alert at $")
+        assert row["volumeNeeded"] > 0
+    rows = [
+        {"ticker": "A", "pctBelowPivot": 2.0},
+        {"ticker": "B", "pctBelowPivot": -0.3},
+        {"ticker": "C", "pctBelowPivot": 0.5},
+    ]
+    rows.sort(key=lambda r: abs(r["pctBelowPivot"]))
+    assert [r["ticker"] for r in rows] == ["B", "C", "A"]
