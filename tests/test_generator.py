@@ -307,3 +307,8 @@ def test_evaluate_plan_uses_pivot_delta_and_cap_reason():
     assert plan_reject_reason(expensive["reasons"], 30) == "Too expensive for $30 cap"
     assert plan_reject_reason({"over the dollar cap (skipped, not replaced)": 1}, 200) == "Too expensive for $200 cap"
     assert plan_reject_reason({}, 200) == "No listed call passed every rule"
+    assert plan_reject_reason({
+        "expiry outside 35-70 days": 500,
+        "delta outside 0.35-0.60": 10,
+        "bid-ask spread too wide": 2,
+    }, 200) == "Bid-ask spread too wide"

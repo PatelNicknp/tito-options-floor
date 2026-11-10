@@ -165,6 +165,27 @@ PLAN_DISCLAIMER = ("Plan only — not a trade until it closes above the pivot on
                    "recheck live price in TradingView")
 
 
+# Later checks first, so a chain full of weeklies does not hide why the 35-70 DTE names failed.
+_PLAN_REASON_PRIORITY = (
+    CAP_FAIL,
+    "scenario gate: under 2x the entry cost at target on day 10",
+    "speed check above 1.0",
+    "model did not converge",
+    "quotes inconsistent across strikes (recheck)",
+    "IV more than 3 points above neighbours",
+    "IV above 1.3x realized volatility",
+    "realized volatility missing",
+    "open interest < 500 or volume < 50",
+    "bid-ask spread too wide",
+    "delta outside 0.35-0.60",
+    "IV missing",
+    "no two-sided quote",
+    "strike not below target",
+    "expiry outside 35-70 days",
+    "non-standard contract",
+)
+
+
 def plan_reject_reason(reasons: dict, cap: float) -> str:
     """Plain-English why no planned contract passed. Prefer the cap if it blocked any name."""
     if reasons.get(CAP_FAIL):
@@ -172,7 +193,9 @@ def plan_reject_reason(reasons: dict, cap: float) -> str:
         return f"Too expensive for {cap_s} cap"
     if not reasons:
         return "No listed call passed every rule"
-    why = max(reasons.items(), key=lambda kv: kv[1])[0]
+    why = next((k for k in _PLAN_REASON_PRIORITY if reasons.get(k)), None)
+    if why is None:
+        why = max(reasons.items(), key=lambda kv: kv[1])[0]
     return why[0].upper() + why[1:] if why else "No listed call passed every rule"
 
 
