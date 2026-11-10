@@ -158,3 +158,140 @@ def evaluate(ticker: str, options: list[dict], spot: float, signal: dict, entry:
         })
     picks.sort(key=lambda p: (p["spread"] / max(p["mid"], 0.01), abs(p["greeks"]["delta"] - 0.47)))
     return {"picks": picks[: settings.get("maxSuggestionsPerTicker", 2)], "checked": len(calls), "reasons": reasons}
+
+
+CAP_FAIL = "over the dollar cap (skipped, not replaced)"
+PLAN_DISCLAIMER = ("Plan only — not a trade until it closes above the pivot on volume; "
+                   "recheck live price in TradingView")
+
+
+def plan_reject_reason(reasons: dict, cap: float) -> str:
+    """Plain-English why no planned contract passed. Prefer the cap if it blocked any name."""
+    if reasons.get(CAP_FAIL):
+        cap_s = f"${cap:.0f}" if float(cap) == int(cap) else f"${cap:.2f}"
+        return f"Too expensive for {cap_s} cap"
+    if not reasons:
+        return "No listed call passed every rule"
+    why = max(reasons.items(), key=lambda kv: kv[1])[0]
+    return why[0].upper() + why[1:] if why else "No listed call passed every rule"
+
+
+def evaluate_plan(ticker: str, options: list[dict], spot: float, signal: dict, entry: date, rate: float,
+                  hv20: float | None, hv60: float | None, settings: dict) -> dict:
+    """Like evaluate, but delta and the estimated ask are taken at the pivot when the model allows.
+
+    Today's delayed ask is kept on each pick. The dollar cap is checked against the estimated
+    ask at the pivot (what you would expect to pay if the stock is at the breakout).
+    """
+    pivot = float(signal["pivot"])
+    calls = []
+    for o in options:
+        p = parse_occ(o.get("option", ""))
+        if not p or p["type"] != "C":
+            continue
+        calls.append({"symbol": o["option"], "root": p["root"], "expiry": p["expiry"], "strike": p["strike"],
+                      "bid": float(o.get("bid") or 0), "ask": float(o.get("ask") or 0), "iv": float(o.get("iv") or 0),
+                      "oi": float(o.get("open_interest") or 0), "volume": float(o.get("volume") or 0),
+                      "lastTradeTime": o.get("last_trade_time")})
+    bad = _sanity(calls, spot)
+    hv = max([v for v in (hv20, hv60) if v] or [0])
+    fee = settings["feePerContract"]
+    qty = settings["contracts"]
+    x = max_entry_ask(settings["capDollars"], fee, qty, settings["startingCash"])
+    reasons: dict[str, int] = {}
+    picks = []
+    by_exp: dict[date, list[dict]] = {}
+    for c in calls:
+        by_exp.setdefault(c["expiry"], []).append(c)
+    for c in calls:
+        def fail(why: str) -> None:
+            reasons[why] = reasons.get(why, 0) + 1
+        dte = (c["expiry"] - entry).days
+        if c["root"] != ticker.replace(".", ""):
+            fail("non-standard contract"); continue
+        if not DTE_MIN <= dte <= DTE_MAX:
+            fail("expiry outside 35-70 days"); continue
+        if c["strike"] >= signal["target"]:
+            fail("strike not below target"); continue
+        if c["bid"] <= 0 or c["ask"] < c["bid"]:
+            fail("no two-sided quote"); continue
+        if c["iv"] <= 0:
+            fail("IV missing"); continue
+        delta_at = "pivot"
+        g = call_greeks(pivot, c["strike"], dte, c["iv"], rate)
+        if g is None:
+            g = call_greeks(spot, c["strike"], dte, c["iv"], rate)
+            delta_at = "current price"
+        if g is None or not DELTA_MIN <= g["delta"] <= DELTA_MAX:
+            fail("delta outside 0.35-0.60"); continue
+        if not spread_ok(c["bid"], c["ask"]):
+            fail("bid-ask spread too wide"); continue
+        if c["oi"] < MIN_OI or c["volume"] < MIN_VOL:
+            fail("open interest < 500 or volume < 50"); continue
+        if hv <= 0 or c["iv"] > IV_RATIO_MAX * hv:
+            fail("IV above 1.3x realized volatility" if hv > 0 else "realized volatility missing"); continue
+        row = sorted(by_exp[c["expiry"]], key=lambda r: r["strike"])
+        i = next(k for k, r in enumerate(row) if r["symbol"] == c["symbol"])
+        neigh = [r["iv"] for r in (row[i - 1] if i > 0 else None, row[i + 1] if i + 1 < len(row) else None) if r and r["iv"] > 0]
+        if not neigh:
+            fail("no neighbouring strikes to check skew"); continue
+        if c["iv"] - sum(neigh) / len(neigh) > SKEW_POINTS:
+            fail("IV more than 3 points above neighbours"); continue
+        if c["symbol"] in bad:
+            fail("quotes inconsistent across strikes (recheck)"); continue
+        d15 = add_trading_days(entry, 15)
+        t15 = (d15 - entry).days / 365
+        speed = math.log(signal["target"] / pivot) / (c["iv"] * math.sqrt(t15)) if signal["target"] > pivot else 0.0
+        if speed > SPEED_MAX:
+            fail("speed check above 1.0"); continue
+        d10 = add_trading_days(entry, 10)
+        model10 = american_call(signal["target"], c["strike"], (c["expiry"] - d10).days, c["iv"], rate)
+        now_model = american_call(spot, c["strike"], dte, c["iv"], rate)
+        pivot_model = american_call(pivot, c["strike"], dte, c["iv"], rate)
+        if not (model10["converged"] and now_model["converged"] and pivot_model["converged"]):
+            fail("model did not converge"); continue
+        spread = c["ask"] - c["bid"]
+        est_ask = round(max(pivot_model["value"] + (c["ask"] - now_model["value"]), max(0.0, pivot - c["strike"]), 0.01), 2)
+        debit = est_ask * 100 * qty + fee * qty
+        gate_value = (model10["value"] - spread) * 100 * qty - fee * qty
+        if gate_value < GATE_MULT * debit:
+            fail("scenario gate: under 2x the entry cost at target on day 10"); continue
+        if x is None or est_ask > x:
+            fail(CAP_FAIL); continue
+        scenarios = []
+        for label, s in (("At stop", signal["stop"]), ("Unchanged", pivot), ("At target", signal["target"])):
+            for tdays in (0, 5, 15):
+                day = add_trading_days(entry, tdays) if tdays else entry
+                for dv in (-0.05, 0.0, 0.05):
+                    v = american_call(s, c["strike"], (c["expiry"] - day).days, max(c["iv"] + dv, 0.01), rate)["value"]
+                    pnl = v * 100 * qty - fee * qty - debit
+                    scenarios.append({"stock": label, "price": round(s, 2), "tradingDay": tdays, "ivShift": round(dv * 100),
+                                      "value": round(v * 100 * qty, 2), "pnl": round(pnl, 2)})
+        picks.append({
+            "symbol": c["symbol"], "expiry": c["expiry"].isoformat(), "strike": c["strike"], "dte": dte, "type": "CALL",
+            "bid": c["bid"], "ask": c["ask"], "estimatedAskAtPivot": est_ask,
+            "mid": round((c["bid"] + c["ask"]) / 2, 3), "spread": round(spread, 2),
+            "oi": int(c["oi"]), "volume": int(c["volume"]), "iv": round(c["iv"], 4),
+            "hv20": round(hv20, 4) if hv20 else None, "hv60": round(hv60, 4) if hv60 else None,
+            "ivRatio": round(c["iv"] / hv, 2), "greeks": g, "lastTradeTime": c["lastTradeTime"],
+            "deltaEvaluatedAt": delta_at,
+            "model": {"name": "CRR binomial American, 800 steps, no dividends",
+                      "valueNow": round(now_model["value"], 3),
+                      "valueAtPivot": round(pivot_model["value"], 3),
+                      "converged": True},
+            "speed": round(speed, 2),
+            "gate": {"valueAtTargetDay10": round(gate_value, 2), "needed": round(GATE_MULT * debit, 2)},
+            "entryCost": round(debit, 2),
+            "qty": qty,
+            "maxLoss": round(est_ask * 100 * qty + 2 * fee * qty, 2),
+            "maxProfit": "No fixed limit (stock could keep rising)",
+            "breakevenAtExpiry": round(c["strike"] + est_ask + 2 * fee / 100, 2),
+            "valueAtExpiryAtTarget": round(max(0.0, signal["target"] - c["strike"]) * 100 * qty, 2),
+            "optionProfitTargetBid": round((TARGET_MULT * debit + fee * qty) / (100 * qty), 2),
+            "expiryExitDate": date.fromordinal(c["expiry"].toordinal() - 21).isoformat(),
+            "maxEntryAsk": x,
+            "scenarios": scenarios,
+        })
+    picks.sort(key=lambda p: (p["spread"] / max(p["mid"], 0.01), abs(p["greeks"]["delta"] - 0.47)))
+    return {"picks": picks[:1], "checked": len(calls), "reasons": reasons}
+

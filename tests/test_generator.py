@@ -9,7 +9,7 @@ import pytest
 from tito import rules
 from tito.build import DISCLAIMER, LABEL, classify_gate, earnings_ok
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day, trading_days_between
-from tito.contracts import evaluate, parse_occ, spread_ok
+from tito.contracts import evaluate, evaluate_plan, parse_occ, plan_reject_reason, spread_ok
 from tito.money import max_entry_ask
 from tito.options_math import american_call, bs_call, call_greeks
 
@@ -275,3 +275,35 @@ def test_setting_up_list_has_no_contracts_or_fills():
     ]
     rows.sort(key=lambda r: abs(r["pctBelowPivot"]))
     assert [r["ticker"] for r in rows] == ["B", "C", "A"]
+
+
+def plan_chain():
+    quotes = {
+        12: (0.88, 0.94, 0.40), 12.5: (0.62, 0.67, 0.39), 13: (0.35, 0.38, 0.38),
+        13.5: (0.22, 0.26, 0.38), 14: (0.14, 0.18, 0.39),
+    }
+    rows = []
+    for k, (bid, ask, iv) in quotes.items():
+        rows.append({"option": f"F261218C{int(k * 1000):08d}", "bid": bid, "ask": ask, "iv": iv,
+                     "open_interest": 5000, "volume": 500, "last_trade_time": "2026-11-06T15:59:00"})
+    return rows
+
+
+def test_evaluate_plan_uses_pivot_delta_and_cap_reason():
+    signal = {"target": 14.00, "stop": 11.60, "pivot": 12.80}
+    res = evaluate_plan("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, SETTINGS)
+    assert res["picks"]
+    pick = res["picks"][0]
+    assert pick["symbol"] == "F261218C00013000"
+    assert pick["deltaEvaluatedAt"] == "pivot"
+    assert pick["ask"] == 0.38
+    assert pick["estimatedAskAtPivot"] == 0.54
+    assert pick["qty"] == 1
+    assert pick["estimatedAskAtPivot"] <= pick["maxEntryAsk"]
+    assert 0.35 <= pick["greeks"]["delta"] <= 0.60
+    tight = {**SETTINGS, "capDollars": 30}
+    expensive = evaluate_plan("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, tight)
+    assert expensive["picks"] == []
+    assert plan_reject_reason(expensive["reasons"], 30) == "Too expensive for $30 cap"
+    assert plan_reject_reason({"over the dollar cap (skipped, not replaced)": 1}, 200) == "Too expensive for $200 cap"
+    assert plan_reject_reason({}, 200) == "No listed call passed every rule"

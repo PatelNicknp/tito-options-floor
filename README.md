@@ -57,8 +57,11 @@ slice. No other rule was loosened.
 base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar.
 Each name shows last close, pivot, distance to the pivot, base length and depth, the share count needed
 on the breakout (1.25× the 50-day average), earnings (with a warning if within 15 trading days), and
-“Not a trade yet. Set a TradingView alert at $pivot.” No contract is suggested and nothing is filled
-from this list. Sorted closest to the pivot first.
+“Not a trade yet. Set a TradingView alert at $pivot.” A planned call may be shown for if it breaks
+out (same contract rules; delta and the estimated ask are taken at the pivot when the model allows).
+If none pass, the reason is shown (including “No contract: earnings date unknown” and “Too expensive
+for $200 cap”). Every card is labelled plan-only. Nothing is filled from this list. Sorted closest
+to the pivot first.
 
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.

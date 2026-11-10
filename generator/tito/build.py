@@ -10,7 +10,7 @@ from pathlib import Path
 
 from tito import rules
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day
-from tito.contracts import evaluate
+from tito.contracts import PLAN_DISCLAIMER, evaluate, evaluate_plan, plan_reject_reason
 from tito.indicators import realized_vol, sma
 from tito.money import max_entry_ask
 from tito.candles import expected_session, load_candles, stockbox_trusted
@@ -239,6 +239,8 @@ def run(config: dict, limit: int | None = None) -> dict:
                     "earningsSoon": not e_ok,
                     "earningsNote": e_text,
                     "note": f"Not a trade yet. Set a TradingView alert at ${pivot:.2f}.",
+                    "baseLow": setup["low"],
+                    "_closes": closes,
                 })
         if (i + 1) % 100 == 0:
             print(f"  checked {i + 1}/{len(tickers)}", flush=True)
@@ -272,12 +274,51 @@ def run(config: dict, limit: int | None = None) -> dict:
         ideas.append(p)
     for p in ideas:
         p.pop("closes", None)
+    setup_chains = 0
+    for row in setting_up:
+        closes = row.pop("_closes", None)
+        row["planDisclaimer"] = PLAN_DISCLAIMER
+        row["plannedContracts"] = []
+        if not row.get("nextEarnings"):
+            row["planNote"] = "No contract: earnings date unknown"
+            continue
+        if row.get("earningsSoon"):
+            row["planNote"] = f"No contract: {row.get('earningsNote') or 'earnings within 15 trading days'}"
+            continue
+        try:
+            raw = cboe_chain(f, row["ticker"])
+            setup_chains += 1
+        except Exception as exc:  # noqa: BLE001
+            row["planNote"] = f"No contract: Cboe delayed chain unavailable ({str(exc)[:80]})"
+            continue
+        pivot = row["pivot"]
+        signal = {
+            "pivot": pivot,
+            "target": round(pivot + (pivot - row["baseLow"]), 2),
+            "stop": row["baseLow"],
+        }
+        res = evaluate_plan(row["ticker"], (raw.get("data") or {}).get("options") or [],
+                            row["close"], signal, entry_date, rate or 0,
+                            realized_vol(closes, 20) if closes else None,
+                            realized_vol(closes, 60) if closes else None, settings)
+        row["plannedContracts"] = res["picks"]
+        row["planRejects"] = res["reasons"]
+        row["quoteSource"] = {"label": "Cboe delayed quotes",
+                              "url": f"https://cdn.cboe.com/api/global/delayed_quotes/options/{row['ticker']}.json",
+                              "fileTimestamp": f"{raw.get('timestamp')} (time zone not stated by Cboe)",
+                              "quoteTime": "quote time not provided", "retrievedAtPT": now_pt()}
+        row["levels"] = {"timeStopDate": add_trading_days(entry_date, 15).isoformat()}
+        row["planSignal"] = {**signal, "liveMin": pivot, "liveMax": round(pivot * (1 + rules.CHASE_LIVE_MAX), 2)}
+        if res["picks"]:
+            row["planNote"] = PLAN_DISCLAIMER
+        else:
+            row["planNote"] = plan_reject_reason(res["reasons"], settings["capDollars"])
     yahoo_used = sum(v for k, v in candle_sources.items() if "yahoo" in k)
     sources.append(source("yahoo_daily", "Yahoo Finance daily candles (only what Stock Box lacks; completed bars only)",
                           "https://query1.finance.yahoo.com/v8/finance/chart/", True,
                           f"{yahoo_used} tickers needed Yahoo; sector ETFs and ^IRX always", f"session close {signal_date} 1:00 PM PT"))
     sources.append(source("cboe_delayed", "Cboe delayed option quotes", "https://cdn.cboe.com/api/global/delayed_quotes/options/",
-                          chain_ok == len(passed), f"{chain_ok} of {len(passed)} chains loaded" if passed else "not needed (no stock passed)"))
+                          True, f"{chain_ok} idea chain(s) and {setup_chains} setting-up chain(s) loaded"))
 
     kind = classify_gate(gate)
     ready = [p for p in ideas if p.get("contracts")]

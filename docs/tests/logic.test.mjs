@@ -215,10 +215,29 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   assert.match(html, /1,500,000 shares/);
   assert.match(html, /0\.92% below pivot/);
   assert.match(html, /Market against you/);
+  assert.match(html, /Plan only — not a trade until it closes above the pivot on volume/);
   assert.ok(!html.includes("log this trade"));
   assert.ok(!html.includes("data-log"));
-  assert.ok(!html.includes("CALL"));
-  const light = R.renderSetup({ ...row, ticker: "DGX", status: "light_volume", pctBelowPivot: -0.4, pivot: 180, note: "Not a trade yet. Set a TradingView alert at $180.00." });
+  const unknown = R.renderSetup({ ...row, planNote: "No contract: earnings date unknown" }, S, 1000);
+  assert.match(unknown, /No contract: earnings date unknown/);
+  const planned = {
+    symbol: "CME261218C00300000", expiry: "2026-12-18", strike: 300, qty: 1, bid: 1.10, ask: 1.20,
+    estimatedAskAtPivot: 1.55, maxLoss: 156.3, breakevenAtExpiry: 301.56, dte: 39,
+    greeks: { delta: 0.42 }, deltaEvaluatedAt: "pivot", optionProfitTargetBid: 4.66, expiryExitDate: "2026-11-27",
+  };
+  const withC = R.renderSetup({
+    ...row, plannedContracts: [planned],
+    planSignal: { stop: 260, pivot: 272.5, target: 285 }, levels: { timeStopDate: "2026-12-01" },
+  }, S, 1000);
+  assert.match(withC, /CME 2026-12-18 \$300 CALL × 1/);
+  assert.match(withC, /Today's delayed ask/);
+  assert.match(withC, /Estimated ask at pivot/);
+  assert.match(withC, /\$1\.55/);
+  assert.match(withC, /evaluated at the pivot \$272\.50 using current IV/);
+  assert.match(withC, /Skip if live ask above \$1\.98/);
+  assert.ok(!withC.includes("data-log"));
+  assert.match(R.renderSetup({ ...row, planNote: "Too expensive for $200 cap" }, S, 1000), /Too expensive for \$200 cap/);
+  const light = R.renderSetup({ ...row, ticker: "DGX", status: "light_volume", pctBelowPivot: -0.4, pivot: 180, note: "Not a trade yet. Set a TradingView alert at $180.00." }, S, 1000);
   assert.match(light, /Broke out above the pivot/);
   assert.match(light, /0\.40% above pivot/);
   assert.equal(R.renderSetups([]), "");
