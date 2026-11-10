@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-09 08:13 PM PT",
+ "generatedAtPT": "2026-11-10 06:19 AM PT",
  "signalSession": "2026-11-09",
  "entrySession": "2026-11-10",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "updated 2026-11-09 15:52 PT, prices as of 2026-11-09, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "1724 rows",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "317 rows",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "21 rows",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "31 rows",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "524 rows",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "Stock Box run 2026-11-09 15:52 PT (full); last bar trusted as complete: True"
   },
   {
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.03%",
-   "retrievedAtPT": "2026-11-09 08:09 PM PT",
+   "retrievedAtPT": "2026-11-10 06:15 AM PT",
    "sourceTime": "2026-11-09"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "4 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-09 08:13 PM PT",
+   "retrievedAtPT": "2026-11-10 06:19 AM PT",
    "sourceTime": "session close 2026-11-09 1:00 PM PT"
   },
   {
@@ -154,7 +154,7 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "0 idea chain(s) and 10 setting-up chain(s) loaded",
-   "retrievedAtPT": "2026-11-09 08:13 PM PT",
+   "retrievedAtPT": "2026-11-10 06:19 AM PT",
    "sourceTime": "not provided"
   }
  ],
@@ -204,7 +204,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DGX.json",
     "fileTimestamp": "2026-11-10 00:49:12 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -278,9 +278,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ULTA.json",
-    "fileTimestamp": "2026-11-10 00:32:07 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-10 11:03:23 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -330,7 +330,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/TMO.json",
     "fileTimestamp": "2026-11-10 00:21:30 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -379,9 +379,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DHR.json",
-    "fileTimestamp": "2026-11-10 01:45:35 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-10 11:13:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -536,7 +536,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ICE.json",
     "fileTimestamp": "2026-11-10 00:07:34 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -587,7 +587,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MTD.json",
     "fileTimestamp": "2026-11-09 23:41:43 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -689,9 +689,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/STZ.json",
-    "fileTimestamp": "2026-11-10 01:39:40 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-10 11:19:27 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -769,7 +769,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CME.json",
     "fileTimestamp": "2026-11-10 01:36:35 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -922,7 +922,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ACGL.json",
     "fileTimestamp": "2026-11-09 23:14:36 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
@@ -971,9 +971,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/KR.json",
-    "fileTimestamp": "2026-11-10 01:11:24 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-10 11:04:03 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-09 08:13 PM PT"
+    "retrievedAtPT": "2026-11-10 06:19 AM PT"
    },
    "levels": {
     "timeStopDate": "2026-12-02"
