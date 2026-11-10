@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-09 05:23 PM PT",
+ "generatedAtPT": "2026-11-09 05:36 PM PT",
  "signalSession": "2026-11-09",
  "entrySession": "2026-11-10",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 05:19 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "updated 2026-11-09 15:52 PT, prices as of 2026-11-09, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "1724 rows",
-   "retrievedAtPT": "2026-11-09 05:19 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-09 05:19 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "317 rows",
-   "retrievedAtPT": "2026-11-09 05:19 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "21 rows",
-   "retrievedAtPT": "2026-11-09 05:20 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "31 rows",
-   "retrievedAtPT": "2026-11-09 05:20 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "524 rows",
-   "retrievedAtPT": "2026-11-09 05:20 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 05:20 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-09 05:20 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "Stock Box run 2026-11-09 15:52 PT (full); last bar trusted as complete: True"
   },
   {
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.03%",
-   "retrievedAtPT": "2026-11-09 05:20 PM PT",
+   "retrievedAtPT": "2026-11-09 05:33 PM PT",
    "sourceTime": "2026-11-09"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "3 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-09 05:23 PM PT",
+   "retrievedAtPT": "2026-11-09 05:36 PM PT",
    "sourceTime": "session close 2026-11-09 1:00 PM PT"
   },
   {
@@ -154,7 +154,7 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "not needed (no stock passed)",
-   "retrievedAtPT": "2026-11-09 05:23 PM PT",
+   "retrievedAtPT": "2026-11-09 05:36 PM PT",
    "sourceTime": "not provided"
   }
  ],
@@ -174,151 +174,151 @@
    "ticker": "ABBV",
    "company": "AbbVie",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "ACGL",
    "company": "Arch Capital Group",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "AIZ",
    "company": "Assurant",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "AJG",
    "company": "Arthur J. Gallagher & Co.",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "AMGN",
    "company": "Amgen",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "AMT",
    "company": "American Tower",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "AWK",
    "company": "American Water Works",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "BDX",
    "company": "Becton Dickinson",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "BF-B",
    "company": "Brown\u2013Forman",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "BIIB",
    "company": "Biogen",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "BRK-B",
    "company": "Berkshire Hathaway",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CAH",
    "company": "Cardinal Health",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CBOE",
    "company": "Cboe Global Markets",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CCEP",
    "company": "Coca-Cola Europacific Partners",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CCL",
    "company": "Carnival Corporation",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CHD",
    "company": "Church & Dwight",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CINF",
    "company": "Cincinnati Financial",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CME",
    "company": "CME Group",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "COST",
    "company": "Costco",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CPAY",
    "company": "Corpay",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "CRL",
    "company": "Charles River Laboratories",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "DG",
    "company": "Dollar General",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "DGX",
    "company": "Quest Diagnostics",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "DHR",
    "company": "Danaher Corporation",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   },
   {
    "ticker": "EBAY",
    "company": "eBay Inc.",
    "failed": "Tight base then breakout on volume",
-   "detail": "no qualifying 10\u201340 session base and breakout on the last completed day"
+   "detail": "no qualifying 5\u201340 session base (test; was 10\u201340) and breakout on the last completed day"
   }
  ],
  "provenance": [
