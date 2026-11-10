@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-09 07:48 PM PT",
+ "generatedAtPT": "2026-11-09 08:08 PM PT",
  "signalSession": "2026-11-09",
  "entrySession": "2026-11-10",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "updated 2026-11-09 15:52 PT, prices as of 2026-11-09, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "1724 rows",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "317 rows",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "21 rows",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "31 rows",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "524 rows",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "Stock Box run 2026-11-09 15:52 PT (full); last bar trusted as complete: True"
   },
   {
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.03%",
-   "retrievedAtPT": "2026-11-09 07:45 PM PT",
+   "retrievedAtPT": "2026-11-09 08:03 PM PT",
    "sourceTime": "2026-11-09"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "4 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-09 07:48 PM PT",
+   "retrievedAtPT": "2026-11-09 08:08 PM PT",
    "sourceTime": "session close 2026-11-09 1:00 PM PT"
   },
   {
@@ -153,8 +153,8 @@
    "label": "Cboe delayed option quotes",
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
-   "detail": "not needed (no stock passed)",
-   "retrievedAtPT": "2026-11-09 07:48 PM PT",
+   "detail": "0 idea chain(s) and 10 setting-up chain(s) loaded",
+   "retrievedAtPT": "2026-11-09 08:08 PM PT",
    "sourceTime": "not provided"
   }
  ],
@@ -189,6 +189,34 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-02-09; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $259.00.",
+   "baseLow": 223.5,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 82,
+    "IV missing": 12,
+    "delta outside 0.35-0.60": 7,
+    "bid-ask spread too wide": 2,
+    "strike not below target": 6
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DGX.json",
+    "fileTimestamp": "2026-11-10 00:49:12 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 259.0,
+    "target": 294.5,
+    "stop": 223.5,
+    "liveMin": 259.0,
+    "liveMax": 271.95
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -211,6 +239,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $36.67.",
+   "baseLow": 36.27,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -233,6 +265,34 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2026-12-03; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $674.04.",
+   "baseLow": 529.01,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 781,
+    "IV missing": 47,
+    "delta outside 0.35-0.60": 128,
+    "bid-ask spread too wide": 22,
+    "strike not below target": 36
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ULTA.json",
+    "fileTimestamp": "2026-11-10 00:32:07 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 674.04,
+    "target": 819.07,
+    "stop": 529.01,
+    "liveMin": 674.04,
+    "liveMax": 707.74
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -255,6 +315,34 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-01-28; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $712.17.",
+   "baseLow": 605.19,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 811,
+    "delta outside 0.35-0.60": 152,
+    "bid-ask spread too wide": 12,
+    "strike not below target": 30,
+    "open interest < 500 or volume < 50": 4
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/TMO.json",
+    "fileTimestamp": "2026-11-10 00:21:30 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 712.17,
+    "target": 819.15,
+    "stop": 605.19,
+    "liveMin": 712.17,
+    "liveMax": 747.78
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -277,6 +365,35 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-01-27; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $238.46.",
+   "baseLow": 198.74,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 447,
+    "delta outside 0.35-0.60": 82,
+    "bid-ask spread too wide": 5,
+    "speed check above 1.0": 1,
+    "strike not below target": 29,
+    "open interest < 500 or volume < 50": 2
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DHR.json",
+    "fileTimestamp": "2026-11-10 01:45:35 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 238.46,
+    "target": 278.18,
+    "stop": 198.74,
+    "liveMin": 238.46,
+    "liveMax": 250.38
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -299,6 +416,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $49.34.",
+   "baseLow": 38.38,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -321,6 +442,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $40.36.",
+   "baseLow": 35.05,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -343,6 +468,10 @@
    "earningsSoon": true,
    "earningsNote": "next earnings 2026-11-23; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $182.99.",
+   "baseLow": 144.43,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: next earnings 2026-11-23; must be after 2026-12-02",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -365,6 +494,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $59.76.",
+   "baseLow": 56.18,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -387,6 +520,35 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-02-04; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $177.94.",
+   "baseLow": 153.9,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 399,
+    "delta outside 0.35-0.60": 56,
+    "IV missing": 14,
+    "bid-ask spread too wide": 5,
+    "no two-sided quote": 1,
+    "strike not below target": 22
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ICE.json",
+    "fileTimestamp": "2026-11-10 00:07:34 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 177.94,
+    "target": 201.98,
+    "stop": 153.9,
+    "liveMin": 177.94,
+    "liveMax": 186.84
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -409,6 +571,35 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-02-04; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $1806.58.",
+   "baseLow": 1380.44,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 561,
+    "delta outside 0.35-0.60": 142,
+    "bid-ask spread too wide": 14,
+    "no two-sided quote": 1,
+    "IV missing": 1,
+    "strike not below target": 5
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MTD.json",
+    "fileTimestamp": "2026-11-09 23:41:43 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 1806.58,
+    "target": 2232.72,
+    "stop": 1380.44,
+    "liveMin": 1806.58,
+    "liveMax": 1896.91
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -431,6 +622,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $163.99.",
+   "baseLow": 130.56,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -453,6 +648,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $38.45.",
+   "baseLow": 29.07,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -475,6 +674,36 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-01-07; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $149.43.",
+   "baseLow": 112.1,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 527,
+    "IV missing": 27,
+    "delta outside 0.35-0.60": 53,
+    "bid-ask spread too wide": 8,
+    "no two-sided quote": 4,
+    "strike not below target": 29,
+    "speed check above 1.0": 1
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/STZ.json",
+    "fileTimestamp": "2026-11-10 01:39:40 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 149.43,
+    "target": 186.76,
+    "stop": 112.1,
+    "liveMin": 149.43,
+    "liveMax": 156.9
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -497,6 +726,10 @@
    "earningsSoon": true,
    "earningsNote": "next earnings 2026-11-24; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $103.54.",
+   "baseLow": 83.65,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-02",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -519,6 +752,36 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-02-03; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $312.80.",
+   "baseLow": 258.87,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 519,
+    "IV missing": 59,
+    "delta outside 0.35-0.60": 38,
+    "open interest < 500 or volume < 50": 1,
+    "bid-ask spread too wide": 7,
+    "no two-sided quote": 2,
+    "strike not below target": 23
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CME.json",
+    "fileTimestamp": "2026-11-10 01:36:35 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 312.8,
+    "target": 366.73,
+    "stop": 258.87,
+    "liveMin": 312.8,
+    "liveMax": 328.44
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -541,6 +804,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $25.60.",
+   "baseLow": 19.6,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -563,6 +830,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $110.27.",
+   "baseLow": 91.36,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -585,6 +856,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $693.97.",
+   "baseLow": 587.39,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -607,6 +882,10 @@
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $325.96.",
+   "baseLow": 270.77,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -629,6 +908,33 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2027-02-08; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $113.63.",
+   "baseLow": 99.83,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 58,
+    "delta outside 0.35-0.60": 15,
+    "bid-ask spread too wide": 1,
+    "strike not below target": 3
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ACGL.json",
+    "fileTimestamp": "2026-11-09 23:14:36 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 113.63,
+    "target": 127.43,
+    "stop": 99.83,
+    "liveMin": 113.63,
+    "liveMax": 119.31
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -651,6 +957,35 @@
    "earningsSoon": false,
    "earningsNote": "next earnings 2026-12-03; must be after 2026-12-02",
    "note": "Not a trade yet. Set a TradingView alert at $71.64.",
+   "baseLow": 57.56,
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planRejects": {
+    "expiry outside 35-70 days": 342,
+    "IV missing": 20,
+    "delta outside 0.35-0.60": 36,
+    "bid-ask spread too wide": 9,
+    "no two-sided quote": 3,
+    "strike not below target": 10
+   },
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/KR.json",
+    "fileTimestamp": "2026-11-10 01:11:24 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-09 08:08 PM PT"
+   },
+   "levels": {
+    "timeStopDate": "2026-12-02"
+   },
+   "planSignal": {
+    "pivot": 71.64,
+    "target": 85.72,
+    "stop": 57.56,
+    "liveMin": 71.64,
+    "liveMax": 75.22
+   },
+   "planNote": "Expiry outside 35-70 days",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
