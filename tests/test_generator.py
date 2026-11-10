@@ -80,7 +80,7 @@ def make_bars(n=300, breakout=True):
 
 def test_breakout_found_and_chase_limit():
     base = rules.find_base(make_bars())
-    assert base is not None and 10 <= base["length"] <= 40 and base["depth"] <= 0.25
+    assert base is not None and rules.BASE_LEN_MIN <= base["length"] <= rules.BASE_LEN_MAX and base["depth"] <= 0.25
     assert base["volRatio"] >= rules.BREAKOUT_VOL_MIN
 
 
@@ -104,6 +104,32 @@ def test_breakout_volume_test_bar_is_1_25_was_1_50():
     mid = make_bars()
     mid[-1] = dict(mid[-1], close=mid[-2]["close"])  # no breakout price
     assert rules.classify_breakout_fail(mid)["kind"] in {"price", "base"}
+
+
+def test_base_min_length_test_is_5_was_10():
+    assert rules.BASE_LEN_MIN_WAS == 10
+    assert rules.BASE_LEN_MIN == 5
+    assert rules.BASE_LEN_MAX == 40
+    assert rules.recent_len(40) == 10 and rules.recent_len(10) == 10
+    assert rules.recent_len(9) == 5 and rules.recent_len(5) == 3
+    # A 5-session tightening base (deeper history so 10+ session windows fail depth).
+    bars, price, d = [], 50.0, date(2025, 8, 1)
+    for i in range(280):
+        price *= 1.003
+        bars.append({"date": d.isoformat(), "open": price, "high": price * 1.01, "low": price * 0.7, "close": price, "volume": 1_000_000})
+        d += timedelta(days=1)
+    top = price
+    for i in range(5):
+        c = top * (0.99 + 0.002 * i)
+        rng = 0.02 if i < 2 else 0.004
+        bars.append({"date": d.isoformat(), "open": c, "high": min(c * (1 + rng), top * 1.005), "low": c * (1 - rng), "close": c, "volume": 700_000})
+        d += timedelta(days=1)
+    pivot = max(b["high"] for b in bars[-5:])
+    close = pivot * 1.02
+    bars.append({"date": d.isoformat(), "open": close, "high": close * 1.005, "low": pivot * 0.995, "close": close, "volume": 2_000_000})
+    found = rules.find_base(bars)
+    assert found is not None and found["length"] == 5
+    assert rules.find_base(bars, min_length=10) is None
 
 
 def test_market_rule():

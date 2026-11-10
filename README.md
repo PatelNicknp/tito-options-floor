@@ -45,9 +45,13 @@ and a contract must pass the contract rules (35–70 days to expiry, delta 0.35�
 volume at least 50, IV at most 1.3× realized volatility, skew, earnings at least 15 trading days away, price at
 or under the ceiling X). At most 3 open positions and 1 per sector.
 
-**Test rule:** breakout-day volume must be at least **1.25×** the prior 50-day average (**was 1.50×**). The
-tight-base definition is unchanged (10–40 sessions, depth ≤ 25%, last-10 range ≤ 60% of the base, volume
-dry-up). No other rule was loosened.
+**Test rule:** breakout-day volume must be at least **1.25×** the prior 50-day average (**was 1.50×**).
+
+**Test rule:** the tight base may be **5–40 sessions (was 10–40)**. Depth still ≤ 25%. For bases of 10 or more
+sessions the last-10 range must still be ≤ 60% of the base. For a shorter 5–9 session base the last half of
+the base is used instead (rounded up, at least 2 sessions): a last-10 window would be longer than the base,
+and using the whole short base would ask a range to be 60% of itself. Volume dry-up uses that same trailing
+slice. No other rule was loosened.
 
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.

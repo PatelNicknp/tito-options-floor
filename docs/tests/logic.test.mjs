@@ -145,6 +145,8 @@ test("market-against ideas are tagged amber and listed after market-OK ideas; ca
   assert.match(rules, /Test rule/);
   assert.match(rules, /1\.25/);
   assert.match(rules, /1\.50/);
+  assert.match(rules, /5–40 sessions \(was 10–40\)/);
+  assert.match(rules, /last half/);
 });
 
 import { emptyDay, freshness, plainGateFailure, prevTradingDay } from "../js/logic.js";
