@@ -80,11 +80,30 @@ def make_bars(n=300, breakout=True):
 
 def test_breakout_found_and_chase_limit():
     base = rules.find_base(make_bars())
-    assert base is not None and 10 <= base["length"] <= 40 and base["depth"] <= 0.25 and base["volRatio"] >= 1.5
+    assert base is not None and 10 <= base["length"] <= 40 and base["depth"] <= 0.25
+    assert base["volRatio"] >= rules.BREAKOUT_VOL_MIN
 
 
 def test_no_breakout_without_volume():
     assert rules.find_base(make_bars(breakout=False)) is None
+
+
+def test_breakout_volume_test_bar_is_1_25_was_1_50():
+    assert rules.BREAKOUT_VOL_WAS == 1.50
+    assert rules.BREAKOUT_VOL_MIN == 1.25
+    assert 1.0 < rules.BREAKOUT_VOL_MIN < rules.BREAKOUT_VOL_WAS
+    bars = make_bars()
+    avg50 = sum(b["volume"] for b in bars[-51:-1]) / 50
+    bars[-1] = dict(bars[-1], volume=avg50 * 1.24)
+    assert rules.find_base(bars) is None
+    assert rules.classify_breakout_fail(bars)["kind"] == "volume"
+    bars[-1] = dict(bars[-1], volume=avg50 * 1.26)
+    assert rules.find_base(bars) is not None
+    assert rules.find_base(bars, min_vol=rules.BREAKOUT_VOL_WAS) is None
+    assert rules.classify_breakout_fail(bars)["kind"] == "volume_between"
+    mid = make_bars()
+    mid[-1] = dict(mid[-1], close=mid[-2]["close"])  # no breakout price
+    assert rules.classify_breakout_fail(mid)["kind"] in {"price", "base"}
 
 
 def test_market_rule():

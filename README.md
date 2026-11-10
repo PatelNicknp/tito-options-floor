@@ -45,6 +45,10 @@ and a contract must pass the contract rules (35–70 days to expiry, delta 0.35�
 volume at least 50, IV at most 1.3× realized volatility, skew, earnings at least 15 trading days away, price at
 or under the ceiling X). At most 3 open positions and 1 per sector.
 
+**Test rule:** breakout-day volume must be at least **1.25×** the prior 50-day average (**was 1.50×**). The
+tight-base definition is unchanged (10–40 sessions, depth ≤ 25%, last-10 range ≤ 60% of the base, volume
+dry-up). No other rule was loosened.
+
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.
 The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.

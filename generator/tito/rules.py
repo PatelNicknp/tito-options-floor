@@ -12,6 +12,9 @@ SECTOR_ETF = {
 CHASE_SIGNAL_MAX = 0.04
 CHASE_LIVE_MAX = 0.05
 EARNINGS_TRADING_DAYS = 15
+# Test: breakout-day volume vs the prior 50-day average. Was 1.50; never below 1.0.
+BREAKOUT_VOL_WAS = 1.50
+BREAKOUT_VOL_MIN = 1.25
 
 
 def check(name: str, ok: bool | None, value: str, limit: str) -> dict:
@@ -44,7 +47,12 @@ def sector_rule(etf: str | None, etf_closes: list[float] | None, spy_closes: lis
                  "ETF > 50-day SMA and 63-day return ≥ SPY's")
 
 
-def stock_rules(bars: list[dict], spy_closes: list[float]) -> tuple[list[dict], dict | None]:
+def breakout_limit_text() -> str:
+    return (f"depth ≤ 25%, last-10 range ≤ 60% of base, volume dry-up, "
+            f"close > pivot on ≥ {BREAKOUT_VOL_MIN:g}× volume (test; was {BREAKOUT_VOL_WAS:g}×)")
+
+
+def stock_rules(bars: list[dict], spy_closes: list[float], min_vol: float | None = None) -> tuple[list[dict], dict | None]:
     """Return (checks, signal). bars are completed daily candles, oldest first; the last bar is the signal day."""
     closes = [b["close"] for b in bars]
     checks: list[dict] = []
@@ -63,14 +71,14 @@ def stock_rules(bars: list[dict], spy_closes: list[float]) -> tuple[list[dict], 
     trend_ok = closes[-1] > s10 > s20 > s50 and s50 > s50_prev
     checks.append(check("Trend: price > 10 > 20 > 50-day, 50-day rising", trend_ok,
                         f"{closes[-1]:.2f} / {s10:.2f} / {s20:.2f} / {s50:.2f}", "close > 10 > 20 > 50-day SMA; 50-day up over 20 sessions"))
-    base = find_base(bars)
+    base = find_base(bars, min_vol)
     if base is None:
         checks.append(check("Tight base then breakout on volume", False, "no qualifying 10–40 session base and breakout on the last completed day",
-                            "depth ≤ 25%, last-10 range ≤ 60% of base, volume dry-up, close > pivot on ≥ 1.5x volume"))
+                            breakout_limit_text()))
         return checks, None
     checks.append(check("Tight base then breakout on volume", True,
                         f"{base['length']}-session base, depth {pct(base['depth'])}, volume {base['volRatio']:.2f}x",
-                        "depth ≤ 25%, last-10 range ≤ 60% of base, volume dry-up, close > pivot on ≥ 1.5x volume"))
+                        breakout_limit_text()))
     chase = closes[-1] / base["pivot"] - 1
     checks.append(check("Signal-day chase limit", chase <= CHASE_SIGNAL_MAX, f"{pct(chase)} above pivot", "≤ 4% above pivot"))
     last = bars[-1]
@@ -84,8 +92,9 @@ def stock_rules(bars: list[dict], spy_closes: list[float]) -> tuple[list[dict], 
     return checks, signal
 
 
-def find_base(bars: list[dict]) -> dict | None:
+def find_base(bars: list[dict], min_vol: float | None = None) -> dict | None:
     """Longest 10-40 session base ending the day before the last bar, broken out on the last bar."""
+    need = BREAKOUT_VOL_MIN if min_vol is None else min_vol
     if len(bars) < 92:
         return None
     last = bars[-1]
@@ -104,7 +113,46 @@ def find_base(bars: list[dict]) -> dict | None:
         last10 = window[-10:]
         tight = (max(b["high"] for b in last10) - min(b["low"] for b in last10)) <= 0.60 * (hi - lo)
         dry = sum(b["volume"] for b in last10) / 10 <= avg50
-        breakout = last["close"] > hi and vol_ratio >= 1.5
+        breakout = last["close"] > hi and vol_ratio >= need
         if depth <= 0.25 and tight and dry and breakout:
             best = {"length": length, "pivot": round(hi, 2), "low": round(lo, 2), "depth": depth, "volRatio": vol_ratio}
     return best
+
+
+def classify_breakout_fail(bars: list[dict]) -> dict:
+    """Split a failed breakout check into volume vs tight-base vs breakout price. Does not change the rule."""
+    empty = {"kind": "base", "volRatio": None, "detail": "not enough history or no volume average"}
+    if len(bars) < 92:
+        return empty
+    last = bars[-1]
+    vols = [b["volume"] for b in bars]
+    avg50 = sum(vols[-51:-1]) / 50
+    if avg50 <= 0:
+        return empty
+    vol_ratio = last["volume"] / avg50
+    has_tight = False
+    has_price = False
+    for length in range(10, 41):
+        window = bars[-1 - length:-1]
+        hi, lo = max(b["high"] for b in window), min(b["low"] for b in window)
+        if hi <= 0 or hi == lo:
+            continue
+        depth = (hi - lo) / hi
+        last10 = window[-10:]
+        tight = (max(b["high"] for b in last10) - min(b["low"] for b in last10)) <= 0.60 * (hi - lo)
+        dry = sum(b["volume"] for b in last10) / 10 <= avg50
+        if depth <= 0.25 and tight and dry:
+            has_tight = True
+            if last["close"] > hi:
+                has_price = True
+    if has_price:
+        if vol_ratio >= BREAKOUT_VOL_WAS:
+            return {"kind": "pass_old", "volRatio": vol_ratio, "detail": f"volume {vol_ratio:.2f}× meets the old {BREAKOUT_VOL_WAS:g}× bar"}
+        if vol_ratio >= BREAKOUT_VOL_MIN:
+            return {"kind": "volume_between", "volRatio": vol_ratio,
+                    "detail": f"volume {vol_ratio:.2f}× meets the test {BREAKOUT_VOL_MIN:g}× bar but not the old {BREAKOUT_VOL_WAS:g}× bar"}
+        return {"kind": "volume", "volRatio": vol_ratio,
+                "detail": f"tight base and close above pivot, but volume {vol_ratio:.2f}× is below {BREAKOUT_VOL_MIN:g}×"}
+    if has_tight:
+        return {"kind": "price", "volRatio": vol_ratio, "detail": "a tight base exists but the last close was not above the pivot"}
+    return {"kind": "base", "volRatio": vol_ratio, "detail": "no qualifying 10–40 session tight base (depth, tightness or dry-up)"}

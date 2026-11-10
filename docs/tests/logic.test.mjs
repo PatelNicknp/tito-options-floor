@@ -142,6 +142,9 @@ test("market-against ideas are tagged amber and listed after market-OK ideas; ca
   assert.match(rules, /not lowered/);
   assert.match(rules, /no extra relative-strength filter/);
   assert.match(rules, /Market against you/);
+  assert.match(rules, /Test rule/);
+  assert.match(rules, /1\.25/);
+  assert.match(rules, /1\.50/);
 });
 
 import { emptyDay, freshness, plainGateFailure, prevTradingDay } from "../js/logic.js";
