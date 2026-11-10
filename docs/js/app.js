@@ -28,7 +28,7 @@ function render() {
   const hm = new Intl.DateTimeFormat("en-GB", { timeZone: "America/Los_Angeles", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(now).split(":");
   const fresh = L.freshness(status, data, todayPT(), Number(hm[0]) * 60 + Number(hm[1]));
   $("#today-body").innerHTML = R.renderToday(data, settings, cash, fresh);
-  $("#sources-body").innerHTML = R.renderStatus(status) + R.renderSources(data);
+  $("#sources-body").innerHTML = R.renderStatus(status) + R.renderRules() + R.renderSources(data);
   renderPositions(settings, log);
   $("#set-cap").value = settings.capDollars;
   $("#set-fee").value = settings.feePerContract;
@@ -65,7 +65,7 @@ function formValues(form) {
 }
 
 function prefill(ticker, symbol) {
-  const idea = data.suggestions.find((i) => i.ticker === ticker);
+  const idea = [...(data.suggestions || []), ...(data.marketAgainst || [])].find((i) => i.ticker === ticker);
   const c = idea?.contracts.find((x) => x.symbol === symbol);
   if (!c) return;
   const f = $("#entry-form");

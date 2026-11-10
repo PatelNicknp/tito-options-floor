@@ -263,16 +263,22 @@ export function plainGateFailure(check) {
 }
 
 /** Why today's list is empty, or null when there are ideas. */
+const MARKET_CHECK_NAMES = new Set(["Market: SPY above a rising 50-day average", "US Stock Box market_ok"]);
+
 export function emptyDay(data) {
+  if ((data?.suggestions || []).length || (data?.marketAgainst || []).length) return null;
   if (!data?.noTradeToday) return null;
   const failed = (data.gate?.checks || []).filter((c) => !c.pass);
   const funnel = data.funnel || {};
   const checked = Number(funnel.tickers || 0);
   const passed = Number(funnel.stockRulesPass || 0);
   const session = data.entrySession || "this";
+  const marketOnly = failed.length > 0 && failed.every((c) => MARKET_CHECK_NAMES.has(c.name));
   return {
     title: "No ideas today",
-    lead: failed.length
+    lead: marketOnly
+      ? `No ideas for the ${session} session. No stock and contract passed every other rule. The market is weak, so breakouts fail more often.`
+      : failed.length
       ? `No ideas for the ${session} session because the market check failed, so this page suggests no trades.`
       : `No ideas for the ${session} session. No stock and contract passed every rule.`,
     reasons: failed.map(plainGateFailure),

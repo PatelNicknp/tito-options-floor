@@ -113,10 +113,35 @@ test("labels: DELAYED, research only, quote time not provided", () => {
   const html = R.quoteTimes({ label: "Cboe delayed quotes", url: "https://x", quoteTime: "quote time not provided", fileTimestamp: "t", retrievedAtPT: "2026-11-08 09:00 PM PT" });
   assert.ok(html.includes("DELAYED") && html.includes("quote time not provided") && html.includes("PT"));
   const nt = R.renderToday({ generatedAtPT: "g", signalSession: "s", entrySession: "e", entryWindowPT: "w", gate: { checks: [] }, noTradeToday: true,
-    funnel: { tickers: 1, withFreshCandles: 1, stockRulesPass: 0, earningsPass: 0, withContracts: 0 }, suggestions: [], blocked: [], nearMisses: [] }, S, 1000);
+    funnel: { tickers: 1, withFreshCandles: 1, stockRulesPass: 0, earningsPass: 0, withContracts: 0 }, suggestions: [], marketAgainst: [], blocked: [], nearMisses: [] }, S, 1000);
   assert.ok(nt.includes("No trade today") && nt.includes("DELAYED"));
   const skip = R.skipLine({ ask: 1.5 }, S, 1000);
   assert.ok(skip.includes("Skip if live ask above $1.98"));
+});
+
+test("market-against ideas are tagged amber and listed after market-OK ideas; cap stays $200", () => {
+  assert.equal(S.capDollars, 200);
+  const idea = (ticker, tag) => ({
+    ticker, company: "Co", sector: "Energy", nextEarnings: "2027-02-01", marketAgainst: tag,
+    marketNote: tag ? "The market is weak, so breakouts fail more often." : undefined,
+    signal: { date: "2026-11-06", close: 12, pivot: 11.5, volRatio: 2, baseLength: 15, liveMin: 11.5, liveMax: 12.075, stop: 11, target: 13 },
+    contracts: [{ symbol: ticker + "C", expiry: "2026-12-18", strike: 12, bid: 0.40, ask: 0.45, dte: 42, maxLoss: 46.3, maxProfit: "uncapped",
+      breakevenAtExpiry: 12.45, optionProfitTargetBid: 1.35, iv: 0.3, hv20: 0.25, hv60: 0.25, ivRatio: 1.2, oi: 800, volume: 100,
+      greeks: {}, scenarios: [], speed: 0.4, gate: {}, model: { name: "test" }, expiryExitDate: "2026-11-27" }],
+    levels: { timeStopDate: "2026-12-01" },
+  });
+  const html = R.renderToday({ generatedAtPT: "g", signalSession: "s", entrySession: "e", entryWindowPT: "w",
+    gate: { checks: [{ name: "Market: SPY above a rising 50-day average", pass: false, value: "weak" }] },
+    noTradeToday: false, funnel: {}, suggestions: [idea("OK1", false)], marketAgainst: [idea("TAG1", true)], blocked: [], nearMisses: [] }, S, 1000);
+  assert.match(html, /Ideas to check in TradingView[\s\S]*OK1[\s\S]*Market against you[\s\S]*TAG1/);
+  assert.match(html, /The market is weak, so breakouts fail more often/);
+  assert.ok(html.includes('class="badge market"') && html.includes('class="card market-against"'));
+  assert.ok(!html.includes("No trade today"));
+  const rules = R.renderRules();
+  assert.match(rules, /default \$200/);
+  assert.match(rules, /not lowered/);
+  assert.match(rules, /no extra relative-strength filter/);
+  assert.match(rules, /Market against you/);
 });
 
 import { emptyDay, freshness, plainGateFailure, prevTradingDay } from "../js/logic.js";
@@ -152,7 +177,8 @@ test("an empty day says why, at the top, and a full day does not", () => {
     suggestions: [], blocked: [], nearMisses: [],
   };
   const day = emptyDay(data);
-  assert.match(day.lead, /market check failed/);
+  assert.match(day.lead, /every other rule/);
+  assert.match(day.lead, /market is weak/);
   assert.match(day.reasons[0], /SPY \(735\.29\) is below its 50-day average \(765\.15\)/);
   assert.match(day.reasons[0], /that average is falling/);
   assert.match(day.reasons[1], /market_ok is no/);

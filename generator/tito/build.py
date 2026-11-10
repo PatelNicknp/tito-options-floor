@@ -26,6 +26,26 @@ SCHEDULE = ("US trading days about 6:00 AM PT; backup 6:40 AM PT and 9:00 AM PT 
 MAKEUP_REASONS = frozenset({"keeper", "keeper_retry", "watchdog"})
 
 
+
+MARKET_CHECK_NAMES = frozenset({
+    "Market: SPY above a rising 50-day average",
+    "US Stock Box market_ok",
+})
+MARKET_AGAINST_BADGE = "Market against you"
+MARKET_AGAINST_NOTE = "The market is weak, so breakouts fail more often."
+
+
+def classify_gate(checks: list[dict]) -> str:
+    """pass = market is fine; market_against = only the S&P 500 / market_ok checks failed;
+    blocked = some other gate check failed (session date, missing rate, ...)."""
+    failed = [c for c in checks if not c.get("pass")]
+    if not failed:
+        return "pass"
+    if all(c.get("name") in MARKET_CHECK_NAMES for c in failed):
+        return "market_against"
+    return "blocked"
+
+
 def yahoo_symbol(t: str) -> str:
     return t.replace(".", "-")
 
@@ -228,8 +248,19 @@ def run(config: dict, limit: int | None = None) -> dict:
     sources.append(source("cboe_delayed", "Cboe delayed option quotes", "https://cdn.cboe.com/api/global/delayed_quotes/options/",
                           chain_ok == len(passed), f"{chain_ok} of {len(passed)} chains loaded" if passed else "not needed (no stock passed)"))
 
-    suggestions = [p for p in ideas if p["contracts"]] if gate_pass else []
-    blocked = [] if gate_pass else ideas
+    kind = classify_gate(gate)
+    ready = [p for p in ideas if p.get("contracts")]
+    suggestions, market_against, blocked = [], [], []
+    if kind == "pass":
+        suggestions = ready
+    elif kind == "market_against":
+        for p in ready:
+            p["marketAgainst"] = True
+            p["tag"] = MARKET_AGAINST_BADGE
+            p["marketNote"] = MARKET_AGAINST_NOTE
+        market_against = ready
+    else:
+        blocked = ideas
     near.sort(key=lambda r: r["failed"])
     if funnel["withFreshCandles"] < 0.8 * funnel["tickers"]:
         raise RuntimeError(f"Only {funnel['withFreshCandles']} of {funnel['tickers']} stocks had fresh candles; keeping the last good data.")
@@ -243,12 +274,13 @@ def run(config: dict, limit: int | None = None) -> dict:
         "entryWindowPT": "7:00 AM – 12:30 PM PT",
         "defaults": {**settings, "maxEntryAsk": max_entry_ask(settings["capDollars"], settings["feePerContract"],
                                                              settings["contracts"], settings["startingCash"])},
-        "gate": {"pass": gate_pass, "checks": gate},
+        "gate": {"pass": gate_pass, "kind": kind, "checks": gate},
         "warnings": warnings,
         "sources": sources,
         "funnel": funnel,
-        "noTradeToday": not suggestions,
+        "noTradeToday": not suggestions and not market_against,
         "suggestions": suggestions,
+        "marketAgainst": market_against,
         "blocked": blocked,
         "nearMisses": near[:25],
         "provenance": provenance(candle_sources, trusted, meta),
@@ -377,8 +409,8 @@ def main() -> int:
     status.update({"lastRunResult": "success", "lastError": None, "lastSuccessPT": report["generatedAtPT"],
                    "lastSuccessSession": report["signalSession"]})
     write_json(status_path, status)
-    print(f"Wrote {out}: gate {'pass' if report['gate']['pass'] else 'BLOCKED'}, {len(report['suggestions'])} suggestion(s), "
-          f"{len(report['blocked'])} blocked setup(s), funnel {report['funnel']}")
+    print(f"Wrote {out}: gate {report['gate'].get('kind', 'pass')}, {len(report['suggestions'])} suggestion(s), "
+          f"{len(report.get('marketAgainst') or [])} tagged (market against), {len(report['blocked'])} blocked setup(s), funnel {report['funnel']}")
     for w in report["warnings"]:
         print("  note:", w)
     return 0

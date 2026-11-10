@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 from tito import rules
-from tito.build import DISCLAIMER, LABEL, earnings_ok
+from tito.build import DISCLAIMER, LABEL, classify_gate, earnings_ok
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day, trading_days_between
 from tito.contracts import evaluate, parse_occ, spread_ok
 from tito.money import max_entry_ask
@@ -163,15 +163,40 @@ def test_published_file_has_no_fills_and_is_labelled():
     assert data["label"].startswith("DELAYED")
     for key in ('"fills"', '"trades"', '"positions"', '"ledger"', '"fillType"'):
         assert key not in text
-    for idea in data["suggestions"] + data["blocked"]:
+    for idea in data["suggestions"] + data.get("marketAgainst", []) + data["blocked"]:
         if idea.get("quoteSource"):
             assert idea["quoteSource"]["quoteTime"] == "quote time not provided"
             assert idea["quoteSource"]["retrievedAtPT"].endswith("PT")
-    if not data["gate"]["pass"]:
-        assert data["suggestions"] == [] and data["noTradeToday"] is True
+    kind = classify_gate(data["gate"]["checks"])
+    if kind == "pass":
+        assert data["gate"]["pass"] is True
+        assert data.get("marketAgainst", []) == []
+    elif kind == "market_against":
+        assert data["suggestions"] == []
+        assert data["noTradeToday"] is (not data.get("marketAgainst"))
+        for idea in data.get("marketAgainst") or []:
+            assert idea.get("tag") == "Market against you"
+            assert idea.get("marketNote") == "The market is weak, so breakouts fail more often."
+    else:
+        assert data["suggestions"] == [] and data.get("marketAgainst", []) == []
+    cfg = json.loads((ROOT / "config.json").read_text())
+    assert cfg["capDollars"] == 200
 
 
 def test_no_breakout_when_close_stays_in_base():
     bars = make_bars()
     bars[-1] = dict(bars[-1], close=bars[-2]["close"] * 0.99)
     assert rules.find_base(bars) is None
+
+
+def test_classify_gate_market_against_only():
+    market = {"name": "Market: SPY above a rising 50-day average", "pass": False}
+    mok = {"name": "US Stock Box market_ok", "pass": False}
+    session = {"name": "US Stock Box prices are from the last completed session", "pass": True}
+    rate = {"name": "Interest rate for the model", "pass": True}
+    assert classify_gate([{"name": market["name"], "pass": True}, {"name": mok["name"], "pass": True}, session, rate]) == "pass"
+    assert classify_gate([market, mok, session, rate]) == "market_against"
+    assert classify_gate([market, {"name": mok["name"], "pass": True}, session, rate]) == "market_against"
+    assert classify_gate([{"name": market["name"], "pass": True}, mok, session, rate]) == "market_against"
+    assert classify_gate([market, mok, {**session, "pass": False}, rate]) == "blocked"
+    assert classify_gate([market, mok, session, {**rate, "pass": False}]) == "blocked"

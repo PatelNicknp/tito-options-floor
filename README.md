@@ -39,6 +39,21 @@ node --test docs/tests/logic.test.mjs  # page: X formula, every form check, dela
 - `docs/` index.html, js/logic.js (all form checks), js/render.js, js/app.js, style.css.
 - `screenshots/`, `proposed/` (Stock Box link diff, not applied), `tools/` (fixture + screenshots).
 
+## Rules
+A stock must pass the chart rules (breakout, volume, moving averages, chase limit, sector, relative strength)
+and a contract must pass the contract rules (35–70 days to expiry, delta 0.35–0.60, open interest at least 500,
+volume at least 50, IV at most 1.3× realized volatility, skew, earnings at least 15 trading days away, price at
+or under the ceiling X). At most 3 open positions and 1 per sector.
+
+When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
+Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.
+The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.
+Your adjustable max loss per trade stays at the amount you set (default $200 including fees). It is not
+lowered on tagged ideas, and no extra relative-strength filter is added.
+
+If some other market-check item fails (interest rate missing, or Stock Box prices not from the last completed
+session), those ideas stay in a learning-only list and cannot be logged from the page.
+
 ## Privacy
 The trade log and settings live only in the browser's localStorage (`tito-floor-log-v1`,
 `tito-floor-settings-v1`). Export/import JSON for backups. Nothing is sent anywhere.

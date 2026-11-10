@@ -56,8 +56,11 @@ export function renderIdea(idea, settings, cash, canLog) {
   const s = idea.signal;
   const contracts = (idea.contracts || []).map((c) => renderContract(c, idea, settings, cash, canLog)).join("") ||
     `<p>No contract passed every rule. ${esc(idea.contractNote || "")}</p>`;
-  return `<article class="card">
-    <h3>${esc(idea.ticker)} <span class="muted">${esc(idea.company)} · ${esc(idea.sector)}</span></h3>
+  const tag = idea.marketAgainst ? `<span class="badge market">Market against you</span> ` : "";
+  const note = idea.marketAgainst ? `<p class="market-note">${esc(idea.marketNote || "The market is weak, so breakouts fail more often.")}</p>` : "";
+  return `<article class="card${idea.marketAgainst ? " market-against" : ""}">
+    <h3>${tag}${esc(idea.ticker)} <span class="muted">${esc(idea.company)} · ${esc(idea.sector)}</span></h3>
+    ${note}
     <p>Breakout on ${esc(s.date)}: closed ${money(s.close)} above the pivot ${money(s.pivot)} on ${s.volRatio.toFixed(1)}x normal volume after a ${s.baseLength}-day base.
       Live check: skip if the stock is below ${money(s.liveMin)} or above ${money(s.liveMax)}. Next earnings: ${esc(idea.nextEarnings || "unknown")}.</p>
     ${quoteTimes(idea.quoteSource)}
@@ -83,12 +86,22 @@ export function renderToday(data, settings, cash, fresh) {
   const head = renderFreshness(fresh) + `<div class="banner">${delayedBadge()} Built ${esc(data.generatedAtPT)} from the ${esc(data.signalSession)} daily candles. Ideas are for the ${esc(data.entrySession)} session, ${esc(data.entryWindowPT)}.</div>`;
   const gate = data.gate.checks.map((c) => `<li class="${c.pass ? "good" : "bad"}">${c.pass ? "✓" : "✗"} ${esc(c.name)}: ${esc(c.value)}</li>`).join("");
   const empty = renderEmptyDay(data);
-  let body;
-  if (data.noTradeToday) {
-    const f = data.funnel;
+  const okIdeas = data.suggestions || [];
+  const tagged = data.marketAgainst || [];
+  let body = "";
+  if (okIdeas.length) {
+    body += `<h2>Ideas to check in TradingView</h2>` + okIdeas.map((i) => renderIdea(i, settings, cash, true)).join("");
+  }
+  if (tagged.length) {
+    body += `<section class="against" id="market-against">
+      <h2><span class="badge market">Market against you</span> Still passed every other rule</h2>
+      <p class="market-note">The market is weak, so breakouts fail more often.</p>
+      ${tagged.map((i) => renderIdea(i, settings, cash, true)).join("")}
+    </section>`;
+  }
+  if (!okIdeas.length && !tagged.length) {
+    const f = data.funnel || {};
     body = `<p class="small">Checked ${f.tickers} stocks: ${f.withFreshCandles} with fresh candles, ${f.stockRulesPass} passed the chart rules, ${f.earningsPass} also cleared earnings, ${f.withContracts} had a contract that passed.</p>`;
-  } else {
-    body = `<h2>Ideas to check in TradingView</h2>` + data.suggestions.map((i) => renderIdea(i, settings, cash, true)).join("");
   }
   const blocked = (data.blocked || []).length
     ? `<details class="blocked"><summary>Blocked today (${data.blocked.length}) (for learning — you can't log these)</summary><p class="bad">The market check above failed, so these are not suggestions.</p>${data.blocked.map((i) => renderIdea(i, settings, cash, false)).join("")}</details>` : "";
@@ -109,6 +122,17 @@ export function renderStatus(status) {
     ${row("Next run", esc(status.nextRunPT))}
     ${row("Schedule", esc(status.schedule))}
     </table></div>`;
+}
+
+
+export function renderRules() {
+  return `<h2>How ideas are chosen</h2>
+    <ul id="rules-text">
+      <li>A suggestion must pass the stock rules (breakout, volume, moving averages, chase limit, sector, relative strength) and the contract rules (35–70 days to expiry, delta 0.35–0.60, open interest at least 500, volume at least 50, IV at most 1.3× realized volatility, skew, earnings at least 15 trading days away, and the price ceiling X). At most 3 open positions and 1 per sector.</li>
+      <li>When the S&amp;P 500 / market_ok check is the only rule that fails (SPY below a falling 50-day average, or Stock Box market_ok is no), ideas that passed everything else are still shown, tagged <span class="badge market">Market against you</span>. The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.</li>
+      <li>Your adjustable max loss per trade stays at the amount you set (default $200 including fees). It is not lowered on tagged ideas, and no extra relative-strength filter is added.</li>
+      <li>If something else in the market check fails (for example the interest rate or the session date), those ideas stay in a learning-only list and cannot be logged from this page.</li>
+    </ul>`;
 }
 
 export function renderSources(data) {
