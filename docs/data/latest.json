@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-09 04:41 PM PT",
+ "generatedAtPT": "2026-11-09 05:23 PM PT",
  "signalSession": "2026-11-09",
  "entrySession": "2026-11-10",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:19 PM PT",
    "sourceTime": "updated 2026-11-09 15:52 PT, prices as of 2026-11-09, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "1724 rows",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:19 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:19 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "317 rows",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:19 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "21 rows",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:20 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "31 rows",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:20 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "524 rows",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:20 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:20 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:20 PM PT",
    "sourceTime": "Stock Box run 2026-11-09 15:52 PT (full); last bar trusted as complete: True"
   },
   {
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.03%",
-   "retrievedAtPT": "2026-11-09 04:38 PM PT",
+   "retrievedAtPT": "2026-11-09 05:20 PM PT",
    "sourceTime": "2026-11-09"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "3 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-09 04:41 PM PT",
+   "retrievedAtPT": "2026-11-09 05:23 PM PT",
    "sourceTime": "session close 2026-11-09 1:00 PM PT"
   },
   {
@@ -154,13 +154,13 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "not needed (no stock passed)",
-   "retrievedAtPT": "2026-11-09 04:41 PM PT",
+   "retrievedAtPT": "2026-11-09 05:23 PM PT",
    "sourceTime": "not provided"
   }
  ],
  "funnel": {
   "tickers": 730,
-  "withFreshCandles": 729,
+  "withFreshCandles": 726,
   "stockRulesPass": 0,
   "earningsPass": 0,
   "withContracts": 0
@@ -2197,11 +2197,11 @@
    "sma20": 305.36
   },
   "FDXF": {
-   "date": "2026-11-09",
-   "close": 129.05,
-   "low": 122.88,
-   "sma10": 122.11,
-   "sma20": 116.09
+   "date": "2026-11-06",
+   "close": 123.56,
+   "low": 120.4,
+   "sma10": 120.15,
+   "sma20": 115.29
   },
   "FE": {
    "date": "2026-11-09",
@@ -2694,11 +2694,11 @@
    "sma20": 217.66
   },
   "HONA": {
-   "date": "2026-11-09",
-   "close": 164.77,
-   "low": 154.45,
-   "sma10": 159.82,
-   "sma20": 161.21
+   "date": "2026-11-06",
+   "close": 152.92,
+   "low": 147.4,
+   "sma10": 160.21,
+   "sma20": 160.83
   },
   "HOOD": {
    "date": "2026-11-09",
@@ -5235,11 +5235,11 @@
    "sma20": 18.68
   },
   "VYLR": {
-   "date": "2026-11-09",
-   "close": 72.53,
-   "low": 70.0,
-   "sma10": 71.75,
-   "sma20": 72.71
+   "date": "2026-11-06",
+   "close": 70.14,
+   "low": 68.19,
+   "sma10": 71.89,
+   "sma20": 72.88
   },
   "VZ": {
    "date": "2026-11-09",
