@@ -145,6 +145,44 @@ section.against > h2 { margin-top: 0; }
 section.setups { margin-top: var(--space-5); }
 section.setups > h2 { margin-top: 0; }
 .card.setup { border-top: 4px solid var(--accent); }
+
+/* Compact card summaries — collapsed by default */
+.badge.status { background: var(--badge-research-bg); color: var(--badge-research-fg); }
+.badge.pass { background: var(--success-soft); color: var(--success); }
+.badge.nope { background: var(--warn-soft); color: var(--warn); border: 1px solid #F5D9A8; }
+details.card-fold { margin: var(--space-3) 0; padding: 0; }
+details.card-fold > summary.card-summary {
+  list-style: none; cursor: pointer; color: var(--text); font-weight: 500;
+  display: grid; grid-template-columns: auto 1fr auto; grid-template-areas:
+    "ticker dist tags"
+    "earn earn earn"
+    "choice choice choice";
+  gap: 4px 12px; align-items: baseline; padding: var(--space-3) 36px var(--space-3) var(--space-4);
+  position: relative;
+}
+details.card-fold > summary.card-summary::-webkit-details-marker { display: none; }
+details.card-fold > summary.card-summary::after {
+  content: ""; position: absolute; right: 14px; top: 50%; width: 8px; height: 8px;
+  border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: translateY(-70%) rotate(45deg); transition: transform 0.15s ease;
+}
+details.card-fold[open] > summary.card-summary::after { transform: translateY(-30%) rotate(225deg); }
+details.card-fold > summary.card-summary:hover { background: var(--hover); border-radius: var(--radius-lg); }
+.sum-ticker { grid-area: ticker; font-weight: 800; font-size: 1.0625rem; color: var(--text); }
+.sum-dist { grid-area: dist; color: var(--text-2); font-size: var(--fs-small); }
+.sum-tags { grid-area: tags; justify-self: end; display: flex; flex-wrap: wrap; gap: 4px; }
+.sum-earn { grid-area: earn; color: var(--muted); font-size: var(--fs-small); }
+.sum-choice { grid-area: choice; color: var(--text-2); font-size: var(--fs-small); }
+details.card-fold > .card-expanded { padding: 0 var(--space-4) var(--space-4); margin-top: 0; border-top: 1px solid var(--border); }
+@media (max-width: 599px) {
+  details.card-fold > summary.card-summary {
+    grid-template-columns: 1fr; grid-template-areas: "ticker" "dist" "tags" "earn" "choice";
+    padding-right: 32px;
+  }
+  .sum-tags { justify-self: start; }
+}
+
+
 .setup-note { font-weight: 700; color: var(--text); }
 .setup-earn.warn { color: var(--warn); font-weight: 600; }
 @media (max-width: 599px) {

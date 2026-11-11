@@ -86,6 +86,13 @@ specific rule in plain words. Earnings dates that remain unknown still block a t
 says “Plan only — not a trade until it closes above the pivot on volume; recheck live price in
 TradingView.” Nothing is filled from this list. Sorted closest to the pivot first.
 
+Stock cards on both the Setting up list and the trade-idea list start collapsed. The closed row
+shows the ticker, last price versus the pivot (as a percent), a status tag (Setting up, Trade idea,
+Market against you, Passes, or Doesn’t pass yet), the earnings date, and a one-line best-choice
+summary (or the main blocking reason). Click or tap the row — or press Enter or Space when it is
+focused — to expand the full card. Cards stay closed unless you add `?expand=1` (every card) or
+`?expand=TICKER` (one card) to the URL.
+
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.
 The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.

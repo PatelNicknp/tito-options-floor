@@ -135,7 +135,7 @@ test("market-against ideas are tagged amber and listed after market-OK ideas; ca
     noTradeToday: false, funnel: {}, suggestions: [idea("OK1", false)], marketAgainst: [idea("TAG1", true)], blocked: [], nearMisses: [] }, S, 1000);
   assert.match(html, /Ideas to check in TradingView[\s\S]*OK1[\s\S]*Market against you[\s\S]*TAG1/);
   assert.match(html, /The market is weak, so breakouts fail more often/);
-  assert.ok(html.includes('class="badge market"') && html.includes('class="card market-against"'));
+  assert.ok(html.includes('class="badge market"') && html.includes('class="card card-fold market-against"'));
   assert.ok(!html.includes("No trade today"));
   const rules = R.renderRules();
   assert.match(rules, /default \$200/);
@@ -271,7 +271,14 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   assert.match(withC, /The delayed bid and ask are too far apart/);
   assert.match(withC, /Call debit spread alternative/);
   assert.match(withC, /Highlighted because the single call is over the dollar cap/);
-  assert.match(withC, /Show details/);
+  assert.match(withC, /<details class="card card-fold setup"/);
+  assert.ok(!/<details class="card card-fold[^>]*\sopen/.test(withC), "cards start collapsed");
+  assert.match(withC, /class="sum-ticker">CME</);
+  assert.match(withC, /class="sum-dist">\$270\.00 · 0\.92% below pivot/);
+  assert.match(withC, /class="badge status">Setting up</);
+  assert.match(withC, /class="badge pass">Passes</);
+  assert.match(withC, /Earnings 2027-02-01 · source: Yahoo Finance calendarEvents/);
+  assert.match(withC, /Balanced: \$300\.00 call Dec 18, max loss \$156\.30/);
   assert.match(withC, /2027-02-01 · source: Yahoo Finance calendarEvents/);
   assert.match(withC, /Estimated value/);
   assert.ok(!withC.includes("data-log"));
@@ -281,4 +288,42 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   assert.match(light, /Broke out above the pivot/);
   assert.match(light, /0\.40% above pivot/);
   assert.equal(R.renderSetups([]), "");
+});
+
+test("stock cards start collapsed with a compact summary and expand only when asked", () => {
+  assert.equal(R.shortExpiry("2026-12-18"), "Dec 18");
+  assert.equal(R.choiceOneLiner({ role: "Balanced", expiry: "2026-12-18", strike: 105, maxLoss: 180, passes: true }),
+    "Balanced: $105.00 call Dec 18, max loss $180.00");
+  assert.equal(R.cardShouldOpen("CME"), false);
+  const unknown = R.renderSetup({
+    ticker: "CME", company: "CME Group", sector: "Financials", close: 270, pivot: 272.5,
+    pctBelowPivot: 0.92, baseLength: 12, depthPct: 8.4, volumeNeeded: 1500000, status: "waiting",
+    nextEarnings: "unknown", earningsSoon: true, planNote: "No contract: earnings date unknown",
+  }, S, 1000);
+  assert.match(unknown, /class="sum-ticker">CME</);
+  assert.match(unknown, /Setting up/);
+  assert.match(unknown, /Doesn't pass yet/);
+  assert.match(unknown, /No contract: earnings date unknown/);
+  assert.ok(!/<details class="card card-fold[^>]*\sopen/.test(unknown));
+  const idea = R.renderIdea({
+    ticker: "XYZ", company: "Example", sector: "Technology", nextEarnings: "2027-03-01",
+    signal: { date: "2026-11-09", close: 51, pivot: 50, volRatio: 1.4, baseLength: 12, liveMin: 50, liveMax: 52.5, stop: 48, target: 55 },
+    contracts: [{
+      expiry: "2026-12-18", strike: 50, qty: 1, symbol: "XYZ261218C00050000", bid: 1.8, ask: 1.9,
+      maxLoss: 191.3, maxProfit: "unlimited", dte: 39, iv: 0.3, hv20: 0.25, hv60: 0.22, ivRatio: 1.2,
+      oi: 1000, volume: 200, breakevenAtExpiry: 51.9, optionProfitTargetBid: 5.7, expiryExitDate: "2026-11-27",
+      speed: 0.4, greeks: { delta: 0.5, deltaDollarsPer1: 50, thetaDollarsPerDay: -5, vegaDollarsPerPoint: 10, rhoDollarsPerPoint: 2, gamma: 0.02 },
+      scenarios: [], gate: { valueAtTargetDay10: 3, needed: 2 }, model: { name: "CRR" },
+    }],
+    levels: { timeStopDate: "2026-12-01" },
+  }, S, 1000, true);
+  assert.match(idea, /card-fold/);
+  assert.ok(!/<details class="card card-fold[^>]*\sopen/.test(idea), "idea cards start collapsed");
+  assert.match(idea, /class="sum-ticker">XYZ</);
+  assert.match(idea, /2\.00% above pivot/);
+  assert.match(idea, /Trade idea/);
+  assert.match(idea, /Passes/);
+  assert.match(idea, /Earnings 2027-03-01/);
+  assert.match(idea, /Call: \$50\.00 call Dec 18, max loss \$191\.30/);
+  assert.match(idea, /I checked TradingView — log this trade/);
 });

@@ -53,26 +53,119 @@ export function renderContract(c, idea, settings, cash, canLog) {
   </div>`;
 }
 
+export function expandParam() {
+  try { return new URLSearchParams(location.search).get("expand"); } catch { return null; }
+}
+
+export function cardShouldOpen(ticker) {
+  const v = expandParam();
+  if (v == null || v === "" || v === "0" || v === "false") return false;
+  if (v === "1" || v === "true" || v === "all") return true;
+  return String(ticker || "").toUpperCase() === String(v).toUpperCase();
+}
+
+export function shortExpiry(iso) {
+  if (!iso) return "";
+  const parts = String(iso).slice(0, 10).split("-");
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const mi = Number(parts[1]) - 1;
+  if (!parts[2] || mi < 0 || mi > 11) return iso;
+  return `${months[mi]} ${Number(parts[2])}`;
+}
+
+export function distanceText(close, pivot, pctBelowPivot) {
+  if (pctBelowPivot != null && pctBelowPivot !== "") {
+    const pct = Number(pctBelowPivot);
+    if (Number.isFinite(pct)) {
+      if (pct > 0) return `${Math.abs(pct).toFixed(2)}% below pivot`;
+      if (pct < 0) return `${Math.abs(pct).toFixed(2)}% above pivot`;
+      return "at the pivot";
+    }
+  }
+  if (close != null && pivot) {
+    const pct = ((Number(pivot) - Number(close)) / Number(pivot)) * 100;
+    if (!Number.isFinite(pct)) return "";
+    if (Math.abs(pct) < 0.005) return "at the pivot";
+    return pct > 0 ? `${pct.toFixed(2)}% below pivot` : `${Math.abs(pct).toFixed(2)}% above pivot`;
+  }
+  return "";
+}
+
+export function choiceOneLiner(c) {
+  if (!c) return "";
+  const role = c.role || "Call";
+  const exp = shortExpiry(c.expiry);
+  const strike = c.strike != null ? money(c.strike) : "";
+  const label = `${role}: ${strike} call${exp ? ` ${exp}` : ""}`;
+  if (c.passes === false) {
+    const why = c.failedRulePlain || c.failedRule || "a rule failed";
+    return `${label} — Doesn't pass yet (${why})`;
+  }
+  if (c.maxLoss != null) return `${label}, max loss ${money(c.maxLoss)}`;
+  return label;
+}
+
+export function bestChoiceSummary(row) {
+  const choices = (row.planChoices && row.planChoices.length)
+    ? row.planChoices
+    : (row.plannedContracts && row.plannedContracts.length)
+      ? row.plannedContracts
+      : (row.contracts || []);
+  const passing = choices.filter((c) => c && c.passes !== false);
+  const pick = passing.find((c) => c.role === "Balanced") || passing[0]
+    || choices.find((c) => c && c.role === "Balanced") || choices[0];
+  if (pick) return choiceOneLiner(pick);
+  return row.planNote || row.contractNote || "No listed call passed every rule.";
+}
+
+export function cardStatusTags(row, kind) {
+  const tags = [];
+  if (kind === "setup") tags.push(`<span class="badge status">Setting up</span>`);
+  else tags.push(`<span class="badge status">Trade idea</span>`);
+  if (row.marketAgainst) tags.push(`<span class="badge market">Market against you</span>`);
+  const choices = (row.planChoices && row.planChoices.length) ? row.planChoices
+    : (row.plannedContracts || row.contracts || []);
+  const passes = kind === "idea"
+    ? (row.contracts || []).length > 0
+    : choices.some((c) => c && c.passes !== false);
+  tags.push(passes
+    ? `<span class="badge pass">Passes</span>`
+    : `<span class="badge nope">Doesn't pass yet</span>`);
+  return tags.join(" ");
+}
+
+function foldCard(ticker, extraClass, summaryInner, body) {
+  const open = cardShouldOpen(ticker) ? " open" : "";
+  return `<details class="card card-fold ${extraClass}" data-ticker="${esc(ticker)}"${open}>
+    <summary class="card-summary">${summaryInner}</summary>
+    <div class="card-expanded">${body}</div>
+  </details>`;
+}
+
 export function renderIdea(idea, settings, cash, canLog) {
   const s = idea.signal;
   const contracts = (idea.contracts || []).map((c) => renderContract(c, idea, settings, cash, canLog)).join("") ||
     `<p>No contract passed every rule. ${esc(idea.contractNote || "")}</p>`;
   const tag = idea.marketAgainst ? `<span class="badge market">Market against you</span> ` : "";
   const note = idea.marketAgainst ? `<p class="market-note">${esc(idea.marketNote || "The market is weak, so breakouts fail more often.")}</p>` : "";
-  return `<article class="card${idea.marketAgainst ? " market-against" : ""}">
+  const dist = distanceText(s.close, s.pivot);
+  const earn = idea.earningsDisplay || idea.nextEarnings || "unknown";
+  const summary = `<span class="sum-ticker">${esc(idea.ticker)}</span>
+    <span class="sum-dist">${money(s.close)} · ${esc(dist)}</span>
+    <span class="sum-tags">${cardStatusTags(idea, "idea")}</span>
+    <span class="sum-earn">Earnings ${esc(earn)}</span>
+    <span class="sum-choice">${esc(bestChoiceSummary(idea))}</span>`;
+  const body = `
     <h3>${tag}${esc(idea.ticker)} <span class="muted">${esc(idea.company)} · ${esc(idea.sector)}</span></h3>
     ${note}
     <p>Breakout on ${esc(s.date)}: closed ${money(s.close)} above the pivot ${money(s.pivot)} on ${s.volRatio.toFixed(1)}x normal volume after a ${s.baseLength}-day base.
       Live check: skip if the stock is below ${money(s.liveMin)} or above ${money(s.liveMax)}. Next earnings: ${esc(idea.nextEarnings || "unknown")}.</p>
     ${quoteTimes(idea.quoteSource)}
-    ${contracts}
-  </article>`;
+    ${contracts}`;
+  return foldCard(idea.ticker, idea.marketAgainst ? "market-against" : "", summary, body);
 }
 
 
-function expandOpen() {
-  try { return new URLSearchParams(location.search).has("expand"); } catch { return false; }
-}
 
 export function renderSetup(row, settings, cash) {
   const tag = row.marketAgainst ? `<span class="badge market">Market against you</span> ` : "";
@@ -96,7 +189,12 @@ export function renderSetup(row, settings, cash) {
   const planned = choices.map((c) => renderPlannedContract(c, row, settings, cash)).join("");
   const spread = row.planSpread ? renderPlanSpread(row.planSpread, row, settings, cash) : "";
   const noPlan = (planned || spread) ? "" : `<p class="setup-no-contract">${esc(row.planNote || "No listed call passed every rule.")}</p>`;
-  return `<article class="card setup" data-ticker="${esc(row.ticker)}">
+  const summary = `<span class="sum-ticker">${esc(row.ticker)}</span>
+    <span class="sum-dist">${money(row.close)} · ${esc(below)}</span>
+    <span class="sum-tags">${cardStatusTags(row, "setup")}</span>
+    <span class="sum-earn">Earnings ${esc(earnShown)}</span>
+    <span class="sum-choice">${esc(bestChoiceSummary(row))}</span>`;
+  const body = `
     <h3>${tag}${esc(row.ticker)} <span class="muted">${esc(row.company)} · ${esc(row.sector)}</span></h3>
     ${market}
     <p>${why}</p>
@@ -111,8 +209,8 @@ export function renderSetup(row, settings, cash) {
     <p class="setup-note">Not a trade yet. Set a TradingView alert at ${money(row.pivot)}.</p>
     ${disclaimer}
     ${row.quoteSource ? quoteTimes(row.quoteSource) : ""}
-    ${planned}${spread}${noPlan}
-  </article>`;
+    ${planned}${spread}${noPlan}`;
+  return foldCard(row.ticker, "setup", summary, body);
 }
 
 function whatIfTable(rows) {
@@ -133,7 +231,6 @@ export function renderPlannedContract(c, row, settings, cash) {
   const header = c.passes === false
     ? `${role}${esc(row.ticker)} ${esc(c.expiry)} ${money(c.strike)} CALL × ${esc(c.qty || 1)}`
     : `${role}If it breaks out: ${esc(row.ticker)} ${esc(c.expiry)} ${money(c.strike)} CALL × ${esc(c.qty || 1)}`;
-  const detailsOpen = expandOpen() ? " open" : "";
   return `<div class="contract plan-contract${c.passes === false ? " not-yet" : ""}">
     <h4>${header} <span class="sym">${esc(c.symbol || "")}</span></h4>
     ${fail}
@@ -149,15 +246,13 @@ export function renderPlannedContract(c, row, settings, cash) {
     </dl>
     ${c.howFar ? `<p class="how-far">${esc(c.howFar)}</p>` : ""}
     <p class="small">${esc(c.exitPlan || "")}</p>
-    <details class="plan-details"${detailsOpen}><summary>Show details</summary>
-      ${c.whyThisContract ? `<p><strong>Why this contract.</strong> ${esc(c.whyThisContract)}</p>` : ""}
-      <p class="greeks-easy"><strong>Greeks, in easy words</strong> (model at the ${c.deltaEvaluatedAt === "current price" ? "current price" : "pivot"}, not the live market):
-        ${esc(gp.delta || `If the stock rises $1, this option gains about ${money(g.deltaDollarsPer1)}.`)}
-        ${esc(gp.gamma || "")}
-        ${esc(gp.theta || "")}
-        ${esc(gp.vega || "")}</p>
-      ${whatIfTable(c.whatIf)}
-    </details>
+    ${c.whyThisContract ? `<p><strong>Why this contract.</strong> ${esc(c.whyThisContract)}</p>` : ""}
+    <p class="greeks-easy"><strong>Greeks, in easy words</strong> (model at the ${c.deltaEvaluatedAt === "current price" ? "current price" : "pivot"}, not the live market):
+      ${esc(gp.delta || `If the stock rises $1, this option gains about ${money(g.deltaDollarsPer1)}.`)}
+      ${esc(gp.gamma || "")}
+      ${esc(gp.theta || "")}
+      ${esc(gp.vega || "")}</p>
+    ${whatIfTable(c.whatIf)}
   </div>`;
 }
 
@@ -167,7 +262,6 @@ export function renderPlanSpread(sp, row, settings, cash) {
     ? `<p class="doesnt-pass"><strong>Doesn’t pass yet: not a trade.</strong> ${esc(sp.failedRulePlain || sp.failedRule || "")}</p>`
     : "";
   const hi = sp.highlight ? `<p class="spread-note">Highlighted because the single call is over the dollar cap (or failed that cap). A spread can cost less.</p>` : "";
-  const detailsOpen = expandOpen() ? " open" : "";
   const longK = sp.long?.strike, shortK = sp.short?.strike;
   return `<div class="contract plan-contract spread${sp.highlight ? " highlight" : ""}${sp.passes === false ? " not-yet" : ""}">
     <h4>Call debit spread alternative${longK != null && shortK != null ? `: buy ${money(longK)} / sell ${money(shortK)} ${esc(sp.expiry || "")}` : ""}</h4>
@@ -182,10 +276,8 @@ export function renderPlanSpread(sp, row, settings, cash) {
     </dl>
     ${sp.howFar ? `<p class="how-far">${esc(sp.howFar)}</p>` : ""}
     <p class="small">${esc(sp.exitPlan || "")}</p>
-    <details class="plan-details"${detailsOpen}><summary>Show details</summary>
-      ${sp.whyThisContract ? `<p><strong>Why this spread.</strong> ${esc(sp.whyThisContract)}</p>` : ""}
-      ${whatIfTable(sp.whatIf)}
-    </details>
+    ${sp.whyThisContract ? `<p><strong>Why this spread.</strong> ${esc(sp.whyThisContract)}</p>` : ""}
+    ${whatIfTable(sp.whatIf)}
   </div>`;
 }
 
@@ -193,7 +285,7 @@ export function renderSetups(list, settings, cash) {
   if (!list || !list.length) return "";
   return `<section class="setups" id="setting-up">
     <h2>Setting up (${list.length})</h2>
-    <p>These stocks have a qualifying tight base but are not trade ideas. Each name can show up to three planned calls if it breaks out — Safer, Balanced, and Cheaper — plus a call debit spread alternative. Nothing is filled from this list. Sorted closest to the pivot first.</p>
+    <p>These stocks have a qualifying tight base but are not trade ideas. Each card starts as a short summary — click or tap to see planned calls if it breaks out (Safer, Balanced, and Cheaper) plus a call debit spread alternative. Nothing is filled from this list. Sorted closest to the pivot first.</p>
     ${list.map((row) => renderSetup(row, settings, cash)).join("")}
   </section>`;
 }
