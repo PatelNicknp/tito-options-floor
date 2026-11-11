@@ -400,6 +400,7 @@ test("tito_simple_card switch uses the designed card only when it is explicitly 
   assert.match(html, /Plan only, not a trade/);
   assert.match(html, /What's happening/);
   assert.match(html, /Tight pattern, just \$2\.50 under the breakout price <strong>\$272\.50<\/strong>/);
+  assert.ok(!html.includes("The broad market is weak, so breakouts fail more often."));
   assert.match(html, /<strong>\$300\.00<\/strong> call expiring Dec 18/);
   assert.match(html, /Most you can lose <strong>\$156\.30<\/strong>/);
   assert.match(html, /Watch for a close above <strong>\$272\.50<\/strong> on strong volume/);
@@ -433,12 +434,19 @@ test("tito_simple_card switch uses the designed card only when it is explicitly 
     nextEarnings: "2026-11-12", earningsSoon: true, marketAgainst: true,
     planNote: "No contract: next earnings 2026-11-12; must be after 2026-12-03",
     planChoices: [{ role: "Safer", expiry: "2026-12-18", strike: 2.5, qty: 1, ask: 20, maxLoss: 2001.3, passes: false }],
+    quoteSource: { label: "Cboe delayed quotes", quoteTime: "quote time not provided", fileTimestamp: "2026-11-11 00:36:52 (time zone not stated by Cboe)", retrievedAtPT: "2026-11-10 09:13 PM PT" },
   };
   const slnHtml = R.renderSetup(sln, D, 1000);
   assert.match(slnHtml, /class="choice wait"/);
   assert.match(slnHtml, /Waiting: earnings Nov 12 is too soon/);
   assert.match(slnHtml, /<span class="amber">No contract yet,<\/span> because earnings Nov 12 is too soon/);
-  assert.match(slnHtml, /Does not apply yet/);
+  assert.match(slnHtml, /class="quiet">Nothing at risk yet, because there is no contract\.</);
+  assert.ok(!slnHtml.includes("Does not apply yet"));
+  assert.ok(!slnHtml.includes("The broad market is weak, so breakouts fail more often."));
+  assert.match(slnHtml, /Quote time: not given/);
+  assert.ok(!slnHtml.includes("quote time not provided"));
+  assert.match(slnHtml, /Cboe file stamp: 2026-11-11 00:36:52/);
+  assert.ok(!slnHtml.includes("time zone not stated by Cboe"));
   assert.match(slnHtml, /Watch for a close above <strong>\$19\.86<\/strong> on strong volume/);
   assert.match(slnHtml, /Wait until earnings are far enough away before planning a contract/);
   assert.match(slnHtml, /class="none-title">No contract yet</);

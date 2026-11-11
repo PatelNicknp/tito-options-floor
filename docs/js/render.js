@@ -190,7 +190,7 @@ export function collapsedTags(row, kind) {
 
 export function cardStatusTags(row, kind) { return collapsedTags(row, kind); }
 
-export function whatsHappening(row, kind) {
+export function whatsHappening(row, kind, includeMarketNote) {
   const close = kind === "idea" ? row.signal && row.signal.close : row.close;
   const pivot = kind === "idea" ? row.signal && row.signal.pivot : row.pivot;
   const diff = Number(pivot) - Number(close);
@@ -214,7 +214,7 @@ export function whatsHappening(row, kind) {
   } else {
     lead = `Tight pattern, ${move}.`;
   }
-  if (row.marketAgainst) lead += " The broad market is weak, so breakouts fail more often.";
+  if (includeMarketNote !== false && row.marketAgainst) lead += " The broad market is weak, so breakouts fail more often.";
   return lead;
 }
 
@@ -374,7 +374,7 @@ function designedSummary(ticker, close, pivot, row, kind, settings) {
 function fourBlock(row, kind, settings) {
   const pick = bestPassingChoice(row, settings);
   const pivot = kind === "idea" ? row.signal && row.signal.pivot : row.pivot;
-  const happen = boldMoney(whatsHappening(row, kind), money(pivot));
+  const happen = boldMoney(whatsHappening(row, kind, false), money(pivot));
   let contract;
   if (pick) {
     const exp = shortExpiry(pick.expiry);
@@ -387,7 +387,7 @@ function fourBlock(row, kind, settings) {
     const be = pick.breakevenAtExpiry != null ? ` Break-even at expiry: <strong>${money(pick.breakevenAtExpiry)}</strong>.` : "";
     loss = `Most you can lose <strong>${money(pick.maxLoss)}</strong>.${be}`;
   } else {
-    loss = "Does not apply yet.";
+    loss = `<span class="quiet">Nothing at risk yet, because there is no contract.</span>`;
   }
   const todo = boldMoney(whatToDoDesigned(row, kind), money(pivot));
   return `<div class="four">
@@ -408,8 +408,12 @@ function sourcesBox(row) {
   const lines = [];
   if (src) {
     lines.push(`Delayed option quotes from ${src.label || "Cboe delayed quotes"}.`);
-    if (src.quoteTime) lines.push(`Quote time: ${src.quoteTime}.`);
-    if (src.fileTimestamp) lines.push(`Cboe file stamp: ${src.fileTimestamp}.`);
+    const qt = String(src.quoteTime || "").trim();
+    lines.push(`Quote time: ${!qt || /not provided/i.test(qt) ? "not given" : qt}.`);
+    if (src.fileTimestamp) {
+      const stamp = String(src.fileTimestamp).replace(/\s*\(time zone not stated by Cboe\)\.?/gi, "").trim();
+      if (stamp) lines.push(`Cboe file stamp: ${stamp}.`);
+    }
     if (src.retrievedAtPT) lines.push(`Retrieved: ${src.retrievedAtPT}.`);
   }
   lines.push(`Next earnings: ${earn}.`);

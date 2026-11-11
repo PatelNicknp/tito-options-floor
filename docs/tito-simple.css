@@ -243,11 +243,12 @@ body.tito-simple .tito-card .footer {
 }
 
 body.tito-simple .tito-card .details {
-  margin-top: 20px;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
+body.tito-simple .tito-card .four .val .quiet { color: #566176; }
 body.tito-simple .tito-card .sec-label {
   font-size: 12px;
   font-weight: 700;
