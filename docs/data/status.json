@@ -1,11 +1,11 @@
 {
- "lastRunPT": "2026-11-10 06:15 AM PT",
- "trigger": "keeper",
- "runUrl": "https://github.com/PatelNicknp/tito-options-floor/actions/runs/42832171838",
+ "lastRunPT": "2026-11-10 07:40 PM PT",
+ "trigger": "manual",
+ "runUrl": "https://github.com/PatelNicknp/tito-options-floor/actions/runs/42954261991",
  "nextRunPT": "2026-11-11 06:00 AM PT",
  "schedule": "US trading days about 6:00 AM PT; backup 6:40 AM PT and 9:00 AM PT if that day's data is still missing; a keeper makes up a dropped GitHub cron",
  "lastRunResult": "success",
  "lastError": null,
- "lastSuccessPT": "2026-11-10 06:19 AM PT",
- "lastSuccessSession": "2026-11-09"
+ "lastSuccessPT": "2026-11-10 07:45 PM PT",
+ "lastSuccessSession": "2026-11-10"
 }
