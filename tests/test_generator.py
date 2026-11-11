@@ -10,7 +10,7 @@ from tito import rules
 from tito.build import DISCLAIMER, LABEL, classify_gate, earnings_ok
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day, trading_days_between
 from tito.earnings import merge_earnings, nasdaq_scan_should_stop, parse_yahoo_quote_html
-from tito.contracts import evaluate, evaluate_plan, evaluate_plan_book, parse_occ, plan_reject_reason, spread_ok
+from tito.contracts import ASK_ABOVE_STOCK, ASK_FAR_ABOVE_MODEL, evaluate, evaluate_plan, evaluate_plan_book, fits_dollar_cap, parse_occ, plan_reject_reason, quote_sane, spread_ok
 from tito.money import max_entry_ask, max_entry_net_debit
 from tito.options_math import american_call, bs_call, call_greeks
 
@@ -305,8 +305,8 @@ def test_evaluate_plan_uses_pivot_delta_and_cap_reason():
     tight = {**SETTINGS, "capDollars": 30}
     expensive = evaluate_plan("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, tight)
     assert expensive["picks"] == []
-    assert plan_reject_reason(expensive["reasons"], 30) == "Too expensive for $30 cap"
-    assert plan_reject_reason({"over the dollar cap (skipped, not replaced)": 1}, 200) == "Too expensive for $200 cap"
+    assert plan_reject_reason(expensive["reasons"], 30) == "No contract fits your $30 limit"
+    assert plan_reject_reason({"over the dollar cap (skipped, not replaced)": 1}, 200) == "No contract fits your $200 limit"
     assert plan_reject_reason({}, 200) == "No listed call passed every rule"
     assert plan_reject_reason({
         "expiry outside 35-70 days": 500,
@@ -355,9 +355,9 @@ def test_evaluate_plan_book_roles_whatif_and_spread():
     tight = {**SETTINGS, "capDollars": 30}
     book2 = evaluate_plan_book("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, tight, move=0.64)
     assert book2["picks"] == []
-    assert book2["choices"]
-    assert any(c["passes"] is False for c in book2["choices"])
-    assert any(c.get("failedRulePlain") for c in book2["choices"])
+    assert book2["choices"] == []
+    assert book2["reasons"].get("over the dollar cap (skipped, not replaced)")
+    assert plan_reject_reason(book2["reasons"], 30) == "No contract fits your $30 limit"
 
 def test_parse_yahoo_quote_html_reads_escaped_and_raw_json():
     escaped = (
@@ -386,3 +386,35 @@ def test_parse_yahoo_quote_html_reads_escaped_and_raw_json():
 def test_nasdaq_scan_stops_after_repeated_failures():
     assert nasdaq_scan_should_stop(8) is True
     assert nasdaq_scan_should_stop(7) is False
+
+
+def test_quote_sane_rejects_ask_above_stock_or_far_above_model():
+    assert quote_sane(20.00, 19.79) == ASK_ABOVE_STOCK
+    assert quote_sane(19.79, 19.79) is None
+    assert quote_sane(0.40, 19.79, 0.35) is None
+    assert quote_sane(5.00, 19.79, 0.35) == ASK_FAR_ABOVE_MODEL
+    assert fits_dollar_cap(2001.30, 200) is False
+    assert fits_dollar_cap(180.00, 200) is True
+
+
+def test_over_cap_and_insane_quotes_are_never_shown_as_choices():
+    """A deep-ITM SLN-like $2.50 call asking $20 on a $19.79 stock must not be a 'Safer' pick."""
+    signal = {"target": 22.00, "stop": 16.00, "pivot": 19.86}
+    rows = [
+        {"option": "SLN261218C00002500", "bid": 19.5, "ask": 20.0, "iv": 0.80,
+         "open_interest": 5000, "volume": 500, "last_trade_time": "2026-11-10T15:59:00"},
+        {"option": "SLN261218C00020000", "bid": 1.10, "ask": 1.20, "iv": 0.45,
+         "open_interest": 5000, "volume": 500, "last_trade_time": "2026-11-10T15:59:00"},
+        {"option": "SLN261218C00021000", "bid": 0.70, "ask": 0.80, "iv": 0.44,
+         "open_interest": 5000, "volume": 500, "last_trade_time": "2026-11-10T15:59:00"},
+        {"option": "SLN261218C00022000", "bid": 0.40, "ask": 0.50, "iv": 0.43,
+         "open_interest": 5000, "volume": 500, "last_trade_time": "2026-11-10T15:59:00"},
+    ]
+    book = evaluate_plan_book("SLN", rows, 19.79, signal, date(2026, 11, 9), 0.04, 0.40, 0.42, SETTINGS)
+    symbols = [c["symbol"] for c in book["choices"]]
+    assert "SLN261218C00002500" not in symbols
+    for c in book["choices"]:
+        assert c["passes"] is True
+        assert c["maxLoss"] <= SETTINGS["capDollars"] + 1e-9
+        assert c["ask"] <= 19.79 + 0.01
+    assert book["reasons"].get(ASK_ABOVE_STOCK) or book["reasons"].get("over the dollar cap (skipped, not replaced)")

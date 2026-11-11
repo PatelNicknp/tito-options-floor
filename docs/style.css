@@ -153,11 +153,10 @@ section.setups > h2 { margin-top: 0; }
 details.card-fold { margin: var(--space-3) 0; padding: 0; }
 details.card-fold > summary.card-summary {
   list-style: none; cursor: pointer; color: var(--text); font-weight: 500;
-  display: grid; grid-template-columns: auto 1fr auto; grid-template-areas:
-    "ticker dist tags"
-    "earn earn earn"
-    "choice choice choice";
-  gap: 4px 12px; align-items: baseline; padding: var(--space-3) 36px var(--space-3) var(--space-4);
+  display: grid; grid-template-columns: auto auto 1fr auto; grid-template-areas:
+    "ticker price dist tags"
+    "choice choice choice choice";
+  gap: 4px 10px; align-items: baseline; padding: var(--space-3) 36px var(--space-3) var(--space-4);
   position: relative;
 }
 details.card-fold > summary.card-summary::-webkit-details-marker { display: none; }
@@ -169,14 +168,14 @@ details.card-fold > summary.card-summary::after {
 details.card-fold[open] > summary.card-summary::after { transform: translateY(-30%) rotate(225deg); }
 details.card-fold > summary.card-summary:hover { background: var(--hover); border-radius: var(--radius-lg); }
 .sum-ticker { grid-area: ticker; font-weight: 800; font-size: 1.0625rem; color: var(--text); }
+.sum-price { grid-area: price; font-weight: 700; color: var(--text); }
 .sum-dist { grid-area: dist; color: var(--text-2); font-size: var(--fs-small); }
 .sum-tags { grid-area: tags; justify-self: end; display: flex; flex-wrap: wrap; gap: 4px; }
-.sum-earn { grid-area: earn; color: var(--muted); font-size: var(--fs-small); }
 .sum-choice { grid-area: choice; color: var(--text-2); font-size: var(--fs-small); }
 details.card-fold > .card-expanded { padding: 0 var(--space-4) var(--space-4); margin-top: 0; border-top: 1px solid var(--border); }
 @media (max-width: 599px) {
   details.card-fold > summary.card-summary {
-    grid-template-columns: 1fr; grid-template-areas: "ticker" "dist" "tags" "earn" "choice";
+    grid-template-columns: 1fr; grid-template-areas: "ticker" "price" "dist" "tags" "choice";
     padding-right: 32px;
   }
   .sum-tags { justify-self: start; }
@@ -200,3 +199,9 @@ details.card-fold > .card-expanded { padding: 0 var(--space-4) var(--space-4); m
 .plan-contract.spread.highlight { box-shadow: inset 3px 0 0 #c47b16; }
 .spread-note { color: #8a4b08; }
 .greeks-easy { line-height: 1.45; }
+
+.simple-view { margin: var(--space-3) 0 var(--space-2); }
+.simple-view p { margin: 0 0 10px; color: var(--text); }
+.simple-footer { font-size: var(--fs-small); color: var(--muted) !important; }
+details.more-details { margin: var(--space-2) 0 0; padding-top: 4px; }
+details.more-details > summary { color: var(--accent); font-weight: 600; }

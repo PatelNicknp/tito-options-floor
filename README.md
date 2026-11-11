@@ -81,17 +81,20 @@ the pivot in the first 3 sessions; close below the planned stop (the base low un
 low prints); close at or above the stock target; close below the 20-day average; the 15th trading
 day; or 21 days before expiry (before theta usually speeds up). Ex-dividend dates are not checked.
 
-A choice that fails any rule is still shown, labelled “Doesn’t pass yet: not a trade,” with the
-specific rule in plain words. Earnings dates that remain unknown still block a trade. Every card
-says “Plan only — not a trade until it closes above the pivot on volume; recheck live price in
-TradingView.” Nothing is filled from this list. Sorted closest to the pivot first.
+A contract whose max loss (premium plus fees) is over the dollar cap is never shown as a choice.
+The same is true of a call whose delayed ask is above the stock price, or far above the model
+value — those quotes are treated as unusable. If nothing fits the cap, the card says “No contract
+fits your $200 limit.” Earnings dates that remain unknown still block a trade. Nothing is filled
+from this list. Sorted closest to the pivot first.
 
 Stock cards on both the Setting up list and the trade-idea list start collapsed. The closed row
-shows the ticker, last price versus the pivot (as a percent), a status tag (Setting up, Trade idea,
-Market against you, Passes, or Doesn’t pass yet), the earnings date, and a one-line best-choice
-summary (or the main blocking reason). Click or tap the row — or press Enter or Space when it is
-focused — to expand the full card. Cards stay closed unless you add `?expand=1` (every card) or
-`?expand=TICKER` (one card) to the URL.
+shows the ticker, last price, how far it is from the breakout (in cents or dollars), at most two
+status tags, and one plain line (for example “Waiting: earnings Nov 12 is too soon”). The first
+tap opens four plain-English lines: what’s happening, the contract to consider (or why there isn’t
+one), most you can lose / breakeven, and what to do, plus a short “delayed data, research only”
+footer. A More details control then shows the numbers, Greeks, what-if table, spread, exit plan,
+sources, and timestamps. Repeated warnings are shown once. Cards stay closed unless you add
+`?expand=1` or `?expand=TICKER`; add `?details=1` or `?details=TICKER` to open More details too.
 
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.

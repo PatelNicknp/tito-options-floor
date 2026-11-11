@@ -33,6 +33,42 @@ def spread_ok(bid: float, ask: float) -> bool:
     return ask - bid <= max(0.05, 0.12 * mid) + 1e-9
 
 
+ASK_ABOVE_STOCK = "call ask above the stock price"
+ASK_FAR_ABOVE_MODEL = "call ask far above model value"
+
+
+def quote_sane(ask: float, stock: float, model_value: float | None = None) -> str | None:
+    """Reject delayed call quotes that break basic bounds.
+
+    A call should not cost more than the stock (C ≤ S). An ask far above the
+    model value is treated as a bad or stale quote, not a real price to trade.
+    The SLN 2026-12-18 $2.50 call quoted at $20 on a ~$19.79 stock is the
+    example: intrinsic is about $17.29, but $20 is already above the stock.
+    """
+    if ask is None or stock is None:
+        return None
+    try:
+        ask_f, stock_f = float(ask), float(stock)
+    except (TypeError, ValueError):
+        return None
+    if ask_f > stock_f + 0.01:
+        return ASK_ABOVE_STOCK
+    if model_value is not None:
+        try:
+            model_f = float(model_value)
+        except (TypeError, ValueError):
+            model_f = 0.0
+        if model_f > 0 and ask_f > max(model_f * 2.5, model_f + 1.0) + 1e-9:
+            return ASK_FAR_ABOVE_MODEL
+    return None
+
+
+def fits_dollar_cap(max_loss: float | None, cap: float) -> bool:
+    if max_loss is None or cap is None:
+        return True
+    return float(max_loss) <= float(cap) + 1e-9
+
+
 def _sanity(calls: list[dict], spot: float) -> set[str]:
     """Symbols on expiries whose synchronized quotes break strike ordering or the intrinsic bound."""
     bad: set[str] = set()
@@ -87,6 +123,9 @@ def evaluate(ticker: str, options: list[dict], spot: float, signal: dict, entry:
             fail("strike not below target"); continue
         if c["bid"] <= 0 or c["ask"] < c["bid"]:
             fail("no two-sided quote"); continue
+        insane = quote_sane(c["ask"], spot)
+        if insane:
+            fail(insane); continue
         if c["iv"] <= 0:
             fail("IV missing"); continue
         g = call_greeks(spot, c["strike"], dte, c["iv"], rate)
@@ -168,6 +207,8 @@ PLAN_DISCLAIMER = ("Plan only — not a trade until it closes above the pivot on
 # Later checks first, so a chain full of weeklies does not hide why the 35-70 DTE names failed.
 _PLAN_REASON_PRIORITY = (
     CAP_FAIL,
+    ASK_ABOVE_STOCK,
+    ASK_FAR_ABOVE_MODEL,
     "scenario gate: under 2x the entry cost at target on day 10",
     "speed check above 1.0",
     "model did not converge",
@@ -190,7 +231,7 @@ def plan_reject_reason(reasons: dict, cap: float) -> str:
     """Plain-English why no planned contract passed. Prefer the cap if it blocked any name."""
     if reasons.get(CAP_FAIL):
         cap_s = f"${cap:.0f}" if float(cap) == int(cap) else f"${cap:.2f}"
-        return f"Too expensive for {cap_s} cap"
+        return f"No contract fits your {cap_s} limit"
     if not reasons:
         return "No listed call passed every rule"
     why = next((k for k in _PLAN_REASON_PRIORITY if reasons.get(k)), None)
@@ -332,6 +373,8 @@ def evaluate_plan_legacy_unused(ticker: str, options: list[dict], spot: float, s
 
 PLAIN_FAIL = {
     CAP_FAIL: "The estimated ask at the pivot is above the $ cap after fees, so it does not fit the max-loss budget.",
+    ASK_ABOVE_STOCK: "The delayed ask is higher than the stock price, which is not a usable call quote.",
+    ASK_FAR_ABOVE_MODEL: "The delayed ask is far above the model value, so the quote looks unreliable.",
     "scenario gate: under 2x the entry cost at target on day 10": "At the target price on the 10th trading day, the model value is under 2× what you would pay to get in.",
     "speed check above 1.0": "The move from the pivot to the target is too large relative to this option’s implied volatility in 15 trading days.",
     "model did not converge": "The pricing model did not agree closely enough between 400 and 800 steps.",
@@ -485,6 +528,8 @@ STAGE = {
     "model did not converge": 13,
     "scenario gate: under 2x the entry cost at target on day 10": 14,
     CAP_FAIL: 15,
+    ASK_ABOVE_STOCK: 4,
+    ASK_FAR_ABOVE_MODEL: 4,
 }
 
 
@@ -568,6 +613,13 @@ def evaluate_plan_book(ticker: str, options: list[dict], spot: float, signal: di
             consider(c, "strike not below target", extra); continue
         if c["bid"] <= 0 or c["ask"] < c["bid"]:
             consider(c, "no two-sided quote", extra); continue
+        insane = quote_sane(c["ask"], spot)
+        if insane:
+            consider(c, insane, extra); continue
+        loss_now = c["ask"] * 100 * qty + 2 * fee * qty
+        if x is None or not fits_dollar_cap(loss_now, cap):
+            extra["estimatedAskAtPivot"] = None
+            consider(c, CAP_FAIL, extra); continue
         if c["iv"] <= 0:
             consider(c, "IV missing", extra); continue
         delta_at = "pivot"
@@ -611,8 +663,14 @@ def evaluate_plan_book(ticker: str, options: list[dict], spot: float, signal: di
         if not extra["model"]["converged"]:
             consider(c, "model did not converge", extra); continue
         spread = c["ask"] - c["bid"]
+        insane_now = quote_sane(c["ask"], spot, now_model["value"])
+        if insane_now:
+            consider(c, insane_now, extra); continue
         est_ask = _est_px(pivot_model["value"], now_model["value"], c["ask"], pivot, c["strike"])
         extra["estimatedAskAtPivot"] = est_ask
+        insane_est = quote_sane(est_ask, pivot, pivot_model["value"])
+        if insane_est:
+            consider(c, insane_est, extra); continue
         debit = est_ask * 100 * qty + fee * qty
         extra["entryCost"] = debit
         gate_value = (model10["value"] - spread) * 100 * qty - fee * qty
@@ -628,8 +686,9 @@ def evaluate_plan_book(ticker: str, options: list[dict], spot: float, signal: di
         return ((rec.get("greeks") or {}).get("delta"))
 
     scored = [c for c in candidates if delta_of(c) is not None and DTE_MIN <= (c.get("dte") or 0) <= DTE_MAX]
-    passing = [c for c in scored if c["passes"]]
-    pool = passing or scored
+    passing = [c for c in scored if c["passes"] and fits_dollar_cap(c.get("maxLoss"), cap)]
+    # Never present an over-cap or failed quote as Safer/Balanced/Cheaper.
+    pool = passing
 
     def take(role, rec):
         return _finish_candidate(rec, signal, levels, cap, role)
