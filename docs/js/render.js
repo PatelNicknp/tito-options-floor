@@ -311,7 +311,7 @@ export function noContractDetail(row, settings) {
     return "The next earnings date is unknown. A planned call cannot be a trade until the date is known and at least 15 trading days away.";
   }
   if (iso && (/must be after|too soon|next earnings|within 15/i.test(note) || (row && row.earningsSoon))) {
-    return `The ${shortExpiry(iso, true) || shortExpiry(iso)} earnings date is too soon. A planned call has to wait until earnings are at least 15 trading days away. Until that is true, there is no contract to consider.`;
+    return `The ${shortExpiry(iso)} earnings date is too soon. A planned call has to expire after earnings are at least 15 trading days away. Until that is true, there is no contract to consider.`;
   }
   if (/fits your|Too expensive|over the dollar cap|dollar cap/i.test(note)) {
     return `No listed call fits your $${capDollars(settings).toFixed(0)} limit after fees.`;

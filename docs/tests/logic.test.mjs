@@ -442,7 +442,8 @@ test("tito_simple_card switch uses the designed card only when it is explicitly 
   assert.match(slnHtml, /Watch for a close above <strong>\$19\.86<\/strong> on strong volume/);
   assert.match(slnHtml, /Wait until earnings are far enough away before planning a contract/);
   assert.match(slnHtml, /class="none-title">No contract yet</);
-  assert.match(slnHtml, /The Nov 12, 2026 earnings date is too soon/);
+  assert.match(slnHtml, /The Nov 12 earnings date is too soon/);
+  assert.match(slnHtml, /expire after earnings are at least 15 trading days away/);
   assert.ok(!slnHtml.includes("$2,001.30") && !slnHtml.includes("$2001.30"));
   assert.ok(!slnHtml.includes("TradingView"));
   const unknown = R.renderSetup({
