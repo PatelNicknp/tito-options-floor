@@ -258,44 +258,42 @@ def resolve_earnings_dates(f: Fetcher, tickers: list[str], stockbox: dict[str, s
         if n:
             obs[t].append(n)
 
-    # Cross-check any known candidate dates on the Nasdaq by-date calendar (±3 weekdays).
-    check_days = set()
+    # Scan the Nasdaq by-date calendar first (covers names Stock Box and Yahoo missed),
+    # then only fetch extra nearby days to cross-check dates we already have.
+    wanted = {t.upper(): t for t in tickers}
+    day_cache: dict = {}
+
+    def rows_on(day):
+        if day not in day_cache:
+            day_cache[day] = nasdaq_calendar_day(f, day)
+        return day_cache[day]
+
+    def add_nasdaq_hits(day, restrict=None):
+        for row in rows_on(day):
+            t = wanted.get(row["symbol"])
+            if t and (restrict is None or t in restrict):
+                obs[t].append({"source": "Nasdaq earnings calendar", "date": row["date"], "estimated": False})
+
+    still = {t for t in tickers if merge_earnings(obs[t], asof)["date"] is None}
+    for d in scan_window(asof, 130):
+        add_nasdaq_hits(d, still if still else None)
+        still = {t for t in still if merge_earnings(obs[t], asof)["date"] is None}
+        if not still:
+            break
+
+    from datetime import timedelta
+    extra = set()
     for t in tickers:
         for o in obs[t]:
             d = o["date"]
-            if d >= asof:
-                check_days.add(d)
-    extra = set()
-    for d in list(check_days):
-        for delta in (-3, -2, -1, 1, 2, 3):
-            from datetime import timedelta
-            nxt = d + timedelta(days=delta)
-            if nxt.weekday() < 5 and nxt >= asof:
-                extra.add(nxt)
-    wanted = {t.upper() for t in tickers}
-    found_on: dict[str, list] = {t: [] for t in tickers}
-    for d in sorted(check_days | extra):
-        for row in nasdaq_calendar_day(f, d):
-            if row["symbol"] in wanted:
-                # map back to original casing
-                for t in tickers:
-                    if t.upper() == row["symbol"]:
-                        found_on[t].append(row["date"])
-                        obs[t].append({"source": "Nasdaq earnings calendar", "date": row["date"], "estimated": False})
-
-    still = [t for t in tickers if merge_earnings(obs[t], asof)["date"] is None]
-    if still:
-        still_u = {t.upper() for t in still}
-        for d in scan_window(asof, 130):
-            if d in check_days or d in extra:
-                continue  # already fetched
-            for row in nasdaq_calendar_day(f, d):
-                if row["symbol"] in still_u:
-                    for t in still:
-                        if t.upper() == row["symbol"]:
-                            obs[t].append({"source": "Nasdaq earnings calendar", "date": row["date"], "estimated": False})
-            # stop early if every remaining name is filled
-            if all(merge_earnings(obs[t], asof)["date"] for t in still):
-                break
+            if d < asof:
+                continue
+            extra.add(d)
+            for delta in (-3, -2, -1, 1, 2, 3):
+                nxt = d + timedelta(days=delta)
+                if nxt.weekday() < 5 and nxt >= asof:
+                    extra.add(nxt)
+    for d in sorted(extra):
+        add_nasdaq_hits(d)
 
     return {t: merge_earnings(obs[t], asof) for t in tickers}
