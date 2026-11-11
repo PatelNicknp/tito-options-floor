@@ -221,21 +221,61 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   const unknown = R.renderSetup({ ...row, planNote: "No contract: earnings date unknown" }, S, 1000);
   assert.match(unknown, /No contract: earnings date unknown/);
   const planned = {
-    symbol: "CME261218C00300000", expiry: "2026-12-18", strike: 300, qty: 1, bid: 1.10, ask: 1.20,
-    estimatedAskAtPivot: 1.55, maxLoss: 156.3, breakevenAtExpiry: 301.56, dte: 39,
-    greeks: { delta: 0.42 }, deltaEvaluatedAt: "pivot", optionProfitTargetBid: 4.66, expiryExitDate: "2026-11-27",
+    role: "Balanced", symbol: "CME261218C00300000", expiry: "2026-12-18", strike: 300, qty: 1, bid: 1.10, ask: 1.20,
+    estimatedAskAtPivot: 1.55, maxLoss: 156.3, breakevenAtExpiry: 301.56, dte: 39, passes: true,
+    greeks: { delta: 0.42, deltaDollarsPer1: 42 }, deltaEvaluatedAt: "pivot", optionProfitTargetBid: 4.66, expiryExitDate: "2026-11-27",
+    whyThisContract: "Balanced: delta 0.42 is near the middle of the 0.35–0.60 range we allow (target 0.47), at strike $300.",
+    greeksPlain: {
+      delta: "If the stock rises $1, this option gains about $42.00.",
+      gamma: "Delta grows about 0.02 per $1 move (about $2.00 more gain on the next dollar).",
+      theta: "Loses about $8.10 per day just from time passing.",
+      vega: "Gains or loses about $15.00 if expected volatility moves 1 point.",
+    },
+    howFar: "Needs the stock to rise $29.06 (10.7%) from the pivot by 2026-12-18 just to break even.",
+    exitPlan: "Sell the whole position (the Floor does not scale out) if the option bid reaches $4.66 (about 3× the planned debit).",
+    maxProfit: "No fixed limit (a long call can keep rising with the stock)",
+    whatIf: [{ when: "About 1 week", stock: "Flat at the pivot", price: 272.5, value: 140, pnl: -16.3, estimate: true }],
+  };
+  const failer = {
+    role: "Cheaper", symbol: "CME261218C00320000", expiry: "2026-12-18", strike: 320, qty: 1, bid: 0.40, ask: 0.80,
+    estimatedAskAtPivot: 0.90, maxLoss: 91.3, breakevenAtExpiry: 320.91, passes: false,
+    failedRule: "bid-ask spread too wide",
+    failedRulePlain: "The delayed bid and ask are too far apart (more than 12% of the mid, or 5 cents).",
+    howFar: "Needs the stock to rise $48.41 (17.8%) from the pivot by 2026-12-18 just to break even.",
+    whyThisContract: "Cheaper: this lower-delta call",
+    greeksPlain: { delta: "If the stock rises $1, this option gains about $30.00." },
+  };
+  const spread = {
+    type: "CALL_DEBIT_SPREAD", passes: true, highlight: true, expiry: "2026-12-18",
+    long: { strike: 300 }, short: { strike: 320 },
+    netDebit: 0.80, todayNetDebit: 0.70, maxLoss: 82.6, maxProfit: 117.4, breakevenAtExpiry: 300.83,
+    maxEntryNetDebit: 1.97,
+    howFar: "Needs the stock to rise $28.33 (10.4%) from the pivot by 2026-12-18 just to break even.",
+    whyThisContract: "Call debit spread: buy the 2026-12-18 $300.00 call and sell the $320.00 call",
+    failedRulePlain: "",
   };
   const withC = R.renderSetup({
-    ...row, plannedContracts: [planned],
+    ...row, planChoices: [planned, failer], planSpread: spread, earningsDisplay: "2027-02-01 · source: Yahoo Finance calendarEvents",
     planSignal: { stop: 260, pivot: 272.5, target: 285 }, levels: { timeStopDate: "2026-12-01" },
   }, S, 1000);
-  assert.match(withC, /CME 2026-12-18 \$300 CALL × 1/);
+  assert.match(withC, /Balanced/);
+  assert.match(withC, /If it breaks out: CME 2026-12-18 \$300\.00 CALL × 1/);
   assert.match(withC, /Today's delayed ask/);
   assert.match(withC, /Estimated ask at pivot/);
   assert.match(withC, /\$1\.55/);
-  assert.match(withC, /evaluated at the pivot \$272\.50 using current IV/);
   assert.match(withC, /Skip if live ask above \$1\.98/);
+  assert.match(withC, /Why this contract/);
+  assert.match(withC, /If the stock rises \$1, this option gains about \$42\.00/);
+  assert.match(withC, /Needs the stock to rise \$29\.06/);
+  assert.match(withC, /Doesn’t pass yet: not a trade/);
+  assert.match(withC, /The delayed bid and ask are too far apart/);
+  assert.match(withC, /Call debit spread alternative/);
+  assert.match(withC, /Highlighted because the single call is over the dollar cap/);
+  assert.match(withC, /Show details/);
+  assert.match(withC, /2027-02-01 · source: Yahoo Finance calendarEvents/);
+  assert.match(withC, /Estimated value/);
   assert.ok(!withC.includes("data-log"));
+  assert.match(R.renderSetup({ ...row, earningsDisplay: "2026-12-15 (estimated)", earningsEstimated: true }, S, 1000), /\(estimated\)/);
   assert.match(R.renderSetup({ ...row, planNote: "Too expensive for $200 cap" }, S, 1000), /Too expensive for \$200 cap/);
   const light = R.renderSetup({ ...row, ticker: "DGX", status: "light_volume", pctBelowPivot: -0.4, pivot: 180, note: "Not a trade yet. Set a TradingView alert at $180.00." }, S, 1000);
   assert.match(light, /Broke out above the pivot/);

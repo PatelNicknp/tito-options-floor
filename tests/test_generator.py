@@ -9,8 +9,9 @@ import pytest
 from tito import rules
 from tito.build import DISCLAIMER, LABEL, classify_gate, earnings_ok
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day, trading_days_between
-from tito.contracts import evaluate, evaluate_plan, parse_occ, plan_reject_reason, spread_ok
-from tito.money import max_entry_ask
+from tito.earnings import merge_earnings
+from tito.contracts import evaluate, evaluate_plan, evaluate_plan_book, parse_occ, plan_reject_reason, spread_ok
+from tito.money import max_entry_ask, max_entry_net_debit
 from tito.options_math import american_call, bs_call, call_greeks
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -312,3 +313,48 @@ def test_evaluate_plan_uses_pivot_delta_and_cap_reason():
         "delta outside 0.35-0.60": 10,
         "bid-ask spread too wide": 2,
     }, 200) == "Bid-ask spread too wide"
+
+
+def test_merge_earnings_uses_earlier_when_sources_disagree_and_keeps_estimates():
+    asof = date(2026, 11, 10)
+    m = merge_earnings([
+        {"source": "US Stock Box earnings_calendar.csv", "date": date(2026, 12, 20), "estimated": False},
+        {"source": "Yahoo Finance calendarEvents", "date": date(2026, 12, 8), "estimated": True},
+    ], asof)
+    assert m["date"] == date(2026, 12, 8)
+    assert m["estimated"] is True
+    assert m["usedEarlierDueToDisagreement"] is True
+    assert "Yahoo" in m["source"]
+    past = merge_earnings([{"source": "Yahoo Finance calendarEvents", "date": date(2026, 11, 5), "estimated": True}], asof)
+    assert past["date"] is None
+    unknown = merge_earnings([], asof)
+    assert unknown["date"] is None
+
+
+def test_max_entry_net_debit_counts_fees_on_both_legs():
+    assert max_entry_net_debit(200, 0.65, 1, 1000, 1) == 1.98
+    assert max_entry_net_debit(200, 0.65, 1, 1000, 2) == 1.97
+
+
+def test_evaluate_plan_book_roles_whatif_and_spread():
+    signal = {"target": 14.00, "stop": 11.60, "pivot": 12.80}
+    book = evaluate_plan_book("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, SETTINGS, move=0.64)
+    roles = [c["role"] for c in book["choices"]]
+    assert "Balanced" in roles
+    bal = next(c for c in book["choices"] if c["role"] == "Balanced")
+    assert "Why" not in bal["whyThisContract"] or "Balanced" in bal["whyThisContract"]
+    assert bal["whyThisContract"]
+    assert bal["greeksPlain"]["delta"].startswith("If the stock rises $1")
+    assert "from the pivot" in bal["howFar"]
+    assert any(r["when"] == "About 1 week" and r.get("estimate") for r in bal["whatIf"])
+    assert any(r["when"] == "About 3 weeks" for r in bal["whatIf"])
+    assert "no fixed limit" in bal["maxProfit"].lower()
+    assert book["spread"]["type"] == "CALL_DEBIT_SPREAD"
+    assert book["spread"]["long"]["strike"] == bal["strike"]
+    assert book["spread"]["short"]["strike"] > bal["strike"]
+    tight = {**SETTINGS, "capDollars": 30}
+    book2 = evaluate_plan_book("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, tight, move=0.64)
+    assert book2["picks"] == []
+    assert book2["choices"]
+    assert any(c["passes"] is False for c in book2["choices"])
+    assert any(c.get("failedRulePlain") for c in book2["choices"])

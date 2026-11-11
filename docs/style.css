@@ -153,3 +153,12 @@ section.setups > h2 { margin-top: 0; }
 
 .setup-plan-label { font-weight: 700; color: var(--warn); }
 .setup-no-contract { background: var(--zebra); border-radius: var(--radius-md); padding: 10px 12px; }
+
+.badge.role { background: #e8eef8; color: #243654; font-weight: 600; }
+.plan-contract.not-yet { border: 1px dashed var(--border, #c9d0dc); }
+.doesnt-pass { background: #fff4e5; border-radius: var(--radius-md, 8px); padding: 8px 12px; }
+.how-far { font-weight: 600; }
+.plan-details { margin-top: 8px; }
+.plan-contract.spread.highlight { box-shadow: inset 3px 0 0 #c47b16; }
+.spread-note { color: #8a4b08; }
+.greeks-easy { line-height: 1.45; }

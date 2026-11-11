@@ -10,11 +10,13 @@ from pathlib import Path
 
 from tito import rules
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day
-from tito.contracts import PLAN_DISCLAIMER, evaluate, evaluate_plan, plan_reject_reason
+from tito.contracts import PLAN_DISCLAIMER, evaluate, evaluate_plan_book, plan_reject_reason, plain_fail
 from tito.indicators import realized_vol, sma
 from tito.money import max_entry_ask
 from tito.candles import expected_session, load_candles, stockbox_trusted
-from tito.sources import ET, PT, Fetcher, cboe_chain, completed_only, now_pt, stockbox_ohlc, yahoo_daily
+from tito.sources import (ET, PT, Fetcher, cboe_chain, completed_only, now_pt,
+                          resolve_earnings_dates, stockbox_ohlc, yahoo_daily)
+from tito.earnings import earnings_label
 
 LABEL = "DELAYED · research only · not advice"
 DISCLAIMER = ("Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, "
@@ -183,6 +185,7 @@ def run(config: dict, limit: int | None = None) -> dict:
     passed: list[dict] = []
     near: list[dict] = []
     setting_up: list[dict] = []
+    chart_passed: list[dict] = []
     funnel = {"tickers": len(tickers), "withFreshCandles": 0, "stockRulesPass": 0, "earningsPass": 0, "withContracts": 0}
     for i, t in enumerate(tickers):
         bars, _src = candles(t, f"{base}/ohlc/{t}.csv")
@@ -200,15 +203,14 @@ def run(config: dict, limit: int | None = None) -> dict:
         e_ok, e_text = earnings_ok(next_earn.get(t), entry_date)
         checks.append(rules.check("No earnings within 15 trading days", e_ok, e_text, "known date after the 15th trading day"))
         fails = [c for c in checks if not c["pass"]]
-        if signal and not any(not c["pass"] for c in checks if c["name"] != "No earnings within 15 trading days"):
+        chart_ok = signal and not any(not c["pass"] for c in checks if c["name"] != "No earnings within 15 trading days")
+        if chart_ok:
             funnel["stockRulesPass"] += 1
-        if not fails and signal:
-            funnel["earningsPass"] += 1
             ref = sb_ref.get(t)
-            passed.append({"ticker": t, "company": company_of.get(t, ""), "sector": sector, "stockBoxReference": ref, "candleSource": _src,
-                           "sectorEtf": rules.SECTOR_ETF.get(sector), "signal": signal, "checks": checks,
-                           "closes": closes, "nextEarnings": next_earn.get(t)})
-        elif len(fails) == 1:
+            chart_passed.append({"ticker": t, "company": company_of.get(t, ""), "sector": sector, "stockBoxReference": ref, "candleSource": _src,
+                                 "sectorEtf": rules.SECTOR_ETF.get(sector), "signal": signal, "checks": checks,
+                                 "closes": closes, "nextEarnings": next_earn.get(t)})
+        elif signal and len(fails) == 1:
             near.append({"ticker": t, "company": company_of.get(t, ""), "failed": fails[0]["name"], "detail": fails[0]["value"]})
         if not signal:
             setup = rules.find_setup(bars)
@@ -245,8 +247,70 @@ def run(config: dict, limit: int | None = None) -> dict:
         if (i + 1) % 100 == 0:
             print(f"  checked {i + 1}/{len(tickers)}", flush=True)
 
-    # Contracts for stocks that passed every stock rule
+    # Fill missing/past earnings from free calendars (Stock Box + Yahoo + Nasdaq), then apply the same 15-day rule.
     settings = {k: config[k] for k in ("capDollars", "feePerContract", "startingCash", "contracts", "maxSuggestionsPerTicker")}
+    need_earn = sorted({p["ticker"] for p in chart_passed} | {r["ticker"] for r in setting_up})
+    resolved = {}
+    if need_earn:
+        try:
+            resolved = resolve_earnings_dates(f, need_earn, next_earn, entry_date)
+            sources.append(source("earnings_fallback", "Yahoo calendarEvents + Nasdaq earnings calendar",
+                                  "https://query2.finance.yahoo.com/v10/finance/quoteSummary", True,
+                                  f"looked up {len(need_earn)} watch-list or chart-pass names"))
+        except Exception as exc:  # noqa: BLE001
+            sources.append(source("earnings_fallback", "Yahoo calendarEvents + Nasdaq earnings calendar",
+                                  "https://query2.finance.yahoo.com/v10/finance/quoteSummary", False, str(exc)[:200]))
+            resolved = {}
+
+    def apply_earnings(row: dict, raw_sb: str | None) -> tuple[bool, str]:
+        merged = resolved.get(row["ticker"])
+        if merged and merged.get("date"):
+            row["nextEarnings"] = merged["date"].isoformat()
+            row["earningsEstimated"] = bool(merged.get("estimated"))
+            row["earningsSource"] = merged.get("source")
+            row["earningsSources"] = [
+                {"source": o["source"], "date": o["date"].isoformat(), "estimated": o["estimated"]}
+                for o in (merged.get("sources") or [])
+            ]
+            row["earningsDisagreementDays"] = merged.get("disagreementDays")
+        else:
+            row["nextEarnings"] = row.get("nextEarnings") or raw_sb
+            row["earningsEstimated"] = False
+            row["earningsSource"] = "US Stock Box earnings_calendar.csv" if raw_sb else None
+            row["earningsSources"] = []
+        e_ok, e_text = earnings_ok(row.get("nextEarnings"), entry_date)
+        if row.get("nextEarnings") and e_ok is False and "unknown" not in e_text and row.get("earningsEstimated"):
+            # keep the standard 15-day wording; estimated is added on the card separately
+            pass
+        row["earningsNote"] = e_text
+        if merged and merged.get("date") and row.get("earningsSource"):
+            row["earningsDisplay"] = earnings_label(merged)
+        elif row.get("nextEarnings"):
+            row["earningsDisplay"] = row["nextEarnings"] + (" (estimated)" if row.get("earningsEstimated") else "")
+        else:
+            row["earningsDisplay"] = "earnings date unknown"
+        return e_ok, e_text
+
+    passed = []
+    for p in chart_passed:
+        e_ok, e_text = apply_earnings(p, next_earn.get(p["ticker"]))
+        # Rewrite the earnings check on the stored list so the card matches the fallback date.
+        for c in p.get("checks") or []:
+            if c["name"] == "No earnings within 15 trading days":
+                c["pass"] = e_ok
+                c["value"] = e_text
+        if e_ok:
+            funnel["earningsPass"] += 1
+            passed.append(p)
+        else:
+            near.append({"ticker": p["ticker"], "company": p.get("company", ""),
+                         "failed": "No earnings within 15 trading days", "detail": e_text})
+    for row in setting_up:
+        e_ok, e_text = apply_earnings(row, next_earn.get(row["ticker"]))
+        row["earningsSoon"] = not e_ok
+        row["earningsNote"] = e_text
+
+    # Contracts for stocks that passed every stock rule
     ideas: list[dict] = []
     chain_ok = 0
     for p in passed:
@@ -279,40 +343,69 @@ def run(config: dict, limit: int | None = None) -> dict:
         closes = row.pop("_closes", None)
         row["planDisclaimer"] = PLAN_DISCLAIMER
         row["plannedContracts"] = []
-        if not row.get("nextEarnings"):
-            row["planNote"] = "No contract: earnings date unknown"
-            continue
-        if row.get("earningsSoon"):
-            row["planNote"] = f"No contract: {row.get('earningsNote') or 'earnings within 15 trading days'}"
-            continue
-        try:
-            raw = cboe_chain(f, row["ticker"])
-            setup_chains += 1
-        except Exception as exc:  # noqa: BLE001
-            row["planNote"] = f"No contract: Cboe delayed chain unavailable ({str(exc)[:80]})"
-            continue
+        row["planChoices"] = []
+        row["planSpread"] = None
         pivot = row["pivot"]
         signal = {
             "pivot": pivot,
             "target": round(pivot + (pivot - row["baseLow"]), 2),
             "stop": row["baseLow"],
         }
-        res = evaluate_plan(row["ticker"], (raw.get("data") or {}).get("options") or [],
-                            row["close"], signal, entry_date, rate or 0,
-                            realized_vol(closes, 20) if closes else None,
-                            realized_vol(closes, 60) if closes else None, settings)
-        row["plannedContracts"] = res["picks"]
-        row["planRejects"] = res["reasons"]
+        row["levels"] = {"timeStopDate": add_trading_days(entry_date, 15).isoformat()}
+        row["planSignal"] = {**signal, "liveMin": pivot, "liveMax": round(pivot * (1 + rules.CHASE_LIVE_MAX), 2)}
+        move = round(pivot * 0.05, 2)
+        if closes and len(closes) >= 15:
+            typical = sum(abs(closes[i] - closes[i - 1]) for i in range(-14, 0)) / 14
+            if typical >= pivot * 0.01:
+                move = round(typical, 2)
+        earn_block = None
+        if not row.get("nextEarnings"):
+            earn_block = "earnings date unknown"
+        elif row.get("earningsSoon"):
+            earn_block = row.get("earningsNote") or "earnings within 15 trading days"
+        try:
+            raw = cboe_chain(f, row["ticker"])
+            setup_chains += 1
+        except Exception as exc:  # noqa: BLE001
+            row["planNote"] = f"No contract: Cboe delayed chain unavailable ({str(exc)[:80]})"
+            if earn_block:
+                row["planNote"] = f"No contract: {earn_block}"
+            continue
+        book = evaluate_plan_book(row["ticker"], (raw.get("data") or {}).get("options") or [],
+                                  row["close"], signal, entry_date, rate or 0,
+                                  realized_vol(closes, 20) if closes else None,
+                                  realized_vol(closes, 60) if closes else None, settings,
+                                  move=move, levels=row["levels"])
+        choices = book["choices"]
+        spread = book["spread"]
+        if earn_block:
+            for c in choices:
+                c["passes"] = False
+                c["failedRule"] = earn_block
+                c["failedRulePlain"] = ("No contract: earnings date unknown" if earn_block == "earnings date unknown"
+                                        else f"No contract: {earn_block}")
+            if spread:
+                spread["passes"] = False
+                spread["failedRule"] = earn_block
+                spread["failedRulePlain"] = ("No contract: earnings date unknown" if earn_block == "earnings date unknown"
+                                             else f"No contract: {earn_block}")
+        row["planChoices"] = choices
+        row["planSpread"] = spread
+        row["planRejects"] = book["reasons"]
+        row["whatIfMove"] = book.get("whatIfMove")
+        row["plannedContracts"] = [c for c in choices if c.get("passes")]
         row["quoteSource"] = {"label": "Cboe delayed quotes",
                               "url": f"https://cdn.cboe.com/api/global/delayed_quotes/options/{row['ticker']}.json",
                               "fileTimestamp": f"{raw.get('timestamp')} (time zone not stated by Cboe)",
                               "quoteTime": "quote time not provided", "retrievedAtPT": now_pt()}
-        row["levels"] = {"timeStopDate": add_trading_days(entry_date, 15).isoformat()}
-        row["planSignal"] = {**signal, "liveMin": pivot, "liveMax": round(pivot * (1 + rules.CHASE_LIVE_MAX), 2)}
-        if res["picks"]:
+        if row["plannedContracts"]:
             row["planNote"] = PLAN_DISCLAIMER
+        elif earn_block == "earnings date unknown":
+            row["planNote"] = "No contract: earnings date unknown"
+        elif earn_block:
+            row["planNote"] = f"No contract: {earn_block}"
         else:
-            row["planNote"] = plan_reject_reason(res["reasons"], settings["capDollars"])
+            row["planNote"] = plan_reject_reason(book["reasons"], settings["capDollars"])
     yahoo_used = sum(v for k, v in candle_sources.items() if "yahoo" in k)
     sources.append(source("yahoo_daily", "Yahoo Finance daily candles (only what Stock Box lacks; completed bars only)",
                           "https://query1.finance.yahoo.com/v8/finance/chart/", True,
@@ -375,7 +468,7 @@ def provenance(candle_sources: dict, trusted: bool, meta: dict) -> list[dict]:
     return [
         {"field": "Stock list (S&P 500, watchlist, scanner picks), company names, sectors", "from": "US Stock Box", "how": "universe, watchlist, scanner_vcp, scanner_flag, buy_setups files"},
         {"field": "Market veto (market_ok)", "from": "US Stock Box", "how": "buy_setups.csv"},
-        {"field": "Earnings dates", "from": "US Stock Box", "how": "earnings_calendar.csv"},
+        {"field": "Earnings dates", "from": "US Stock Box, with Yahoo calendarEvents and Nasdaq calendar fallbacks", "how": "Stock Box earnings_calendar.csv first; missing or past dates looked up on Yahoo quoteSummary calendarEvents and the Nasdaq earnings calendar. If sources disagree by more than 3 days the earlier date is used. Estimated dates are labelled estimated. The 15-trading-day rule is unchanged."},
         {"field": "Daily candle history (stocks and SPY)", "from": "US Stock Box", "how": f"data/ohlc and index_ohlc/SPY.csv for {n('stockbox') + n('stockbox+yahoo-recent') + n('stockbox-unconfirmed-dropped')} tickers"},
         {"field": "Newest completed bar", "from": "US Stock Box" if trusted else "Yahoo (5-day) where Stock Box's bar was not confirmed",
          "how": f"Stock Box run {meta.get('updated_pt')} mode {meta.get('mode')}; {n('stockbox')} from Stock Box, {n('stockbox+yahoo-recent')} topped up from Yahoo, {n('stockbox-unconfirmed-dropped')} dropped unconfirmed bar"},
@@ -384,7 +477,7 @@ def provenance(candle_sources: dict, trusted: bool, meta: dict) -> list[dict]:
         {"field": "Stock Box VCP / flag status on idea cards", "from": "US Stock Box", "how": "reference only, not a rule"},
         {"field": "Sector ETF candles (XLK, XLF, ...)", "from": "Yahoo (fetched directly)", "how": "Stock Box does not publish them"},
         {"field": "Model interest rate (13-week T-bill, ^IRX)", "from": "Yahoo (fetched directly)", "how": "Stock Box does not publish it"},
-        {"field": "Option chains (bid, ask, IV, open interest, volume)", "from": "Cboe delayed quotes (fetched directly)", "how": "only for stocks that pass every stock rule"},
+        {"field": "Option chains (bid, ask, IV, open interest, volume)", "from": "Cboe delayed quotes (fetched directly)", "how": "stocks that pass every stock rule, plus Setting up watch-list names"},
     ]
 
 

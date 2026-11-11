@@ -29,8 +29,13 @@ node --test docs/tests/logic.test.mjs  # page: X formula, every form check, dela
   intraday bars) the newest bars are replaced from Yahoo's 5-day series.
 - Yahoo Finance only for what Stock Box lacks: those newest bars, full history for any ticker Stock Box has no
   file for, sector ETFs (XLK, XLF, ...) and ^IRX for the rate. Completed bars only; today's bar is dropped until 4:15 PM ET.
-- Cboe delayed option quotes (only for stocks that pass every stock rule). The Cboe file has a timestamp
-  with no stated time zone; quotes carry no quote time, so the page says "quote time not provided".
+  Yahoo `calendarEvents` is also a fallback for the next earnings date (a crumb from Yahoo’s public quote page; no account).
+- Nasdaq’s free earnings calendar and per-symbol earnings-date API (no account) are a second fallback and a cross-check.
+  If sources disagree by more than 3 days, the earlier date is used (safer). An estimated/projected date counts as known
+  and is labelled estimated. A truly unknown date still blocks a trade. The 15-trading-day earnings rule is unchanged.
+- Cboe delayed option quotes (stocks that pass every stock rule, and Setting up watch-list names). The Cboe file has a timestamp
+  with no stated time zone; quotes carry no quote time, so the page says "quote time not provided". After the session close,
+  those quotes are the delayed last quotes of that day, not the next session’s live price — recheck in TradingView.
 
 ## Where things are
 - `generator/tito/` rules.py (daily-candle rules), contracts.py (contract choice, price check, scenarios),
@@ -57,11 +62,26 @@ slice. No other rule was loosened.
 base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar.
 Each name shows last close, pivot, distance to the pivot, base length and depth, the share count needed
 on the breakout (1.25× the 50-day average), earnings (with a warning if within 15 trading days), and
-“Not a trade yet. Set a TradingView alert at $pivot.” A planned call may be shown for if it breaks
-out (same contract rules; delta and the estimated ask are taken at the pivot when the model allows).
-If none pass, the reason is shown (including “No contract: earnings date unknown” and “Too expensive
-for $200 cap”). Every card is labelled plan-only. Nothing is filled from this list. Sorted closest
-to the pivot first.
+“Not a trade yet. Set a TradingView alert at $pivot.” Up to three planned calls may be shown for if
+it breaks out — Safer (higher delta, closer in-the-money), Balanced (near 0.47 delta), and Cheaper
+(lower delta) — plus a call debit spread (buy the balanced call, sell a higher strike in the same
+expiry). The same contract rules apply; the spread’s $200 cap counts fees on both legs (open and close).
+Each choice shows cost, max loss including fees, break-even, max profit (unlimited for a long call;
+width − debit − fees for a spread), how far the stock must rise from the pivot just to break even,
+easy-words Greeks with dollar examples, and a small Black-Scholes what-if table (about 1 week and
+3 weeks, at the pivot minus X / flat / plus X, labelled estimate). X is about a typical recent daily
+move, or 5% of the pivot if that history is thin.
+
+Exit plan (same as the Floor’s trade ideas): sell the *whole* position — the Floor does not take
+partial profits — on the first of: option bid about 3× the planned debit; stock close back below
+the pivot in the first 3 sessions; close below the planned stop (the base low until a breakout-day
+low prints); close at or above the stock target; close below the 20-day average; the 15th trading
+day; or 21 days before expiry (before theta usually speeds up). Ex-dividend dates are not checked.
+
+A choice that fails any rule is still shown, labelled “Doesn’t pass yet: not a trade,” with the
+specific rule in plain words. Earnings dates that remain unknown still block a trade. Every card
+says “Plan only — not a trade until it closes above the pivot on volume; recheck live price in
+TradingView.” Nothing is filled from this list. Sorted closest to the pivot first.
 
 When the **S&P 500 / market_ok check** is the only rule that fails (SPY below a falling 50-day average, or
 Stock Box `market_ok` is no), ideas that passed everything else are still shown, tagged **Market against you**.
