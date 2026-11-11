@@ -113,6 +113,29 @@ export function bestPassingChoice(row, settings) {
   return ideas[0] || null;
 }
 
+export function detailContract(row, settings) {
+  const passing = bestPassingChoice(row, settings);
+  if (passing) return passing;
+  const vis = visiblePlanChoices(row, settings);
+  if (!vis.length) return null;
+  return vis.find((c) => c.role === "Balanced") || vis[0];
+}
+
+export function kidGreeks(c) {
+  const g = (c && c.greeks) || {};
+  const deltaD = g.deltaDollarsPer1;
+  const gamma = g.gamma;
+  const gammaD = gamma != null && Number.isFinite(Number(gamma)) ? Math.round(Number(gamma) * 10000) / 100 : null;
+  const thetaD = g.thetaDollarsPerDay != null ? Math.abs(Number(g.thetaDollarsPerDay)) : null;
+  const vegaD = g.vegaDollarsPerPoint != null ? Math.abs(Number(g.vegaDollarsPerPoint)) : null;
+  return {
+    delta: deltaD != null && deltaD !== "" ? `Delta is the speedometer: if the stock goes up $1, this option goes up about ${money(deltaD)} (for 1 contract).` : "",
+    gamma: gammaD != null ? `Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about ${money(gammaD)} more.` : "",
+    theta: thetaD != null ? `Theta is a melting ice cube: time alone shaves about ${money(thetaD)} off this option each day.` : "",
+    vega: vegaD != null ? `Vega is how the price puffs up or shrinks when people get nervous or calm: about ${money(vegaD)} if expected swings move by 1 point.` : "",
+  };
+}
+
 export function breakoutDistance(close, pivot) {
   const diff = Number(pivot) - Number(close);
   if (!Number.isFinite(diff)) return "";
@@ -271,9 +294,13 @@ export function renderIdea(idea, settings, cash, canLog) {
 export function renderSetup(row, settings, cash) {
   const shares = Number(row.volumeNeeded).toLocaleString("en-US");
   const earnShown = row.earningsDisplay || row.nextEarnings || "unknown";
-  const shown = visiblePlanChoices(row, settings);
-  const planned = shown.map((c) => renderPlannedContract(c, row, settings, cash)).join("");
-  const spread = (row.planSpread && !isOverCap(row.planSpread, settings)) ? renderPlanSpread(row.planSpread, row, settings, cash) : "";
+  const passing = bestPassingChoice(row, settings);
+  const pick = passing || detailContract(row, settings);
+  const planned = pick
+    ? renderPlannedContract(pick, row, settings, cash)
+    : `<p class="setup-no-contract">No contract yet: ${esc(shortWaitingReason(row, settings))}.</p>`;
+  const spread = (!passing && row.planSpread && row.planSpread.passes !== false && !isOverCap(row.planSpread, settings))
+    ? renderPlanSpread(row.planSpread, row, settings, cash) : "";
   const summary = collapsedSummary(row.ticker, row.close, row.pivot, row, "setup", settings);
   const more = `
     <p class="muted">${esc(row.company || "")} · ${esc(row.sector || "")}</p>
@@ -295,20 +322,18 @@ function whatIfTable(rows) {
   if (!rows || !rows.length) return "";
   const body = rows.map((s) => `<tr><td>${esc(s.when)}</td><td>${esc(s.stock)} (${money(s.price)})</td>
     <td>${money(s.value)}</td><td class="${s.pnl >= 0 ? "good" : "bad"}">${signed(s.pnl)}</td></tr>`).join("");
-  return `<div class="table-wrap"><table class="grid"><tr><th>When</th><th>Stock</th><th>Estimated value</th><th>Estimated P&amp;L</th></tr>${body}</table></div>
-    <p class="small">Estimates use Black-Scholes at this contract’s delayed IV, with no change in volatility. Not a forecast.</p>`;
+  return `<div class="table-wrap"><table class="grid"><tr><th>When</th><th>If the stock is</th><th>Option worth about</th><th>You'd be up or down</th></tr>${body}</table></div>
+    <p class="small">Rough estimate only, not a forecast.</p>`;
 }
 
 export function renderPlannedContract(c, row, settings, cash) {
-  const g = c.greeks || {};
-  const gp = c.greeksPlain || {};
-  const role = c.role ? `<span class="badge role">${esc(c.role)}</span> ` : "";
+  const gp = kidGreeks(c);
   const fail = c.passes === false
-    ? `<p class="doesnt-pass"><strong>Doesn’t pass yet: not a trade.</strong> ${esc(c.failedRulePlain || c.failedRule || "This contract did not pass every rule.")}</p>`
+    ? `<p class="doesnt-pass"><strong>Doesn't pass, not a trade.</strong> ${esc(c.failedRulePlain || c.failedRule || "This contract did not pass every rule.")}</p>`
     : "";
   const header = c.passes === false
-    ? `${role}${esc(row.ticker)} ${esc(c.expiry)} ${money(c.strike)} CALL × ${esc(c.qty || 1)}`
-    : `${role}If it breaks out: ${esc(row.ticker)} ${esc(c.expiry)} ${money(c.strike)} CALL × ${esc(c.qty || 1)}`;
+    ? `${esc(row.ticker)} ${esc(c.expiry)} ${money(c.strike)} CALL × ${esc(c.qty || 1)}`
+    : `If it breaks out: ${esc(row.ticker)} ${esc(c.expiry)} ${money(c.strike)} CALL × ${esc(c.qty || 1)}`;
   return `<div class="contract plan-contract${c.passes === false ? " not-yet" : ""}">
     <h4>${header} <span class="sym">${esc(c.symbol || "")}</span></h4>
     ${fail}
@@ -324,12 +349,8 @@ export function renderPlannedContract(c, row, settings, cash) {
     </dl>
     ${c.howFar ? `<p class="how-far">${esc(c.howFar)}</p>` : ""}
     <p class="small">${esc(c.exitPlan || "")}</p>
-    ${c.whyThisContract ? `<p><strong>Why this contract.</strong> ${esc(c.whyThisContract)}</p>` : ""}
-    <p class="greeks-easy"><strong>Greeks, in easy words</strong> (model at the ${c.deltaEvaluatedAt === "current price" ? "current price" : "pivot"}, not the live market):
-      ${esc(gp.delta || `If the stock rises $1, this option gains about ${money(g.deltaDollarsPer1)}.`)}
-      ${esc(gp.gamma || "")}
-      ${esc(gp.theta || "")}
-      ${esc(gp.vega || "")}</p>
+    ${c.whyThisContract ? `<p><strong>Why this one.</strong> ${esc(String(c.whyThisContract).replace(/^Why this one:\s*/i, ""))}</p>` : ""}
+    <div class="greeks-easy">${["delta", "gamma", "theta", "vega"].map((k) => gp[k] ? `<p>${esc(gp[k])}</p>` : "").join("")}</div>
     ${whatIfTable(c.whatIf)}
   </div>`;
 }
@@ -339,10 +360,10 @@ export function renderPlanSpread(sp, row, settings, cash) {
   const fail = sp.passes === false
     ? `<p class="doesnt-pass"><strong>Doesn’t pass yet: not a trade.</strong> ${esc(sp.failedRulePlain || sp.failedRule || "")}</p>`
     : "";
-  const hi = sp.highlight ? `<p class="spread-note">Highlighted because the single call is over the dollar cap (or failed that cap). A spread can cost less.</p>` : "";
+  const hi = sp.highlight ? `<p class="spread-note">This is a fallback because no single call fits your dollar limit. A spread buys one call and sells a higher one to cut the cost.</p>` : "";
   const longK = sp.long?.strike, shortK = sp.short?.strike;
   return `<div class="contract plan-contract spread${sp.highlight ? " highlight" : ""}${sp.passes === false ? " not-yet" : ""}">
-    <h4>Call debit spread alternative${longK != null && shortK != null ? `: buy ${money(longK)} / sell ${money(shortK)} ${esc(sp.expiry || "")}` : ""}</h4>
+    <h4>Call debit spread (fallback)${longK != null && shortK != null ? `: buy ${money(longK)} / sell ${money(shortK)} ${esc(sp.expiry || "")}` : ""}</h4>
     ${hi}${fail}
     <dl class="facts">
       <div><dt>Estimated net debit at pivot</dt><dd>${money(sp.netDebit)}</dd></div>
@@ -432,7 +453,7 @@ export function renderRules() {
       <li>A suggestion must pass the stock rules (breakout, volume, moving averages, chase limit, sector, relative strength) and the contract rules (35–70 days to expiry, delta 0.35–0.60, open interest at least 500, volume at least 50, IV at most 1.3× realized volatility, skew, earnings at least 15 trading days away, and the price ceiling X). At most 3 open positions and 1 per sector.</li>
       <li><strong>Test rule:</strong> breakout-day volume must be at least 1.25× the prior 50-day average (was 1.50×).</li>
       <li><strong>Test rule:</strong> the tight base may be 5–40 sessions (was 10–40). Depth still ≤ 25%. For bases of 10 or more sessions the last-10 range must still be ≤ 60% of the base. For a shorter 5–9 session base the last half of the base is used instead (rounded up, at least 2 sessions), because a last-10 window would be longer than the base, and using the whole short base would ask a range to be 60% of itself. Volume dry-up uses that same trailing slice. No other rule was loosened.</li>
-      <li><strong>Setting up</strong> is a watch list, not a trade list: stocks with a qualifying tight base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar (1.25× the 50-day average). Each row can show up to three planned calls (Safer: higher delta, closer in-the-money; Balanced: near 0.47 delta; Cheaper: lower delta) plus a call debit spread (buy the balanced call, sell a higher strike in the same expiry). The same contract rules apply (35–70 days to expiry, delta 0.35–0.60 at the pivot when the model allows, open interest at least 500, volume at least 50, IV at most 1.3× realized volatility, skew, the $200 cap including fees; the spread uses fees on both legs). Each choice shows cost, max loss, break-even, max profit, how far the stock must move from the pivot, the Floor’s whole-position exit plan (3× debit or stock targets/stops, 15 trading days, 21 days before expiry — no scaling out), easy-words Greeks, and a small Black-Scholes what-if table (estimate only). A choice that fails is labelled “Doesn’t pass yet: not a trade” with the rule in plain words. Earnings dates come from US Stock Box first, then Yahoo calendarEvents and the Nasdaq earnings calendar; if sources disagree by more than 3 days the earlier date is used; estimated dates are labelled estimated; unknown dates still block a trade; the 15-trading-day rule is unchanged. Every card says “Plan only — not a trade until it closes above the pivot on volume; recheck live price in TradingView.” Nothing is filled from this list.</li>
+      <li><strong>Setting up</strong> is a watch list, not a trade list: stocks with a qualifying tight base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar (1.25× the 50-day average). Each row can show one best planned call if it breaks out. If none pass, it says “No contract yet” and one plain reason (and may show the closest cap-fitting contract marked “Doesn't pass, not a trade”). A call debit spread is offered only when no single call fits the $200 cap. The same contract rules apply (35–70 days to expiry, delta 0.35–0.60 at the pivot when the model allows, open interest at least 500, volume at least 50, IV at most 1.3× realized volatility, skew, the $200 cap including fees; the spread uses fees on both legs). That contract shows cost, max loss, break-even, max profit, how far the stock must move from the pivot, the Floor’s whole-position exit plan (3× debit or stock targets/stops, 15 trading days, 21 days before expiry — no scaling out), kid-simple Greeks in dollars per contract, and a small what-if table (estimate only). Earnings dates come from US Stock Box first, then Yahoo calendarEvents and the Nasdaq earnings calendar; if sources disagree by more than 3 days the earlier date is used; estimated dates are labelled estimated; unknown dates still block a trade; the 15-trading-day rule is unchanged. Every card says “Plan only — not a trade until it closes above the pivot on volume; recheck live price in TradingView.” Nothing is filled from this list.</li>
       <li>When the S&amp;P 500 / market_ok check is the only rule that fails (SPY below a falling 50-day average, or Stock Box market_ok is no), ideas that passed everything else are still shown, tagged <span class="badge market">Market against you</span>. The market is weak, so breakouts fail more often. They are shown because you said you will manage the risk.</li>
       <li>Your adjustable max loss per trade stays at the amount you set (default $200 including fees). It is not lowered on tagged ideas, and no extra relative-strength filter is added.</li>
       <li>If something else in the market check fails (for example the interest rate or the session date), those ideas stay in a learning-only list and cannot be logged from this page.</li>

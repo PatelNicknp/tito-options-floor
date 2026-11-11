@@ -63,17 +63,16 @@ slice. No other rule was loosened.
 
 **Setting up** is a watch list on Today's ideas, separate from trade ideas: stocks with a qualifying tight
 base that have not yet closed above the pivot, plus stocks that broke out but failed only the volume bar.
-Each name shows last close, pivot, distance to the pivot, base length and depth, the share count needed
-on the breakout (1.25× the 50-day average), earnings (with a warning if within 15 trading days), and
-“Not a trade yet. Set a TradingView alert at $pivot.” Up to three planned calls may be shown for if
-it breaks out — Safer (higher delta, closer in-the-money), Balanced (near 0.47 delta), and Cheaper
-(lower delta) — plus a call debit spread (buy the balanced call, sell a higher strike in the same
-expiry). The same contract rules apply; the spread’s $200 cap counts fees on both legs (open and close).
-Each choice shows cost, max loss including fees, break-even, max profit (unlimited for a long call;
-width − debit − fees for a spread), how far the stock must rise from the pivot just to break even,
-easy-words Greeks with dollar examples, and a small Black-Scholes what-if table (about 1 week and
-3 weeks, at the pivot minus X / flat / plus X, labelled estimate). X is about a typical recent daily
-move, or 5% of the pivot if that history is thin.
+Each name can show one best planned call if it breaks out (the listed call closest to a 0.47 delta
+that passes every rule). If none pass, the card says “No contract yet” and one plain reason; it may
+also show the closest cap-fitting name marked “Doesn't pass, not a trade.” A call debit spread is
+only offered as a fallback when no single call fits the dollar cap. The same contract rules apply;
+the spread’s $200 cap counts fees on both legs (open and close). That contract shows cost, max loss
+including fees, break-even, max profit (unlimited for a long call), how far the stock must rise from
+the pivot just to break even, kid-simple Greeks with dollar examples per contract (delta as a
+speedometer, gamma as how fast that speeds up, theta as a melting ice cube, vega as the price
+puffing up or shrinking when people get nervous or calm), and a small what-if table (about 1 week
+and 3 weeks, at the pivot minus X / flat / plus X, labelled estimate).
 
 Exit plan (same as the Floor’s trade ideas): sell the *whole* position — the Floor does not take
 partial profits — on the first of: option bid about 3× the planned debit; stock close back below

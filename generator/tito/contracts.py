@@ -411,13 +411,20 @@ def _est_px(model_at_pivot: float, model_now: float, quote: float, pivot: float,
 def _greeks_plain(g: dict | None) -> dict:
     if not g:
         return {}
+    delta_d = g.get("deltaDollarsPer1") or 0
     gamma = g.get("gamma") or 0
+    gamma_d = round(gamma * 100, 2)
+    theta_d = abs(g.get("thetaDollarsPerDay") or 0)
+    vega_d = abs(g.get("vegaDollarsPerPoint") or 0)
     return {
-        "delta": f"If the stock rises $1, this option gains about ${g.get('deltaDollarsPer1', 0):.2f}.",
-        "gamma": (f"Delta grows about {gamma} per $1 move "
-                  f"(about ${round(gamma * 100, 2):.2f} more gain on the next dollar)."),
-        "theta": f"Loses about ${abs(g.get('thetaDollarsPerDay') or 0):.2f} per day just from time passing.",
-        "vega": f"Gains or loses about ${abs(g.get('vegaDollarsPerPoint') or 0):.2f} if expected volatility moves 1 point.",
+        "delta": (f"Delta is the speedometer: if the stock goes up $1, this option goes up about "
+                  f"${delta_d:.2f} (for 1 contract)."),
+        "gamma": (f"Gamma is how fast that speedometer speeds up: after a $1 rise, "
+                  f"the next $1 would add about ${gamma_d:.2f} more."),
+        "theta": (f"Theta is a melting ice cube: time alone shaves about "
+                  f"${theta_d:.2f} off this option each day."),
+        "vega": (f"Vega is how the price puffs up or shrinks when people get nervous or calm: "
+                 f"about ${vega_d:.2f} if expected swings move by 1 point."),
     }
 
 
@@ -480,19 +487,18 @@ def _why(role: str, c: dict, cap: float) -> str:
     oi = c.get("oi")
     vol = c.get("volume")
     est = c.get("estimatedAskAtPivot")
-    parts = []
-    if role == "Safer":
-        parts.append(f"Safer: this strike (${strike}) is closer to in-the-money (delta {d}), so it should move more like the stock and needs a smaller rise to help you.")
-    elif role == "Cheaper":
-        parts.append(f"Cheaper: this lower-delta call (delta {d}, strike ${strike}) costs less but needs a bigger rise in the stock to pay off.")
-    else:
-        parts.append(f"Balanced: delta {d} is near the middle of the 0.35–0.60 range we allow (target 0.47), at strike ${strike}.")
+    d_txt = f"{d:.2f}" if isinstance(d, (int, float)) else "that"
+    parts = [
+        f"Why this one: the ${strike} call is a middle-speed pick (delta {d_txt}), "
+        f"so it can follow the stock without costing as much as a closer-to-the-money call."
+    ]
     if dte:
-        parts.append(f"Expiry is {c.get('expiry')} ({dte} days), inside the 35–70 day window so there is time for a breakout without going too far out.")
+        parts.append(f"It expires {c.get('expiry')} ({dte} days out), which gives a breakout some time to happen.")
     if est is not None:
-        parts.append(f"The estimated ask at the pivot is ${est:.2f}; with fees that must fit the ${cap:.0f} max-loss cap.")
+        parts.append(f"At the breakout price the estimated cost is about ${est:.2f} per share, "
+                     f"and that has to fit your ${cap:.0f} limit including fees.")
     if oi is not None and vol is not None:
-        parts.append(f"Liquidity: open interest {oi} and volume {vol} (need at least 500 and 50).")
+        parts.append(f"Enough people are trading it (open interest {oi}, volume {vol}).")
     return " ".join(parts)
 
 
@@ -501,7 +507,7 @@ def _finish_candidate(base: dict, signal: dict, levels: dict | None, cap: float,
     if role:
         out["role"] = role
     out["failedRulePlain"] = plain_fail(out["failedRule"], cap) if out.get("failedRule") else None
-    out["whyThisContract"] = _why(role or out.get("role") or "Balanced", out, cap)
+    out["whyThisContract"] = _why(role, out, cap)
     out["greeksPlain"] = _greeks_plain(out.get("greeks"))
     if out.get("breakevenAtExpiry") and signal.get("pivot") and out.get("expiry"):
         out["howFar"] = _how_far(signal["pivot"], out["breakevenAtExpiry"], out["expiry"])
@@ -536,7 +542,7 @@ STAGE = {
 def evaluate_plan_book(ticker: str, options: list[dict], spot: float, signal: dict, entry: date, rate: float,
                        hv20: float | None, hv60: float | None, settings: dict,
                        move: float | None = None, levels: dict | None = None) -> dict:
-    """Safer / Balanced / Cheaper planned calls plus a debit-spread alternative."""
+    """One best planned call, plus a debit spread only when no single call fits the cap."""
     pivot = float(signal["pivot"])
     move = float(move) if move else round(max(pivot * 0.05, 0.01), 2)
     if levels is None:
@@ -687,40 +693,41 @@ def evaluate_plan_book(ticker: str, options: list[dict], spot: float, signal: di
 
     scored = [c for c in candidates if delta_of(c) is not None and DTE_MIN <= (c.get("dte") or 0) <= DTE_MAX]
     passing = [c for c in scored if c["passes"] and fits_dollar_cap(c.get("maxLoss"), cap)]
-    # Never present an over-cap or failed quote as Safer/Balanced/Cheaper.
-    pool = passing
+    insane_rules = {ASK_ABOVE_STOCK, ASK_FAR_ABOVE_MODEL}
 
-    def take(role, rec):
-        return _finish_candidate(rec, signal, levels, cap, role)
+    def take(rec):
+        return _finish_candidate(rec, signal, levels, cap, None)
+
+    def nearest(pool):
+        return min(pool, key=lambda c: abs((delta_of(c) or 0.47) - 0.47))
 
     choices = []
-    used = set()
-    if pool:
-        balanced = min(pool, key=lambda c: abs(delta_of(c) - 0.47))
-        choices.append(take("Balanced", balanced))
-        used.add(balanced["symbol"])
-        safer_pool = [c for c in pool if c["symbol"] not in used]
-        safer_pref = [c for c in safer_pool if delta_of(c) >= delta_of(balanced)]
-        if safer_pref or safer_pool:
-            safer = max(safer_pref or safer_pool, key=delta_of)
-            choices.append(take("Safer", safer))
-            used.add(safer["symbol"])
-        cheaper_pool = [c for c in pool if c["symbol"] not in used]
-        cheaper_pref = [c for c in cheaper_pool if delta_of(c) <= delta_of(balanced)]
-        if cheaper_pref or cheaper_pool:
-            cheaper = min(cheaper_pref or cheaper_pool, key=delta_of)
-            choices.append(take("Cheaper", cheaper))
-            used.add(cheaper["symbol"])
-        # Keep Safer, Balanced, Cheaper display order
-        order = {"Safer": 0, "Balanced": 1, "Cheaper": 2}
-        choices.sort(key=lambda c: order.get(c["role"], 9))
+    if passing:
+        choices.append(take(nearest(passing)))
+    else:
+        close_ok = [c for c in scored
+                    if fits_dollar_cap(c.get("maxLoss"), cap)
+                    and c.get("failedRule") not in insane_rules
+                    and c.get("failedRule") != CAP_FAIL]
+        if close_ok:
+            choices.append(take(nearest(close_ok)))
 
-    # Debit spread: buy the balanced call, sell a higher strike in the same expiry.
-    spread_alt = _debit_spread(ticker, choices, calls, by_exp, spot, pivot, signal, entry, rate, fee, qty, cap,
-                               settings, move, levels, x)
+    # Debit spread only as a fallback when no single call fits the dollar cap.
+    spread_alt = None
+    if not passing and reasons.get(CAP_FAIL):
+        cap_legs = [c for c in scored if c.get("failedRule") == CAP_FAIL and delta_of(c) is not None]
+        if cap_legs:
+            spread_alt = _debit_spread(ticker, take(nearest(cap_legs)), calls, by_exp, spot, pivot,
+                                       signal, entry, rate, fee, qty, cap, settings, move, levels, x)
+            if spread_alt:
+                if not spread_alt.get("passes"):
+                    spread_alt = None
+                else:
+                    spread_alt["highlight"] = True
+                    spread_alt["fallbackBecauseCap"] = True
+
     passing_picks = [c for c in choices if c["passes"]]
-    # Keep backward-compatible single pick (prefer Balanced if it passed).
-    picks = [c for c in choices if c["role"] == "Balanced" and c["passes"]] or passing_picks[:1]
+    picks = passing_picks[:1]
     return {
         "picks": picks[:1],
         "choices": choices,
@@ -731,10 +738,9 @@ def evaluate_plan_book(ticker: str, options: list[dict], spot: float, signal: di
     }
 
 
-def _debit_spread(ticker, choices, calls, by_exp, spot, pivot, signal, entry, rate, fee, qty, cap,
-                  settings, move, levels, long_x) -> dict:
-    balanced = next((c for c in choices if c.get("role") == "Balanced"), None)
-    highlight = any((not c.get("passes") and c.get("failedRule") == CAP_FAIL) for c in choices)
+def _debit_spread(ticker, balanced, calls, by_exp, spot, pivot, signal, entry, rate, fee, qty, cap,
+                  settings, move, levels, long_x) -> dict | None:
+    highlight = True
     empty = {
         "type": "CALL_DEBIT_SPREAD",
         "passes": False,
@@ -745,7 +751,7 @@ def _debit_spread(ticker, choices, calls, by_exp, spot, pivot, signal, entry, ra
         "maxProfit": None,
     }
     if not balanced:
-        return empty
+        return None
     expiry = date.fromisoformat(balanced["expiry"])
     long_k = balanced["strike"]
     longs = [c for c in calls if c["symbol"] == balanced["symbol"]]

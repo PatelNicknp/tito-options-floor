@@ -220,12 +220,13 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   assert.ok(!html.includes("data-log"));
   const unknown = R.renderSetup({ ...row, planNote: "No contract: earnings date unknown" }, S, 1000);
   assert.match(unknown, /None yet, because earnings date is unknown/);
+  assert.match(unknown, /No contract yet: earnings date is unknown/);
   assert.match(unknown, /Waiting: earnings date is unknown/);
   const planned = {
     role: "Balanced", symbol: "CME261218C00300000", expiry: "2026-12-18", strike: 300, qty: 1, bid: 1.10, ask: 1.20,
     estimatedAskAtPivot: 1.55, maxLoss: 156.3, breakevenAtExpiry: 301.56, dte: 39, passes: true,
-    greeks: { delta: 0.42, deltaDollarsPer1: 42 }, deltaEvaluatedAt: "pivot", optionProfitTargetBid: 4.66, expiryExitDate: "2026-11-27",
-    whyThisContract: "Balanced: delta 0.42 is near the middle of the 0.35–0.60 range we allow (target 0.47), at strike $300.",
+    greeks: { delta: 0.42, deltaDollarsPer1: 42, gamma: 0.02, thetaDollarsPerDay: -8.1, vegaDollarsPerPoint: 15 }, deltaEvaluatedAt: "pivot", optionProfitTargetBid: 4.66, expiryExitDate: "2026-11-27",
+    whyThisContract: "Why this one: the $300 call is a middle-speed pick (delta 0.42).",
     greeksPlain: {
       delta: "If the stock rises $1, this option gains about $42.00.",
       gamma: "Delta grows about 0.02 per $1 move (about $2.00 more gain on the next dollar).",
@@ -269,12 +270,12 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   assert.match(withC, /Estimated ask at pivot/);
   assert.match(withC, /\$1\.55/);
   assert.match(withC, /Skip if live ask above \$1\.98/);
-  assert.match(withC, /Why this contract/);
-  assert.match(withC, /If the stock rises \$1, this option gains about \$42\.00/);
+  assert.match(withC, /Why this one/);
+  assert.match(withC, /Delta is the speedometer: if the stock goes up \$1, this option goes up about \$42\.00/);
   assert.match(withC, /Needs the stock to rise \$29\.06/);
-  assert.match(withC, /Doesn’t pass yet: not a trade/);
-  assert.match(withC, /The delayed bid and ask are too far apart/);
-  assert.match(withC, /Call debit spread alternative/);
+  assert.match(withC, /melting ice cube/);
+  assert.match(withC, /puffs up or shrinks/);
+  assert.ok(!withC.includes("Cheaper"));
   assert.match(withC, /<details class="card card-fold setup"/);
   assert.ok(!/<details class="card card-fold[^>]*\sopen/.test(withC), "cards start collapsed");
   assert.match(withC, /class="sum-ticker">CME</);
@@ -284,7 +285,7 @@ test("Setting up watch list is separate, has the alert note, and suggests no con
   assert.ok(summaryBadges <= 2, `collapsed row has ${summaryBadges} tags`);
   assert.match(withC, /If it breaks out: \$300\.00 call Dec 18, most you can lose \$156\.30/);
   assert.match(withC, /2027-02-01 · source: Yahoo Finance calendarEvents/);
-  assert.match(withC, /Estimated value/);
+  assert.match(withC, /Option worth about/);
   assert.ok(!withC.includes("data-log"));
   assert.match(R.renderSetup({ ...row, earningsDisplay: "2026-12-15 (estimated)", earningsEstimated: true }, S, 1000), /\(estimated\)/);
   assert.match(R.renderSetup({ ...row, planNote: "Too expensive for $200 cap" }, S, 1000), /no contract fits your \$200 limit/);

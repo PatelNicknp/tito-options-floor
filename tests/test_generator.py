@@ -339,25 +339,28 @@ def test_max_entry_net_debit_counts_fees_on_both_legs():
 def test_evaluate_plan_book_roles_whatif_and_spread():
     signal = {"target": 14.00, "stop": 11.60, "pivot": 12.80}
     book = evaluate_plan_book("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, SETTINGS, move=0.64)
-    roles = [c["role"] for c in book["choices"]]
-    assert "Balanced" in roles
-    bal = next(c for c in book["choices"] if c["role"] == "Balanced")
-    assert "Why" not in bal["whyThisContract"] or "Balanced" in bal["whyThisContract"]
-    assert bal["whyThisContract"]
-    assert bal["greeksPlain"]["delta"].startswith("If the stock rises $1")
+    assert len(book["choices"]) == 1
+    bal = book["choices"][0]
+    assert bal["passes"] is True
+    assert bal.get("role") not in {"Safer", "Balanced", "Cheaper"}
+    assert bal["whyThisContract"].startswith("Why this one")
+    assert "speedometer" in bal["greeksPlain"]["delta"]
+    assert "melting ice cube" in bal["greeksPlain"]["theta"]
     assert "from the pivot" in bal["howFar"]
     assert any(r["when"] == "About 1 week" and r.get("estimate") for r in bal["whatIf"])
     assert any(r["when"] == "About 3 weeks" for r in bal["whatIf"])
     assert "no fixed limit" in bal["maxProfit"].lower()
-    assert book["spread"]["type"] == "CALL_DEBIT_SPREAD"
-    assert book["spread"]["long"]["strike"] == bal["strike"]
-    assert book["spread"]["short"]["strike"] > bal["strike"]
+    assert book["spread"] is None  # single call fits the cap, so no spread fallback
     tight = {**SETTINGS, "capDollars": 30}
     book2 = evaluate_plan_book("F", plan_chain(), 12.44, signal, date(2026, 11, 9), 0.04, 0.30, 0.32, tight, move=0.64)
     assert book2["picks"] == []
-    assert book2["choices"] == []
+    assert all(c.get("maxLoss") is None or c["maxLoss"] <= 30 + 1e-9 for c in book2["choices"])
     assert book2["reasons"].get("over the dollar cap (skipped, not replaced)")
     assert plan_reject_reason(book2["reasons"], 30) == "No contract fits your $30 limit"
+    if book2["spread"]:
+        assert book2["spread"].get("fallbackBecauseCap") is True
+        assert book2["spread"]["passes"] is True
+        assert book2["spread"]["maxLoss"] <= 30 + 1e-9
 
 def test_parse_yahoo_quote_html_reads_escaped_and_raw_json():
     escaped = (
@@ -413,8 +416,10 @@ def test_over_cap_and_insane_quotes_are_never_shown_as_choices():
     book = evaluate_plan_book("SLN", rows, 19.79, signal, date(2026, 11, 9), 0.04, 0.40, 0.42, SETTINGS)
     symbols = [c["symbol"] for c in book["choices"]]
     assert "SLN261218C00002500" not in symbols
+    assert len(book["choices"]) <= 1
     for c in book["choices"]:
-        assert c["passes"] is True
-        assert c["maxLoss"] <= SETTINGS["capDollars"] + 1e-9
+        assert c["maxLoss"] is None or c["maxLoss"] <= SETTINGS["capDollars"] + 1e-9
         assert c["ask"] <= 19.79 + 0.01
+        if c["passes"] is False:
+            assert c.get("failedRule")
     assert book["reasons"].get(ASK_ABOVE_STOCK) or book["reasons"].get("over the dollar cap (skipped, not replaced)")
