@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-10 09:02 PM PT",
+ "generatedAtPT": "2026-11-10 09:13 PM PT",
  "signalSession": "2026-11-10",
  "entrySession": "2026-11-11",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "updated 2026-11-10 19:42 PT, prices as of 2026-11-10, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "2500 rows",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "198 rows",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "46 rows",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "38 rows",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "2083 rows",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "Stock Box run 2026-11-10 19:42 PT (full); last bar trusted as complete: True"
   },
   {
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.12%",
-   "retrievedAtPT": "2026-11-10 08:58 PM PT",
+   "retrievedAtPT": "2026-11-10 09:09 PM PT",
    "sourceTime": "2026-11-10"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://finance.yahoo.com/",
    "ok": true,
    "detail": "looked up 27 names; Yahoo quote page 27, Yahoo calendarEvents 27, Nasdaq earnings-date 0, Nasdaq calendar 0 ok / 47 failed; Nasdaq by-date scan stopped after repeated failures (hosted runners are often blocked)",
-   "retrievedAtPT": "2026-11-10 09:02 PM PT",
+   "retrievedAtPT": "2026-11-10 09:13 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -154,7 +154,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "6 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-10 09:02 PM PT",
+   "retrievedAtPT": "2026-11-10 09:13 PM PT",
    "sourceTime": "session close 2026-11-10 1:00 PM PT"
   },
   {
@@ -163,7 +163,7 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "0 idea chain(s) and 27 setting-up chain(s) loaded",
-   "retrievedAtPT": "2026-11-10 09:02 PM PT",
+   "retrievedAtPT": "2026-11-10 09:13 PM PT",
    "sourceTime": "not provided"
   }
  ],
@@ -218,15 +218,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-11-12; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -250,7 +242,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SLN.json",
     "fileTimestamp": "2026-11-11 00:36:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
    "marketAgainst": true,
@@ -282,16 +274,112 @@
    "earningsDisplay": "earnings date unknown",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "PCRX261218C00035000",
+     "expiry": "2026-12-18",
+     "strike": 35.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.05,
+     "ask": 1.55,
+     "estimatedAskAtPivot": null,
+     "mid": 0.8,
+     "spread": 1.5,
+     "oi": 1,
+     "volume": 0,
+     "iv": 0.0848,
+     "hv20": 0.0164,
+     "hv60": 0.7854,
+     "ivRatio": 0.11,
+     "greeks": {
+      "delta": 0.9709,
+      "gamma": 0.06698,
+      "deltaDollarsPer1": 97.09,
+      "thetaDollarsPerDay": -0.47,
+      "vegaDollarsPerPoint": 0.77,
+      "rhoDollarsPerPoint": 3.42
+     },
+     "lastTradeTime": "2026-11-02T09:53:24",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 155.65,
+     "qty": 1,
+     "maxLoss": 156.3,
+     "breakevenAtExpiry": 36.56,
+     "optionProfitTargetBid": 4.68,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "earnings date unknown",
+     "stage": 6,
+     "whatIfMove": 1.83,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $1.83",
+       "price": 34.84,
+       "value": 31.76,
+       "pnl": -124.54,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 36.67,
+       "value": 179.45,
+       "pnl": 23.15,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $1.83",
+       "price": 38.5,
+       "value": 361.82,
+       "pnl": 205.52,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $1.83",
+       "price": 34.84,
+       "value": 20.17,
+       "pnl": -136.13,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 36.67,
+       "value": 173.37,
+       "pnl": 17.07,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $1.83",
+       "price": 38.5,
+       "value": 356.31,
+       "pnl": 200.01,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "No contract: earnings date unknown",
+     "whyThisContract": "Why this one: the $35.0 call is a middle-speed pick (delta 0.97), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 1, volume 0).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $97.09 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $6.70 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $0.47 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $0.77 if expected swings move by 1 point."
+     },
+     "howFar": "Breaks even if the stock stays above $36.56 ($0.11 / 0.3% below the pivot) by 2026-12-18.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $4.68 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $36.67 in the first 3 sessions. Exit if the stock closes below $36.27 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $37.07 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -315,7 +403,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PCRX.json",
     "fileTimestamp": "2026-11-11 03:30:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -364,16 +452,112 @@
    "earningsDisplay": "2027-02-09 \u00b7 source: US Stock Box earnings_calendar.csv",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "DGX261218C00290000",
+     "expiry": "2026-12-18",
+     "strike": 290.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.35,
+     "ask": 1.7,
+     "estimatedAskAtPivot": null,
+     "mid": 1.025,
+     "spread": 1.35,
+     "oi": 2,
+     "volume": 3,
+     "iv": 0.2616,
+     "hv20": 0.2207,
+     "hv60": 0.2231,
+     "ivRatio": 1.17,
+     "greeks": {
+      "delta": 0.11,
+      "gamma": 0.00869,
+      "deltaDollarsPer1": 11.0,
+      "thetaDollarsPerDay": -5.81,
+      "vegaDollarsPerPoint": 15.55,
+      "rhoDollarsPerPoint": 2.78
+     },
+     "lastTradeTime": "2026-11-10T15:21:23",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 170.65,
+     "qty": 1,
+     "maxLoss": 171.3,
+     "breakevenAtExpiry": 291.71,
+     "optionProfitTargetBid": 5.13,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 2.79,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $2.79",
+       "price": 257.05,
+       "value": 51.78,
+       "pnl": -119.52,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 259.84,
+       "value": 72.21,
+       "pnl": -99.09,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $2.79",
+       "price": 262.63,
+       "value": 98.78,
+       "pnl": -72.52,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $2.79",
+       "price": 257.05,
+       "value": 7.97,
+       "pnl": -163.33,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 259.84,
+       "value": 13.74,
+       "pnl": -157.56,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $2.79",
+       "price": 262.63,
+       "value": 22.83,
+       "pnl": -148.47,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $290.0 call is a middle-speed pick (delta 0.11), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 2, volume 3).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $11.00 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $0.87 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $5.81 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $15.55 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $31.87 (12.3%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $5.13 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $259.84 in the first 3 sessions. Exit if the stock closes below $223.50 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $296.18 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -396,7 +580,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DGX.json",
     "fileTimestamp": "2026-11-10 23:58:54 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -446,15 +630,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -476,7 +652,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/TMO.json",
     "fileTimestamp": "2026-11-11 02:29:19 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -525,16 +701,112 @@
    "earningsDisplay": "2027-01-26 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "RCL261218C00410000",
+     "expiry": "2026-12-18",
+     "strike": 410.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.6,
+     "ask": 1.75,
+     "estimatedAskAtPivot": null,
+     "mid": 1.175,
+     "spread": 1.15,
+     "oi": 204,
+     "volume": 0,
+     "iv": 0.3698,
+     "hv20": 0.4413,
+     "hv60": 0.4069,
+     "ivRatio": 0.84,
+     "greeks": {
+      "delta": 0.0752,
+      "gamma": 0.00352,
+      "deltaDollarsPer1": 7.52,
+      "thetaDollarsPerDay": -8.0,
+      "vegaDollarsPerPoint": 15.46,
+      "rhoDollarsPerPoint": 2.48
+     },
+     "lastTradeTime": "2026-11-09T15:39:48",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 175.65,
+     "qty": 1,
+     "maxLoss": 176.3,
+     "breakevenAtExpiry": 411.76,
+     "optionProfitTargetBid": 5.28,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 8.48,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $8.48",
+       "price": 333.84,
+       "value": 42.52,
+       "pnl": -133.78,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 342.32,
+       "value": 77.94,
+       "pnl": -98.36,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $8.48",
+       "price": 350.8,
+       "value": 134.86,
+       "pnl": -41.44,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $8.48",
+       "price": 333.84,
+       "value": 3.79,
+       "pnl": -172.51,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 342.32,
+       "value": 10.39,
+       "pnl": -165.91,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $8.48",
+       "price": 350.8,
+       "value": 25.51,
+       "pnl": -150.79,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $410.0 call is a middle-speed pick (delta 0.08), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 204, volume 0).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $7.52 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $0.35 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $8.00 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $15.46 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $69.44 (20.3%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $5.28 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $342.32 in the first 3 sessions. Exit if the stock closes below $259.00 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $425.64 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -558,7 +830,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RCL.json",
     "fileTimestamp": "2026-11-11 00:29:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -608,15 +880,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -638,7 +902,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CBOE.json",
     "fileTimestamp": "2026-11-11 01:34:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -687,16 +951,112 @@
    "earningsDisplay": "2027-02-04 \u00b7 source: US Stock Box earnings_calendar.csv",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "ICE261218C00190000",
+     "expiry": "2026-12-18",
+     "strike": 190.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.35,
+     "ask": 1.45,
+     "estimatedAskAtPivot": null,
+     "mid": 0.9,
+     "spread": 1.1,
+     "oi": 823,
+     "volume": 8,
+     "iv": 0.2136,
+     "hv20": 0.3229,
+     "hv60": 0.2496,
+     "ivRatio": 0.66,
+     "greeks": {
+      "delta": 0.1924,
+      "gamma": 0.0226,
+      "deltaDollarsPer1": 19.24,
+      "thetaDollarsPerDay": -4.84,
+      "vegaDollarsPerPoint": 15.49,
+      "rhoDollarsPerPoint": 3.34
+     },
+     "lastTradeTime": "2026-11-10T10:24:16",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 145.65,
+     "qty": 1,
+     "maxLoss": 146.3,
+     "breakevenAtExpiry": 191.46,
+     "optionProfitTargetBid": 4.38,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 3.1,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $3.10",
+       "price": 174.84,
+       "value": 50.43,
+       "pnl": -95.87,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 177.94,
+       "value": 90.87,
+       "pnl": -55.43,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $3.10",
+       "price": 181.04,
+       "value": 152.94,
+       "pnl": 6.64,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $3.10",
+       "price": 174.84,
+       "value": 11.08,
+       "pnl": -135.22,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 177.94,
+       "value": 28.43,
+       "pnl": -117.87,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $3.10",
+       "price": 181.04,
+       "value": 63.95,
+       "pnl": -82.35,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $190.0 call is a middle-speed pick (delta 0.19), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 823, volume 8).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $19.24 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $2.26 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $4.84 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $15.49 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $13.52 (7.6%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $4.38 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $177.94 in the first 3 sessions. Exit if the stock closes below $153.90 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $201.98 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -719,7 +1079,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ICE.json",
     "fileTimestamp": "2026-11-11 02:06:08 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -768,16 +1128,112 @@
    "earningsDisplay": "2027-02-10 \u00b7 source: US Stock Box earnings_calendar.csv",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "AIG270115C00087500",
+     "expiry": "2027-01-15",
+     "strike": 87.5,
+     "dte": 65,
+     "type": "CALL",
+     "bid": 1.1,
+     "ask": 1.75,
+     "estimatedAskAtPivot": null,
+     "mid": 1.425,
+     "spread": 0.65,
+     "oi": 456,
+     "volume": 2,
+     "iv": 0.2352,
+     "hv20": 0.2957,
+     "hv60": 0.2161,
+     "ivRatio": 0.8,
+     "greeks": {
+      "delta": 0.3446,
+      "gamma": 0.04467,
+      "deltaDollarsPer1": 34.46,
+      "thetaDollarsPerDay": -2.64,
+      "vegaDollarsPerPoint": 12.91,
+      "rhoDollarsPerPoint": 4.78
+     },
+     "lastTradeTime": "2026-11-10T14:35:22",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 175.65,
+     "qty": 1,
+     "maxLoss": 176.3,
+     "breakevenAtExpiry": 89.26,
+     "optionProfitTargetBid": 5.28,
+     "expiryExitDate": "2026-12-25",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 1.37,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $1.37",
+       "price": 81.7,
+       "value": 120.31,
+       "pnl": -55.99,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 83.07,
+       "value": 161.37,
+       "pnl": -14.93,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $1.37",
+       "price": 84.44,
+       "value": 211.14,
+       "pnl": 34.84,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $1.37",
+       "price": 81.7,
+       "value": 85.84,
+       "pnl": -90.46,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 83.07,
+       "value": 121.83,
+       "pnl": -54.47,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $1.37",
+       "price": 84.44,
+       "value": 167.36,
+       "pnl": -8.94,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $87.5 call is a middle-speed pick (delta 0.34), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2027-01-15 (65 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 456, volume 2).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $34.46 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $4.47 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $2.64 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $12.91 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $6.19 (7.5%) from the pivot by 2027-01-15 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $5.28 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $83.07 in the first 3 sessions. Exit if the stock closes below $72.63 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $93.51 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -800,7 +1256,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/AIG.json",
     "fileTimestamp": "2026-11-11 03:05:55 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -849,16 +1305,112 @@
    "earningsDisplay": "2027-01-27 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "DHR261218C00270000",
+     "expiry": "2026-12-18",
+     "strike": 270.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.7,
+     "ask": 1.15,
+     "estimatedAskAtPivot": null,
+     "mid": 0.925,
+     "spread": 0.45,
+     "oi": 555,
+     "volume": 0,
+     "iv": 0.294,
+     "hv20": 0.3086,
+     "hv60": 0.3003,
+     "ivRatio": 0.95,
+     "greeks": {
+      "delta": 0.1083,
+      "gamma": 0.00833,
+      "deltaDollarsPer1": 10.83,
+      "thetaDollarsPerDay": -5.89,
+      "vegaDollarsPerPoint": 14.12,
+      "rhoDollarsPerPoint": 2.5
+     },
+     "lastTradeTime": "2026-11-06T09:39:22",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 115.65,
+     "qty": 1,
+     "maxLoss": 116.3,
+     "breakevenAtExpiry": 271.16,
+     "optionProfitTargetBid": 3.48,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 3.4,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $3.40",
+       "price": 235.06,
+       "value": 48.77,
+       "pnl": -67.53,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 238.46,
+       "value": 72.62,
+       "pnl": -43.68,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $3.40",
+       "price": 241.86,
+       "value": 105.2,
+       "pnl": -11.1,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $3.40",
+       "price": 235.06,
+       "value": 7.11,
+       "pnl": -109.19,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 238.46,
+       "value": 13.65,
+       "pnl": -102.65,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $3.40",
+       "price": 241.86,
+       "value": 24.86,
+       "pnl": -91.44,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $270.0 call is a middle-speed pick (delta 0.11), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 555, volume 0).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $10.83 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $0.83 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $5.89 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $14.12 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $32.70 (13.7%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $3.48 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $238.46 in the first 3 sessions. Exit if the stock closes below $202.26 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $274.66 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -881,7 +1433,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DHR.json",
     "fileTimestamp": "2026-11-10 23:28:48 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -930,16 +1482,112 @@
    "earningsDisplay": "2027-02-03 \u00b7 source: US Stock Box earnings_calendar.csv",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "CME261218C00350000",
+     "expiry": "2026-12-18",
+     "strike": 350.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.2,
+     "ask": 1.6,
+     "estimatedAskAtPivot": null,
+     "mid": 0.9,
+     "spread": 1.4,
+     "oi": 48,
+     "volume": 0,
+     "iv": 0.2646,
+     "hv20": 0.2665,
+     "hv60": 0.2354,
+     "ivRatio": 0.99,
+     "greeks": {
+      "delta": 0.1071,
+      "gamma": 0.007,
+      "deltaDollarsPer1": 10.71,
+      "thetaDollarsPerDay": -6.93,
+      "vegaDollarsPerPoint": 18.37,
+      "rhoDollarsPerPoint": 3.26
+     },
+     "lastTradeTime": "2026-11-04T10:49:03",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 160.65,
+     "qty": 1,
+     "maxLoss": 161.3,
+     "breakevenAtExpiry": 351.61,
+     "optionProfitTargetBid": 4.83,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 3.92,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $3.92",
+       "price": 308.88,
+       "value": 57.44,
+       "pnl": -103.86,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 312.8,
+       "value": 84.66,
+       "pnl": -76.64,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $3.92",
+       "price": 316.72,
+       "value": 121.6,
+       "pnl": -39.7,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $3.92",
+       "price": 308.88,
+       "value": 8.32,
+       "pnl": -152.98,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 312.8,
+       "value": 15.72,
+       "pnl": -145.58,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $3.92",
+       "price": 316.72,
+       "value": 28.28,
+       "pnl": -133.02,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $350.0 call is a middle-speed pick (delta 0.11), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 48, volume 0).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $10.71 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $0.70 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $6.93 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $18.37 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $38.81 (12.4%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $4.83 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $312.80 in the first 3 sessions. Exit if the stock closes below $258.87 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $366.73 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -962,7 +1610,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CME.json",
     "fileTimestamp": "2026-11-11 01:43:12 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1012,15 +1660,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1042,7 +1682,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ULTA.json",
     "fileTimestamp": "2026-11-11 02:46:14 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -1075,15 +1715,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1106,7 +1738,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CHDN.json",
     "fileTimestamp": "2026-11-10 21:21:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -1155,16 +1787,112 @@
    "earningsDisplay": "2026-12-18 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "CCL261218C00032000",
+     "expiry": "2026-12-18",
+     "strike": 32.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.99,
+     "ask": 1.3,
+     "estimatedAskAtPivot": null,
+     "mid": 1.145,
+     "spread": 0.31,
+     "oi": 5323,
+     "volume": 75,
+     "iv": 0.4088,
+     "hv20": 0.49,
+     "hv60": 0.4589,
+     "ivRatio": 0.83,
+     "greeks": {
+      "delta": 0.4817,
+      "gamma": 0.09748,
+      "deltaDollarsPer1": 48.17,
+      "thetaDollarsPerDay": -2.36,
+      "vegaDollarsPerPoint": 3.99,
+      "rhoDollarsPerPoint": 1.39
+     },
+     "lastTradeTime": "2026-11-10T15:43:50",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 130.65,
+     "qty": 1,
+     "maxLoss": 131.3,
+     "breakevenAtExpiry": 33.31,
+     "optionProfitTargetBid": 3.93,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "bid-ask spread too wide",
+     "stage": 7,
+     "whatIfMove": 0.8,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $0.80",
+       "price": 30.61,
+       "value": 90.78,
+       "pnl": -40.52,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 31.41,
+       "value": 125.05,
+       "pnl": -6.25,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $0.80",
+       "price": 32.21,
+       "value": 166.21,
+       "pnl": 34.91,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $0.80",
+       "price": 30.61,
+       "value": 53.1,
+       "pnl": -78.2,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 31.41,
+       "value": 83.59,
+       "pnl": -47.71,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $0.80",
+       "price": 32.21,
+       "value": 123.4,
+       "pnl": -7.9,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "The delayed bid and ask are too far apart (more than 12% of the mid, or 5 cents).",
+     "whyThisContract": "Why this one: the $32.0 call is a middle-speed pick (delta 0.48), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 5323, volume 75).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $48.17 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $9.75 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $2.36 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $3.99 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $1.90 (6.0%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $3.93 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $31.41 in the first 3 sessions. Exit if the stock closes below $23.88 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $38.94 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1189,7 +1917,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CCL.json",
     "fileTimestamp": "2026-11-11 01:33:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1221,16 +1949,112 @@
    "earningsDisplay": "earnings date unknown",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "CART261218C00060000",
+     "expiry": "2026-12-18",
+     "strike": 60.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.35,
+     "ask": 0.95,
+     "estimatedAskAtPivot": null,
+     "mid": 0.65,
+     "spread": 0.6,
+     "oi": 6947,
+     "volume": 63,
+     "iv": 0.1484,
+     "hv20": 0.4912,
+     "hv60": 0.4144,
+     "ivRatio": 0.3,
+     "greeks": {
+      "delta": 0.5108,
+      "gamma": 0.14124,
+      "deltaDollarsPer1": 51.08,
+      "thetaDollarsPerDay": -1.85,
+      "vegaDollarsPerPoint": 7.59,
+      "rhoDollarsPerPoint": 2.98
+     },
+     "lastTradeTime": "2026-11-10T15:32:38",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 95.65,
+     "qty": 1,
+     "maxLoss": 96.3,
+     "breakevenAtExpiry": 60.96,
+     "optionProfitTargetBid": 2.88,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "earnings date unknown",
+     "stage": 7,
+     "whatIfMove": 1.42,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $1.42",
+       "price": 58.34,
+       "value": 43.78,
+       "pnl": -52.52,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 59.76,
+       "value": 99.6,
+       "pnl": 3.3,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $1.42",
+       "price": 61.18,
+       "value": 186.26,
+       "pnl": 89.96,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $1.42",
+       "price": 58.34,
+       "value": 20.38,
+       "pnl": -75.92,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 59.76,
+       "value": 67.75,
+       "pnl": -28.55,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $1.42",
+       "price": 61.18,
+       "value": 156.38,
+       "pnl": 60.08,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "No contract: earnings date unknown",
+     "whyThisContract": "Why this one: the $60.0 call is a middle-speed pick (delta 0.51), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 6947, volume 63).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $51.08 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $14.12 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $1.85 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $7.59 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $1.20 (2.0%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $2.88 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $59.76 in the first 3 sessions. Exit if the stock closes below $56.18 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $63.34 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1254,7 +2078,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CART.json",
     "fileTimestamp": "2026-11-10 23:02:46 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -1287,15 +2111,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1318,7 +2134,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SHO.json",
     "fileTimestamp": "2026-11-11 05:00:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -1367,16 +2183,112 @@
    "earningsDisplay": "2026-11-24 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-11-24; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "BBY261218C00125000",
+     "expiry": "2026-12-18",
+     "strike": 125.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.9,
+     "ask": 1.2,
+     "estimatedAskAtPivot": null,
+     "mid": 1.05,
+     "spread": 0.3,
+     "oi": 37,
+     "volume": 7,
+     "iv": 0.4925,
+     "hv20": 0.5451,
+     "hv60": 0.4408,
+     "ivRatio": 0.9,
+     "greeks": {
+      "delta": 0.1849,
+      "gamma": 0.01593,
+      "deltaDollarsPer1": 18.49,
+      "thetaDollarsPerDay": -6.25,
+      "vegaDollarsPerPoint": 9.08,
+      "rhoDollarsPerPoint": 1.84
+     },
+     "lastTradeTime": "2026-11-10T13:50:01",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 120.65,
+     "qty": 1,
+     "maxLoss": 121.3,
+     "breakevenAtExpiry": 126.21,
+     "optionProfitTargetBid": 3.63,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "next earnings 2026-11-24; must be after 2026-12-03",
+     "stage": 6,
+     "whatIfMove": 2.8,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $2.80",
+       "price": 104.03,
+       "value": 76.76,
+       "pnl": -44.54,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 106.83,
+       "value": 114.15,
+       "pnl": -7.15,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $2.80",
+       "price": 109.63,
+       "value": 163.87,
+       "pnl": 42.57,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $2.80",
+       "price": 104.03,
+       "value": 18.36,
+       "pnl": -102.94,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 106.83,
+       "value": 34.4,
+       "pnl": -86.9,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $2.80",
+       "price": 109.63,
+       "value": 60.33,
+       "pnl": -60.97,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
+     "whyThisContract": "Why this one: the $125.0 call is a middle-speed pick (delta 0.18), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 37, volume 7).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $18.49 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $1.59 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $6.25 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $9.08 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $19.38 (18.1%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $3.63 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $106.83 in the first 3 sessions. Exit if the stock closes below $83.65 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $130.01 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1399,7 +2311,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/BBY.json",
     "fileTimestamp": "2026-11-11 01:22:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -1448,16 +2360,112 @@
    "earningsDisplay": "2027-02-09 \u00b7 source: US Stock Box earnings_calendar.csv",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "SPGI270115C00560000",
+     "expiry": "2027-01-15",
+     "strike": 560.0,
+     "dte": 65,
+     "type": "CALL",
+     "bid": 0.85,
+     "ask": 1.9,
+     "estimatedAskAtPivot": null,
+     "mid": 1.375,
+     "spread": 1.05,
+     "oi": 56,
+     "volume": 1,
+     "iv": 0.2457,
+     "hv20": 0.258,
+     "hv60": 0.2512,
+     "ivRatio": 0.95,
+     "greeks": {
+      "delta": 0.1066,
+      "gamma": 0.00365,
+      "deltaDollarsPer1": 10.66,
+      "thetaDollarsPerDay": -7.68,
+      "vegaDollarsPerPoint": 37.71,
+      "rhoDollarsPerPoint": 8.79
+     },
+     "lastTradeTime": "2026-11-10T09:58:29",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 190.65,
+     "qty": 1,
+     "maxLoss": 191.3,
+     "breakevenAtExpiry": 561.91,
+     "optionProfitTargetBid": 5.73,
+     "expiryExitDate": "2026-12-25",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 6.09,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $6.09",
+       "price": 479.9,
+       "value": 145.09,
+       "pnl": -46.21,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 485.99,
+       "value": 194.75,
+       "pnl": 3.45,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $6.09",
+       "price": 492.08,
+       "value": 257.22,
+       "pnl": 65.92,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $6.09",
+       "price": 479.9,
+       "value": 71.07,
+       "pnl": -120.23,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 485.99,
+       "value": 102.27,
+       "pnl": -89.03,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $6.09",
+       "price": 492.08,
+       "value": 144.04,
+       "pnl": -47.26,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $560.0 call is a middle-speed pick (delta 0.11), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2027-01-15 (65 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 56, volume 1).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $10.66 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $0.36 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $7.68 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $37.71 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $75.92 (15.6%) from the pivot by 2027-01-15 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $5.73 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $485.99 in the first 3 sessions. Exit if the stock closes below $382.21 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $589.77 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1482,7 +2490,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SPGI.json",
     "fileTimestamp": "2026-11-11 00:29:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1532,15 +2540,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-11-23; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-11-23; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1562,7 +2562,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/A.json",
     "fileTimestamp": "2026-11-11 02:57:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-23; must be after 2026-12-03",
    "marketAgainst": true,
@@ -1607,15 +2607,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1637,7 +2629,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/EGBN.json",
     "fileTimestamp": "2026-11-11 00:23:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1687,15 +2679,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1717,7 +2701,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/HCA.json",
     "fileTimestamp": "2026-11-11 01:55:17 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1766,16 +2750,112 @@
    "earningsDisplay": "2027-01-28 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "MRSH261218C00230000",
+     "expiry": "2026-12-18",
+     "strike": 230.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.65,
+     "ask": 1.0,
+     "estimatedAskAtPivot": null,
+     "mid": 0.825,
+     "spread": 0.35,
+     "oi": 13,
+     "volume": 3,
+     "iv": 0.2467,
+     "hv20": 0.3095,
+     "hv60": 0.2407,
+     "ivRatio": 0.8,
+     "greeks": {
+      "delta": 0.2045,
+      "gamma": 0.01688,
+      "deltaDollarsPer1": 20.45,
+      "thetaDollarsPerDay": -6.92,
+      "vegaDollarsPerPoint": 19.33,
+      "rhoDollarsPerPoint": 4.25
+     },
+     "lastTradeTime": "2026-11-10T13:55:08",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 100.65,
+     "qty": 1,
+     "maxLoss": 101.3,
+     "breakevenAtExpiry": 231.01,
+     "optionProfitTargetBid": 3.03,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 3.51,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $3.51",
+       "price": 210.49,
+       "value": 86.15,
+       "pnl": -15.15,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 214.0,
+       "value": 137.66,
+       "pnl": 36.36,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $3.51",
+       "price": 217.51,
+       "value": 210.09,
+       "pnl": 108.79,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $3.51",
+       "price": 210.49,
+       "value": 21.73,
+       "pnl": -79.57,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 214.0,
+       "value": 45.71,
+       "pnl": -55.59,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $3.51",
+       "price": 217.51,
+       "value": 88.0,
+       "pnl": -13.3,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $230.0 call is a middle-speed pick (delta 0.20), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 13, volume 3).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $20.45 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $1.69 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $6.92 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $19.33 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $17.01 (7.9%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $3.03 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $214.00 in the first 3 sessions. Exit if the stock closes below $166.27 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $261.73 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1799,7 +2879,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MRSH.json",
     "fileTimestamp": "2026-11-10 23:03:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1848,16 +2928,112 @@
    "earningsDisplay": "2027-01-27 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "PGR261224C00255000",
+     "expiry": "2026-12-24",
+     "strike": 255.0,
+     "dte": 43,
+     "type": "CALL",
+     "bid": 0.4,
+     "ask": 1.65,
+     "estimatedAskAtPivot": null,
+     "mid": 1.025,
+     "spread": 1.25,
+     "oi": 0,
+     "volume": 0,
+     "iv": 0.2115,
+     "hv20": 0.297,
+     "hv60": 0.2571,
+     "ivRatio": 0.71,
+     "greeks": {
+      "delta": 0.2503,
+      "gamma": 0.01817,
+      "deltaDollarsPer1": 25.03,
+      "thetaDollarsPerDay": -7.12,
+      "vegaDollarsPerPoint": 26.3,
+      "rhoDollarsPerPoint": 6.81
+     },
+     "lastTradeTime": null,
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 165.65,
+     "qty": 1,
+     "maxLoss": 166.3,
+     "breakevenAtExpiry": 256.66,
+     "optionProfitTargetBid": 4.98,
+     "expiryExitDate": "2026-12-03",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "delta outside 0.35-0.60",
+     "stage": 6,
+     "whatIfMove": 3.22,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $3.22",
+       "price": 237.8,
+       "value": 138.49,
+       "pnl": -27.81,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 241.02,
+       "value": 201.77,
+       "pnl": 35.47,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $3.22",
+       "price": 244.24,
+       "value": 284.45,
+       "pnl": 118.15,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $3.22",
+       "price": 237.8,
+       "value": 58.48,
+       "pnl": -107.82,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 241.02,
+       "value": 99.55,
+       "pnl": -66.75,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $3.22",
+       "price": 244.24,
+       "value": 160.4,
+       "pnl": -5.9,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
+     "whyThisContract": "Why this one: the $255.0 call is a middle-speed pick (delta 0.25), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-24 (43 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 0, volume 0).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $25.03 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $1.82 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $7.12 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $26.30 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $15.64 (6.5%) from the pivot by 2026-12-24 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $4.98 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $241.02 in the first 3 sessions. Exit if the stock closes below $200.86 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $281.18 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-03 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1881,7 +3057,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PGR.json",
     "fileTimestamp": "2026-11-10 23:52:04 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1931,15 +3107,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -1962,7 +3130,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CB.json",
     "fileTimestamp": "2026-11-11 01:39:42 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -2011,16 +3179,112 @@
    "earningsDisplay": "2026-12-03 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "KR261224C00073000",
+     "expiry": "2026-12-24",
+     "strike": 73.0,
+     "dte": 43,
+     "type": "CALL",
+     "bid": 1.14,
+     "ask": 1.84,
+     "estimatedAskAtPivot": null,
+     "mid": 1.49,
+     "spread": 0.7,
+     "oi": 0,
+     "volume": 0,
+     "iv": 0.3325,
+     "hv20": 0.3342,
+     "hv60": 0.2994,
+     "ivRatio": 0.99,
+     "greeks": {
+      "delta": 0.474,
+      "gamma": 0.04869,
+      "deltaDollarsPer1": 47.4,
+      "thetaDollarsPerDay": -4.14,
+      "vegaDollarsPerPoint": 9.79,
+      "rhoDollarsPerPoint": 3.67
+     },
+     "lastTradeTime": null,
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 184.65,
+     "qty": 1,
+     "maxLoss": 185.3,
+     "breakevenAtExpiry": 74.85,
+     "optionProfitTargetBid": 5.55,
+     "expiryExitDate": "2026-12-03",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
+     "stage": 7,
+     "whatIfMove": 1.2,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $1.20",
+       "price": 70.44,
+       "value": 198.37,
+       "pnl": 13.07,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 71.64,
+       "value": 250.3,
+       "pnl": 65.0,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $1.20",
+       "price": 72.84,
+       "value": 309.85,
+       "pnl": 124.55,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $1.20",
+       "price": 70.44,
+       "value": 133.28,
+       "pnl": -52.02,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 71.64,
+       "value": 180.88,
+       "pnl": -4.42,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $1.20",
+       "price": 72.84,
+       "value": 238.16,
+       "pnl": 52.86,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
+     "whyThisContract": "Why this one: the $73.0 call is a middle-speed pick (delta 0.47), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-24 (43 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 0, volume 0).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $47.40 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $4.87 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $4.14 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $9.79 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $3.21 (4.5%) from the pivot by 2026-12-24 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $5.55 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $71.64 in the first 3 sessions. Exit if the stock closes below $57.56 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $85.72 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-03 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -2045,7 +3309,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/KR.json",
     "fileTimestamp": "2026-11-10 21:49:22 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -2094,16 +3358,112 @@
    "earningsDisplay": "2026-11-24 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
-   "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-11-24; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planChoices": [
+    {
+     "symbol": "MDT261218C00110000",
+     "expiry": "2026-12-18",
+     "strike": 110.0,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 0.98,
+     "ask": 1.17,
+     "estimatedAskAtPivot": null,
+     "mid": 1.075,
+     "spread": 0.19,
+     "oi": 1100,
+     "volume": 65,
+     "iv": 0.2794,
+     "hv20": 0.3451,
+     "hv60": 0.2793,
+     "ivRatio": 0.81,
+     "greeks": {
+      "delta": 0.3806,
+      "gamma": 0.04032,
+      "deltaDollarsPer1": 38.06,
+      "thetaDollarsPerDay": -5.29,
+      "vegaDollarsPerPoint": 12.88,
+      "rhoDollarsPerPoint": 3.86
+     },
+     "lastTradeTime": "2026-11-10T15:27:12",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 117.65,
+     "qty": 1,
+     "maxLoss": 118.3,
+     "breakevenAtExpiry": 111.18,
+     "optionProfitTargetBid": 3.54,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "next earnings 2026-11-24; must be after 2026-12-03",
+     "stage": 7,
+     "whatIfMove": 1.75,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $1.75",
+       "price": 104.45,
+       "value": 143.55,
+       "pnl": 25.25,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 106.2,
+       "value": 200.08,
+       "pnl": 81.78,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $1.75",
+       "price": 107.95,
+       "value": 270.05,
+       "pnl": 151.75,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $1.75",
+       "price": 104.45,
+       "value": 68.36,
+       "pnl": -49.94,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 106.2,
+       "value": 111.79,
+       "pnl": -6.51,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $1.75",
+       "price": 107.95,
+       "value": 172.12,
+       "pnl": 53.82,
+       "estimate": true
+      }
+     ],
+     "failedRulePlain": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
+     "whyThisContract": "Why this one: the $110.0 call is a middle-speed pick (delta 0.38), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 1100, volume 65).",
+     "greeksPlain": {
+      "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $38.06 (for 1 contract).",
+      "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $4.03 more.",
+      "theta": "Theta is a melting ice cube: time alone shaves about $5.29 off this option each day.",
+      "vega": "Vega is how the price puffs up or shrinks when people get nervous or calm: about $12.88 if expected swings move by 1 point."
+     },
+     "howFar": "Needs the stock to rise $4.98 (4.7%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $3.54 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $106.20 in the first 3 sessions. Exit if the stock closes below $95.17 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $117.23 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -2127,7 +3487,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MDT.json",
     "fileTimestamp": "2026-11-10 23:05:11 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -2172,15 +3532,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
-    "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -2202,7 +3554,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/VSXY.json",
     "fileTimestamp": "2026-11-11 04:07:49 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -2252,15 +3604,7 @@
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [],
-   "planSpread": {
-    "type": "CALL_DEBIT_SPREAD",
-    "passes": false,
-    "highlight": false,
-    "failedRule": "no balanced call to build a spread from",
-    "failedRulePlain": "There is no balanced call to pair with a higher strike.",
-    "whyThisContract": "A call debit spread buys the balanced call and sells a higher strike in the same expiry to cut the debit and cap the gain.",
-    "maxProfit": null
-   },
+   "planSpread": null,
    "levels": {
     "timeStopDate": "2026-12-03"
    },
@@ -2282,7 +3626,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RVTY.json",
     "fileTimestamp": "2026-11-11 04:10:34 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:02 PM PT"
+    "retrievedAtPT": "2026-11-10 09:13 PM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
