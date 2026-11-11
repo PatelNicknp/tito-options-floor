@@ -15,6 +15,7 @@ from zoneinfo import ZoneInfo
 PT = ZoneInfo("America/Los_Angeles")
 ET = ZoneInfo("America/New_York")
 UA = "Mozilla/5.0"
+BROWSER_UA = ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36")
 
 
 def now_pt() -> str:
@@ -122,9 +123,14 @@ def cboe_chain(f: Fetcher, symbol: str) -> dict:
 
 
 NASDAQ_HEADERS = {
+    "User-Agent": BROWSER_UA,
     "Accept": "application/json, text/plain, */*",
     "Origin": "https://www.nasdaq.com",
     "Referer": "https://www.nasdaq.com/market-activity/earnings",
+}
+YAHOO_HTML_HEADERS = {
+    "User-Agent": BROWSER_UA,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 }
 
 
@@ -180,6 +186,21 @@ def yahoo_calendar_events(f: Fetcher, symbol: str) -> dict | None:
     }
 
 
+def yahoo_quote_page_earnings(f: Fetcher, symbol: str) -> dict | None:
+    """Next earnings from the public Yahoo quote page HTML (no crumb required)."""
+    from tito.earnings import parse_yahoo_quote_html
+    url = f"https://finance.yahoo.com/quote/{urllib.request.quote(symbol)}/"
+    try:
+        html = f.get(url, extra_headers=YAHOO_HTML_HEADERS).decode("utf-8", "replace")
+    except (FetchError, UnicodeError):
+        return None
+    parsed = parse_yahoo_quote_html(html)
+    if not parsed:
+        return None
+    parsed["url"] = url
+    return parsed
+
+
 def date_from_fmt(fmt: str):
     from datetime import date as _date
     return _date.fromisoformat(str(fmt)[:10])
@@ -216,13 +237,19 @@ def nasdaq_analyst_earnings_date(f: Fetcher, symbol: str) -> dict | None:
     return {"source": "Nasdaq earnings-date", "date": d, "estimated": "estimat" in text.lower(), "url": url}
 
 
-def nasdaq_calendar_day(f: Fetcher, day) -> list[dict]:
-    """Rows on Nasdaq's earnings calendar for one date (free, no account)."""
+def nasdaq_calendar_day(f: Fetcher, day) -> list[dict] | None:
+    """Rows on Nasdaq's earnings calendar for one date (free, no account).
+
+    Returns None when the request fails or the payload looks blocked (so a
+    GitHub-hosted runner can stop scanning instead of treating every day as empty).
+    """
     url = f"https://api.nasdaq.com/api/calendar/earnings?date={day.isoformat()}"
     try:
         data = json.loads(f.get(url, extra_headers=NASDAQ_HEADERS))
     except (FetchError, json.JSONDecodeError, TypeError):
-        return []
+        return None
+    if not isinstance(data, dict) or data.get("data") is None:
+        return None
     rows = ((data.get("data") or {}).get("rows")) or []
     out = []
     for row in rows:
@@ -242,24 +269,32 @@ def resolve_earnings_dates(f: Fetcher, tickers: list[str], stockbox: dict[str, s
 
     tickers = [t for t in tickers if t]
     obs: dict[str, list] = {t: [] for t in tickers}
+    stats = {"yahoo_html": 0, "yahoo_qs": 0, "nasdaq_analyst": 0,
+             "nasdaq_days_ok": 0, "nasdaq_days_fail": 0, "nasdaq_aborted": False}
     for t in tickers:
         raw = stockbox.get(t)
-        if raw:
+        if raw and str(raw).strip():
             from tito.earnings import parse_iso
             d = parse_iso(raw)
             if d:
                 obs[t].append({"source": "US Stock Box earnings_calendar.csv", "date": d, "estimated": False})
 
     for t in tickers:
+        # Quote-page HTML first: no crumb, and it works when quoteSummary says Invalid Cookie.
+        page = yahoo_quote_page_earnings(f, t)
+        if page:
+            obs[t].append(page)
+            stats["yahoo_html"] += 1
         y = yahoo_calendar_events(f, t)
         if y:
             obs[t].append(y)
+            stats["yahoo_qs"] += 1
         n = nasdaq_analyst_earnings_date(f, t)
         if n:
             obs[t].append(n)
+            stats["nasdaq_analyst"] += 1
 
-    # Scan the Nasdaq by-date calendar first (covers names Stock Box and Yahoo missed),
-    # then only fetch extra nearby days to cross-check dates we already have.
+    from tito.earnings import nasdaq_scan_should_stop
     wanted = {t.upper(): t for t in tickers}
     day_cache: dict = {}
 
@@ -268,18 +303,29 @@ def resolve_earnings_dates(f: Fetcher, tickers: list[str], stockbox: dict[str, s
             day_cache[day] = nasdaq_calendar_day(f, day)
         return day_cache[day]
 
-    def add_nasdaq_hits(day, restrict=None):
-        for row in rows_on(day):
+    def add_nasdaq_hits(day, restrict=None) -> bool:
+        rows = rows_on(day)
+        if rows is None:
+            stats["nasdaq_days_fail"] += 1
+            return False
+        stats["nasdaq_days_ok"] += 1
+        for row in rows:
             t = wanted.get(row["symbol"])
             if t and (restrict is None or t in restrict):
                 obs[t].append({"source": "Nasdaq earnings calendar", "date": row["date"], "estimated": False})
+        return True
 
     still = {t for t in tickers if merge_earnings(obs[t], asof)["date"] is None}
+    consecutive_fail = 0
     for d in scan_window(asof, 130):
-        add_nasdaq_hits(d, still if still else None)
-        still = {t for t in still if merge_earnings(obs[t], asof)["date"] is None}
         if not still:
             break
+        ok = add_nasdaq_hits(d, still)
+        consecutive_fail = 0 if ok else consecutive_fail + 1
+        if nasdaq_scan_should_stop(consecutive_fail):
+            stats["nasdaq_aborted"] = True
+            break
+        still = {t for t in still if merge_earnings(obs[t], asof)["date"] is None}
 
     from datetime import timedelta
     extra = set()
@@ -296,4 +342,6 @@ def resolve_earnings_dates(f: Fetcher, tickers: list[str], stockbox: dict[str, s
     for d in sorted(extra):
         add_nasdaq_hits(d)
 
-    return {t: merge_earnings(obs[t], asof) for t in tickers}
+    merged = {t: merge_earnings(obs[t], asof) for t in tickers}
+    merged["_stats"] = stats
+    return merged

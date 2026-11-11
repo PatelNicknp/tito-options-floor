@@ -1,7 +1,11 @@
 """Next-earnings dates: merge several free calendars without loosening the 15-day rule."""
 from __future__ import annotations
 
-from datetime import date, timedelta
+import re
+from datetime import date, datetime, timedelta, timezone
+from zoneinfo import ZoneInfo
+
+ET = ZoneInfo("America/New_York")
 
 DISAGREE_DAYS = 3  # more than a few days → use the earlier date (safer)
 
@@ -79,3 +83,51 @@ def scan_window(asof: date, calendar_days: int = 130) -> list[date]:
         if d.weekday() < 5:
             out.append(d)
     return out
+
+
+
+_EARN_BLOCK = re.compile(r'earningsDate(?:\\"|")?:\[(.*?)\]', re.S)
+_FMT = re.compile(r'(?:\\"|")?fmt(?:\\"|")?:(?:\\"|")?(20\d{2}-\d{2}-\d{2})')
+_RAW = re.compile(r'(?:\\"|")?raw(?:\\"|")?:(\d{9,12})')
+_EST = re.compile(r'(?:\\"|")?isEarningsDateEstimate(?:\\"|")?:(true|false)')
+
+
+def parse_yahoo_quote_html(html: str) -> dict | None:
+    """Read the next earnings date from a Yahoo quote page.
+
+    The page embeds calendarEvents as JSON or as escaped JSON inside a script
+    tag (\\"earningsDate\\":[{\\"fmt\\":\\"2026-12-03\\"}]). No Yahoo crumb is needed,
+    which matters on CI where quoteSummary often fails with Invalid Cookie.
+    """
+    if not html:
+        return None
+    dates: list[date] = []
+    for blob in _EARN_BLOCK.findall(html):
+        fmts = _FMT.findall(blob)
+        if fmts:
+            for item in fmts:
+                d = parse_iso(item)
+                if d:
+                    dates.append(d)
+            continue
+        for raw in _RAW.findall(blob):
+            try:
+                dates.append(datetime.fromtimestamp(int(raw), timezone.utc).astimezone(ET).date())
+            except (ValueError, OSError, OverflowError):
+                continue
+    if not dates:
+        return None
+    flags = _EST.findall(html)
+    return {
+        "source": "Yahoo Finance quote page",
+        "date": min(dates),
+        "estimated": any(flag == "true" for flag in flags[:6]),
+    }
+
+
+NASDAQ_FAIL_LIMIT = 8
+
+
+def nasdaq_scan_should_stop(consecutive_failures: int, limit: int = NASDAQ_FAIL_LIMIT) -> bool:
+    """Stop a by-date scan after enough failed days (blocked or empty error responses)."""
+    return consecutive_failures >= limit

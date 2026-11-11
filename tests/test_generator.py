@@ -9,7 +9,7 @@ import pytest
 from tito import rules
 from tito.build import DISCLAIMER, LABEL, classify_gate, earnings_ok
 from tito.calendar_us import add_trading_days, is_trading_day, next_trading_day, trading_days_between
-from tito.earnings import merge_earnings
+from tito.earnings import merge_earnings, nasdaq_scan_should_stop, parse_yahoo_quote_html
 from tito.contracts import evaluate, evaluate_plan, evaluate_plan_book, parse_occ, plan_reject_reason, spread_ok
 from tito.money import max_entry_ask, max_entry_net_debit
 from tito.options_math import american_call, bs_call, call_greeks
@@ -358,3 +358,31 @@ def test_evaluate_plan_book_roles_whatif_and_spread():
     assert book2["choices"]
     assert any(c["passes"] is False for c in book2["choices"])
     assert any(c.get("failedRulePlain") for c in book2["choices"])
+
+def test_parse_yahoo_quote_html_reads_escaped_and_raw_json():
+    escaped = (
+        'prefix "earningsDate":[{"raw":1796304600,"fmt":"2026-12-03"}],'
+        '"isEarningsDateEstimate":true extra'
+    )
+    # The live Yahoo page escapes the JSON quotes. Both forms must parse.
+    escaped_page = r'prefix \"earningsDate\":[{\"raw\":1796304600,\"fmt\":\"2026-12-03\"}],\"isEarningsDateEstimate\":true'
+    got = parse_yahoo_quote_html(escaped_page)
+    assert got is not None
+    assert got["date"] == date(2026, 12, 3)
+    assert got["estimated"] is True
+    assert got["source"] == "Yahoo Finance quote page"
+    raw = '{"earningsDate":[{"raw":1796304600,"fmt":"2026-12-03"}],"isEarningsDateEstimate":false}'
+    got = parse_yahoo_quote_html(raw)
+    assert got["date"] == date(2026, 12, 3)
+    assert got["estimated"] is False
+    assert parse_yahoo_quote_html("no earnings here") is None
+    past = parse_yahoo_quote_html('{"earningsDate":[{"fmt":"2026-10-29"}],"isEarningsDateEstimate":false}')
+    assert past["date"] == date(2026, 10, 29)
+    # merge still drops a past Yahoo date, so it cannot become a next date
+    merged = merge_earnings([past], date(2026, 11, 11))
+    assert merged["date"] is None
+
+
+def test_nasdaq_scan_stops_after_repeated_failures():
+    assert nasdaq_scan_should_stop(8) is True
+    assert nasdaq_scan_should_stop(7) is False

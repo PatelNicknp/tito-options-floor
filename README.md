@@ -29,7 +29,10 @@ node --test docs/tests/logic.test.mjs  # page: X formula, every form check, dela
   intraday bars) the newest bars are replaced from Yahoo's 5-day series.
 - Yahoo Finance only for what Stock Box lacks: those newest bars, full history for any ticker Stock Box has no
   file for, sector ETFs (XLK, XLF, ...) and ^IRX for the rate. Completed bars only; today's bar is dropped until 4:15 PM ET.
-  Yahoo `calendarEvents` is also a fallback for the next earnings date (a crumb from Yahoo’s public quote page; no account).
+  Yahoo’s public quote page (no account, no crumb) is the first fallback for a missing earnings date, because
+  the crumb-based `calendarEvents` API often fails on hosted runners with “Invalid Cookie”. The Nasdaq by-date
+  calendar is still used as a cross-check, but a string of failed days aborts the scan (GitHub-hosted IPs are
+  often blocked or rate-limited before the scan reaches later months).
 - Nasdaq’s free earnings calendar and per-symbol earnings-date API (no account) are a second fallback and a cross-check.
   If sources disagree by more than 3 days, the earlier date is used (safer). An estimated/projected date counts as known
   and is labelled estimated. A truly unknown date still blocks a trade. The 15-trading-day earnings rule is unchanged.

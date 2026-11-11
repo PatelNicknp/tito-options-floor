@@ -254,12 +254,16 @@ def run(config: dict, limit: int | None = None) -> dict:
     if need_earn:
         try:
             resolved = resolve_earnings_dates(f, need_earn, next_earn, entry_date)
-            sources.append(source("earnings_fallback", "Yahoo calendarEvents + Nasdaq earnings calendar",
-                                  "https://query2.finance.yahoo.com/v10/finance/quoteSummary", True,
-                                  f"looked up {len(need_earn)} watch-list or chart-pass names"))
+            stats = resolved.pop("_stats", {}) if resolved else {}
+            abort = "; Nasdaq by-date scan stopped after repeated failures (hosted runners are often blocked)" if stats.get("nasdaq_aborted") else ""
+            detail = (f"looked up {len(need_earn)} names; Yahoo quote page {stats.get('yahoo_html', 0)}, "
+                      f"Yahoo calendarEvents {stats.get('yahoo_qs', 0)}, Nasdaq earnings-date {stats.get('nasdaq_analyst', 0)}, "
+                      f"Nasdaq calendar {stats.get('nasdaq_days_ok', 0)} ok / {stats.get('nasdaq_days_fail', 0)} failed{abort}")
+            sources.append(source("earnings_fallback", "Yahoo quote page, calendarEvents, and Nasdaq earnings calendar",
+                                  "https://finance.yahoo.com/", True, detail))
         except Exception as exc:  # noqa: BLE001
-            sources.append(source("earnings_fallback", "Yahoo calendarEvents + Nasdaq earnings calendar",
-                                  "https://query2.finance.yahoo.com/v10/finance/quoteSummary", False, str(exc)[:200]))
+            sources.append(source("earnings_fallback", "Yahoo quote page, calendarEvents, and Nasdaq earnings calendar",
+                                  "https://finance.yahoo.com/", False, str(exc)[:200]))
             resolved = {}
 
     def apply_earnings(row: dict, raw_sb: str | None) -> tuple[bool, str]:
@@ -274,7 +278,10 @@ def run(config: dict, limit: int | None = None) -> dict:
             ]
             row["earningsDisagreementDays"] = merged.get("disagreementDays")
         else:
-            row["nextEarnings"] = row.get("nextEarnings") or raw_sb
+            raw_sb = raw_sb if raw_sb and str(raw_sb).strip() else None
+            nxt = row.get("nextEarnings")
+            nxt = nxt if nxt and str(nxt).strip() else raw_sb
+            row["nextEarnings"] = nxt or None
             row["earningsEstimated"] = False
             row["earningsSource"] = "US Stock Box earnings_calendar.csv" if raw_sb else None
             row["earningsSources"] = []
