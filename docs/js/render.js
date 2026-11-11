@@ -77,13 +77,14 @@ export function expandParam() { return queryFlag("expand"); }
 export function cardShouldOpen(ticker) { return flagMatches("expand", ticker); }
 export function detailsShouldOpen(ticker) { return flagMatches("details", ticker); }
 
-export function shortExpiry(iso) {
+export function shortExpiry(iso, withYear) {
   if (!iso) return "";
   const parts = String(iso).slice(0, 10).split("-");
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const mi = Number(parts[1]) - 1;
   if (!parts[2] || mi < 0 || mi > 11) return iso;
-  return `${months[mi]} ${Number(parts[2])}`;
+  const base = `${months[mi]} ${Number(parts[2])}`;
+  return withYear && parts[0] ? `${base}, ${parts[0]}` : base;
 }
 
 export function capDollars(settings) {
@@ -275,7 +276,275 @@ function collapsedSummary(ticker, close, pivot, row, kind, settings) {
     <span class="sum-choice">${esc(collapsedLine(row, kind, settings))}</span>`;
 }
 
+
+export function simpleCardEnabled(settings) {
+  return !!(settings && settings.tito_simple_card === true);
+}
+
+function boldMoney(text, amount) {
+  const raw = String(text ?? "");
+  const token = amount;
+  if (!token || token === "n/a" || !raw.includes(token)) return esc(raw);
+  return esc(raw).split(esc(token)).join(`<strong>${esc(token)}</strong>`);
+}
+
+export function whatToDoDesigned(row, kind) {
+  if (kind === "idea") {
+    const s = row.signal || {};
+    const floor = s.liveMin != null ? s.liveMin : s.pivot;
+    return `Watch for a close above ${money(floor)} on strong volume. Skip if the stock is below ${money(s.liveMin)} or above ${money(s.liveMax)}.`;
+  }
+  let out = `Watch for a close above ${money(row.pivot)} on strong volume.`;
+  const note = String((row && (row.planNote || row.contractNote)) || "");
+  if (/earnings date unknown/i.test(note) || (row && !row.nextEarnings && row.earningsSoon)) {
+    out += " Wait until the earnings date is known and far enough away before planning a contract.";
+  } else if (row && (row.earningsSoon || /must be after|too soon|next earnings/i.test(note))) {
+    out += " Wait until earnings are far enough away before planning a contract.";
+  }
+  return out;
+}
+
+export function noContractDetail(row, settings) {
+  const note = String((row && (row.planNote || row.contractNote)) || "");
+  const iso = (row && row.nextEarnings) || (note.match(/20\d{2}-\d{2}-\d{2}/) || [])[0];
+  if (/earnings date unknown/i.test(note) || (row && !row.nextEarnings && row.earningsSoon)) {
+    return "The next earnings date is unknown. A planned call cannot be a trade until the date is known and at least 15 trading days away.";
+  }
+  if (iso && (/must be after|too soon|next earnings|within 15/i.test(note) || (row && row.earningsSoon))) {
+    return `The ${shortExpiry(iso, true) || shortExpiry(iso)} earnings date is too soon. A planned call has to wait until earnings are at least 15 trading days away. Until that is true, there is no contract to consider.`;
+  }
+  if (/fits your|Too expensive|over the dollar cap|dollar cap/i.test(note)) {
+    return `No listed call fits your $${capDollars(settings).toFixed(0)} limit after fees.`;
+  }
+  const short = shortWaitingReason(row, settings);
+  return short ? short.charAt(0).toUpperCase() + short.slice(1) + "." : "No listed call passed every rule.";
+}
+
+export function kidGreeksDesigned(c, ticker) {
+  const g = (c && c.greeks) || {};
+  const name = ticker || "the stock";
+  const deltaD = g.deltaDollarsPer1;
+  const gamma = g.gamma;
+  const gammaD = gamma != null && Number.isFinite(Number(gamma)) ? Math.round(Number(gamma) * 10000) / 100 : null;
+  const thetaD = g.thetaDollarsPerDay != null ? Math.abs(Number(g.thetaDollarsPerDay)) : null;
+  const vegaD = g.vegaDollarsPerPoint != null ? Math.abs(Number(g.vegaDollarsPerPoint)) : null;
+  return {
+    delta: deltaD != null && deltaD !== ""
+      ? `Think of delta as a speedometer. If ${name} rises $1, this call is worth about ${money(deltaD)} more.`
+      : "",
+    gamma: gammaD != null
+      ? `Gamma is how fast the speedometer changes. After a $1 rise, the next $1 would add about ${money(gammaD)} more than the last one.`
+      : "",
+    theta: thetaD != null
+      ? `Time melts the value, like an ice cube on the counter. This call loses about ${money(thetaD)} each day if nothing else changes.`
+      : "",
+    vega: vegaD != null
+      ? `Vega is how the price jumps if expected swings get bigger. If expected volatility rises 1 point, this call gains about ${money(vegaD)}.`
+      : "",
+  };
+}
+
+const GREEK_ICONS = {
+  delta: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4.2 14.2a7 7 0 1 1 11.6 0" stroke="#2746B0" stroke-width="1.7" stroke-linecap="round"/><path d="M10 15V9.2" stroke="#2746B0" stroke-width="1.7" stroke-linecap="round"/><circle cx="10" cy="15" r="1.3" fill="#2746B0"/></svg>`,
+  theta: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.2 3.5h5.6l3.2 5.2-6 8.3-6-8.3 3.2-5.2z" stroke="#A44A06" stroke-width="1.6" stroke-linejoin="round"/><path d="M5.2 9.2h9.6M10 3.5v13.5" stroke="#A44A06" stroke-width="1.4" stroke-linecap="round"/></svg>`,
+  gamma: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 15c2.2 0 2.6-6 5-6s2.8 8 5.2 8 2.8-11 3.8-11" stroke="#137336" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M14.2 4.2h3.4V7.6" stroke="#137336" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  vega: `<svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10c1.6-3 3.2-3 4.8 0s3.2 3 4.8 0 3.2-3 4.8 0" stroke="#5B3FA0" stroke-width="1.7" stroke-linecap="round"/><path d="M3 14c1.6-2.2 3.2-2.2 4.8 0s3.2 2.2 4.8 0 3.2-2.2 4.8 0" stroke="#5B3FA0" stroke-width="1.5" stroke-linecap="round" opacity=".7"/></svg>`,
+};
+
+function designedTags(row, kind) {
+  const tags = [];
+  tags.push(`<span class="tag setup">${kind === "setup" ? "Setting up" : "Trade idea"}</span>`);
+  if (row && row.marketAgainst) tags.push(`<span class="tag against">Market against you</span>`);
+  return tags.slice(0, CARD_LAYOUT.maxTags).join("");
+}
+
+function designedSummary(ticker, close, pivot, row, kind, settings) {
+  const waiting = !bestPassingChoice(row, settings);
+  const line = collapsedLine(row, kind, settings);
+  return `<div class="id">
+        <span class="ticker">${esc(ticker)}</span>
+        <span class="price">${money(close)}</span>
+        <span class="dist">${esc(breakoutDistance(close, pivot))}</span>
+      </div>
+      <div class="tags">${designedTags(row, kind)}</div>
+      <div class="choice${waiting ? " wait" : ""}">${esc(line)}</div>
+      <div class="chev" aria-hidden="true"></div>`;
+}
+
+function fourBlock(row, kind, settings) {
+  const pick = bestPassingChoice(row, settings);
+  const pivot = kind === "idea" ? row.signal && row.signal.pivot : row.pivot;
+  const happen = boldMoney(whatsHappening(row, kind), money(pivot));
+  let contract;
+  if (pick) {
+    const exp = shortExpiry(pick.expiry);
+    contract = `<strong>${money(pick.strike)}</strong> call${exp ? ` expiring ${esc(exp)}` : ""}.`;
+  } else {
+    contract = `<span class="amber">No contract yet,</span> because ${esc(shortWaitingReason(row, settings))}.`;
+  }
+  let loss;
+  if (pick && pick.maxLoss != null) {
+    const be = pick.breakevenAtExpiry != null ? ` Break-even at expiry: <strong>${money(pick.breakevenAtExpiry)}</strong>.` : "";
+    loss = `Most you can lose <strong>${money(pick.maxLoss)}</strong>.${be}`;
+  } else {
+    loss = "Does not apply yet.";
+  }
+  const todo = boldMoney(whatToDoDesigned(row, kind), money(pivot));
+  return `<div class="four">
+        <div class="lab">What's happening</div>
+        <div class="val">${happen}</div>
+        <div class="lab">Contract to consider</div>
+        <div class="val">${contract}</div>
+        <div class="lab">Most you can lose + breakeven</div>
+        <div class="val">${loss}</div>
+        <div class="lab">What to do</div>
+        <div class="val">${todo}</div>
+      </div>`;
+}
+
+function sourcesBox(row) {
+  const src = row.quoteSource;
+  const earn = row.earningsDisplay || row.nextEarnings || "unknown";
+  const lines = [];
+  if (src) {
+    lines.push(`Delayed option quotes from ${src.label || "Cboe delayed quotes"}.`);
+    if (src.quoteTime) lines.push(`Quote time: ${src.quoteTime}.`);
+    if (src.fileTimestamp) lines.push(`Cboe file stamp: ${src.fileTimestamp}.`);
+    if (src.retrievedAtPT) lines.push(`Retrieved: ${src.retrievedAtPT}.`);
+  }
+  lines.push(`Next earnings: ${earn}.`);
+  if (row.company || row.sector) lines.push(`${row.company || ""} · ${row.sector || ""}`.replace(/^ · | · $/g, ""));
+  return `<div class="src-box">${lines.map((t) => `<p class="src">${esc(t)}</p>`).join("")}</div>`;
+}
+
+function designedWhatIf(c) {
+  const rows = c && c.whatIf;
+  if (!rows || !rows.length) return "";
+  const start = c.entryCost != null ? c.entryCost : c.maxLoss;
+  const body = rows.map((s) => `<tr><td>${esc(s.when)}</td><td>${esc(s.stock)}${s.price != null ? ` (${money(s.price)})` : ""}</td>
+    <td class="r">${money(s.value)}</td><td class="r ${s.pnl >= 0 ? "pnl-pos" : "pnl-neg"}">${signed(s.pnl)}</td></tr>`).join("");
+  const note = start != null
+    ? `Estimates only, with no change in volatility. Starting value is the ${money(start)} premium, including fees. Not a forecast.`
+    : "Estimates only, with no change in volatility. Not a forecast.";
+  return `<div class="table-wrap"><table><thead><tr><th>When</th><th>Stock</th><th class="r">Estimated value</th><th class="r">Estimated profit or loss</th></tr></thead><tbody>${body}</tbody></table></div>
+      <p class="note">${esc(note)}</p>`;
+}
+
+function exitItems(pick) {
+  const raw = pick && pick.exitPlan;
+  if (!raw) return "";
+  const parts = String(raw).split(/(?<=\.)\s+/).map((x) => x.trim()).filter(Boolean);
+  return `<ol class="exit">${parts.map((p) => `<li>${esc(p)}</li>`).join("")}</ol>`;
+}
+
+function designedGreeks(pick, ticker) {
+  const gp = kidGreeksDesigned(pick, ticker);
+  const items = [
+    ["delta", "blue", "Delta", "speedometer"],
+    ["theta", "amber", "Theta", "melting ice cube"],
+    ["gamma", "green", "Gamma", "how fast speed changes"],
+    ["vega", "violet", "Vega", "swings in the air"],
+  ];
+  return items.filter(([k]) => gp[k]).map(([k, color, name, pic]) => `<div class="greek">
+              <div class="icon ${color}">${GREEK_ICONS[k]}</div>
+              <div>
+                <p class="gname">${name} <span>${pic}</span></p>
+                <p>${designedGreekHtml(gp[k])}</p>
+              </div>
+            </div>`).join("");
+}
+
+function designedGreekHtml(sentence) {
+  // Bold dollar amounts in the sentence.
+  return esc(sentence).replace(/\$\d+(?:\.\d{1,2})?/g, (m) => `<strong>${m}</strong>`);
+}
+
+function designedDetails(row, kind, settings) {
+  const passing = bestPassingChoice(row, settings);
+  const pick = passing || null; // designed view: only a passing best contract
+  const open = detailsShouldOpen(row.ticker) ? " open" : "";
+  let inner = "";
+  if (!pick) {
+    inner += `<section>
+          <div class="sec-label">Contract to consider if it breaks out</div>
+          <div class="none-box">
+            <p class="none-title">No contract yet</p>
+            <p>${esc(noContractDetail(row, settings))}</p>
+          </div>
+        </section>`;
+  } else {
+    const why = String(pick.whyThisContract || "This is the one best call that passed the rules. It sits near a mid delta, so it should move with the stock without costing as much as a closer strike.").replace(/^Why this one:\s*/i, "");
+    const ask = pick.estimatedAskAtPivot != null ? pick.estimatedAskAtPivot : pick.ask;
+    inner += `<section>
+          <div class="sec-label">Contract to consider if it breaks out</div>
+          <div class="contract-box">
+            <p class="ctitle">${esc(row.ticker)} ${money(pick.strike)} call, expiring ${esc(shortExpiry(pick.expiry, true) || pick.expiry)}</p>
+            <p class="cmeta">${esc(pick.qty || 1)} contract · delayed ask ${money(pick.ask)}${ask != null && pick.estimatedAskAtPivot != null ? ` · estimated ask at the breakout ${money(pick.estimatedAskAtPivot)}` : ""}${pick.dte != null ? ` · ${esc(pick.dte)} days to expiry` : ""}</p>
+            <p class="why">${esc(why)}</p>
+          </div>
+        </section>
+        ${designedGreeks(pick, row.ticker) ? `<section>
+          <div class="sec-label">Greeks, in plain dollars</div>
+          <div class="greeks">${designedGreeks(pick, row.ticker)}</div>
+        </section>` : ""}
+        <section>
+          <div class="sec-label">Money at stake</div>
+          <div class="facts-box"><div class="facts">
+            <div class="fact"><div class="l">Most you can lose</div><div class="n loss">${money(pick.maxLoss)}</div>
+              <div class="s">Premium times 100 shares, plus fees.</div></div>
+            <div class="fact"><div class="l">Break-even at expiry</div><div class="n">${money(pick.breakevenAtExpiry)}</div>
+              <div class="s">Strike plus the premium, including fees.</div></div>
+            <div class="fact"><div class="l">Most you can make</div><div class="n">No fixed limit</div>
+              <div class="s">A long call can keep rising with the stock.</div></div>
+          </div></div>
+        </section>
+        ${designedWhatIf(pick) ? `<section>
+          <div class="sec-label">What if the stock moves?</div>
+          ${designedWhatIf(pick)}
+        </section>` : ""}
+        ${exitItems(pick) ? `<section>
+          <div class="sec-label">Exit plan</div>
+          <div class="exit-box">${exitItems(pick)}</div>
+        </section>` : ""}`;
+  }
+  inner += `<section>
+          <div class="sec-label">Sources and times</div>
+          ${sourcesBox(row)}
+        </section>`;
+  return `<details class="more-details"${open}><summary class="more-btn">More details <span class="caret"></span></summary>
+      <div class="details">${inner}</div></details>`;
+}
+
+function foldDesigned(ticker, extraClass, summaryInner, body) {
+  const open = cardShouldOpen(ticker) ? " open" : "";
+  return `<details class="card card-fold tito-card ${extraClass}" data-ticker="${esc(ticker)}"${open}>
+    <summary class="summary">${summaryInner}</summary>
+    <div class="body">${body}</div>
+  </details>`;
+}
+
+export function renderSetupDesigned(row, settings, cash) {
+  const kind = "setup";
+  const summary = designedSummary(row.ticker, row.close, row.pivot, row, kind, settings);
+  const body = `<div class="plan-pill"><span class="dot"></span>Plan only, not a trade</div>
+      ${fourBlock(row, kind, settings)}
+      ${designedDetails(row, kind, settings)}
+      <p class="footer">${esc(CARD_LAYOUT.simpleFooter)}</p>`;
+  return foldDesigned(row.ticker, "", summary, body);
+}
+
+export function renderIdeaDesigned(idea, settings, cash, canLog) {
+  const s = idea.signal;
+  const summary = designedSummary(idea.ticker, s.close, s.pivot, idea, "idea", settings);
+  const body = `<div class="plan-pill"><span class="dot"></span>Plan only, not a trade</div>
+      ${fourBlock(idea, "idea", settings)}
+      ${designedDetails(idea, "idea", settings)}
+      <p class="footer">${esc(CARD_LAYOUT.simpleFooter)}</p>`;
+  return foldDesigned(idea.ticker, "", summary, body);
+}
+
 export function renderIdea(idea, settings, cash, canLog) {
+  if (simpleCardEnabled(settings)) return renderIdeaDesigned(idea, settings, cash, canLog);
   const s = idea.signal;
   const contracts = (idea.contracts || []).filter((c) => !isOverCap(c, settings) && !isInsaneQuote(c, idea))
     .map((c) => renderContract(c, idea, settings, cash, canLog)).join("") ||
@@ -292,6 +561,7 @@ export function renderIdea(idea, settings, cash, canLog) {
 }
 
 export function renderSetup(row, settings, cash) {
+  if (simpleCardEnabled(settings)) return renderSetupDesigned(row, settings, cash);
   const shares = Number(row.volumeNeeded).toLocaleString("en-US");
   const earnShown = row.earningsDisplay || row.nextEarnings || "unknown";
   const passing = bestPassingChoice(row, settings);
@@ -382,6 +652,17 @@ export function renderPlanSpread(sp, row, settings, cash) {
 
 export function renderSetups(list, settings, cash) {
   if (!list || !list.length) return "";
+  if (simpleCardEnabled(settings)) {
+    const banner = list.some((r) => r.marketAgainst)
+      ? `<div class="market-line"><span class="tag against">Market against you</span><span>The broad market is weak, so breakouts fail more often.</span></div>`
+      : "";
+    return `<section class="setups tito-list" id="setting-up">
+    ${banner}
+    <h2>Setting up (${list.length})</h2>
+    <p class="lead">These stocks have a tight base, but they are not trades yet. Tap a row for four plain lines. Nothing is filled from this list.</p>
+    <div class="list">${list.map((row) => renderSetup(row, settings, cash)).join("")}</div>
+  </section>`;
+  }
   return `<section class="setups" id="setting-up">
     <h2>Setting up (${list.length})</h2>
     <p>These stocks have a qualifying tight base but are not trade ideas. Each card starts as a short row — tap once for a plain-English snapshot, then More details if you want the numbers. Nothing is filled from this list. Sorted closest to the pivot first.</p>

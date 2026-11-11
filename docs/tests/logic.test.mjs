@@ -352,3 +352,117 @@ test("stock cards start collapsed with a simple first view and hide over-cap quo
   assert.match(idea, /\$50\.00 call Dec 18, most you can lose \$191\.30/);
   assert.match(idea, /I checked TradingView — log this trade/);
 });
+
+
+const D = { ...S, tito_simple_card: true };
+
+test("tito_simple_card switch uses the designed card only when it is explicitly on", () => {
+  assert.equal(R.simpleCardEnabled(undefined), false);
+  assert.equal(R.simpleCardEnabled(S), false);
+  assert.equal(R.simpleCardEnabled({ ...S, tito_simple_card: false }), false);
+  assert.equal(R.simpleCardEnabled(D), true);
+  const row = {
+    ticker: "CME", company: "CME Group", sector: "Financials", close: 270, pivot: 272.5,
+    pctBelowPivot: 0.92, baseLength: 12, depthPct: 8.4, volumeNeeded: 1500000, status: "waiting",
+    nextEarnings: "2027-02-01", earningsSoon: false,
+    note: "Not a trade yet. Set a TradingView alert at $272.50.",
+    marketAgainst: true,
+  };
+  const off = R.renderSetup(row, S, 1000);
+  assert.match(off, /class="sum-ticker">CME</);
+  assert.ok(!off.includes("tito-card"));
+  const planned = {
+    role: "Balanced", symbol: "CME261218C00300000", expiry: "2026-12-18", strike: 300, qty: 1, bid: 1.10, ask: 1.20,
+    estimatedAskAtPivot: 1.55, maxLoss: 156.3, breakevenAtExpiry: 301.56, dte: 39, passes: true,
+    greeks: { delta: 0.42, deltaDollarsPer1: 42, gamma: 0.02, thetaDollarsPerDay: -8.1, vegaDollarsPerPoint: 15 },
+    whyThisContract: "Why this one: the $300 call is a middle-speed pick (delta 0.42).",
+    exitPlan: "Sell the whole position (the Floor does not scale out) if the option bid reaches $4.66 (about 3× the planned debit). Exit if the stock closes below $260.",
+    whatIf: [{ when: "About 1 week", stock: "Flat at the pivot", price: 272.5, value: 140, pnl: -16.3, estimate: true }],
+  };
+  const failer = {
+    role: "Cheaper", expiry: "2026-12-18", strike: 320, qty: 1, ask: 0.80, maxLoss: 91.3, passes: false,
+    failedRulePlain: "The delayed bid and ask are too far apart.",
+  };
+  const spread = {
+    type: "CALL_DEBIT_SPREAD", passes: true, expiry: "2026-12-18",
+    long: { strike: 300 }, short: { strike: 320 }, netDebit: 0.80, maxLoss: 82.6, maxProfit: 117.4,
+  };
+  const html = R.renderSetup({
+    ...row, planChoices: [planned, failer], planSpread: spread,
+    quoteSource: { label: "Cboe delayed quotes", quoteTime: "16:15 ET", fileTimestamp: "2026-11-10", retrievedAtPT: "1:20 PM PT" },
+  }, D, 1000);
+  assert.match(html, /class="card card-fold tito-card/);
+  assert.match(html, /class="ticker">CME</);
+  assert.match(html, /class="dist">\$2\.50 below breakout</);
+  assert.match(html, /class="tag setup">Setting up</);
+  assert.match(html, /class="tag against">Market against you</);
+  assert.match(html, /If it breaks out: \$300\.00 call Dec 18, most you can lose \$156\.30/);
+  assert.match(html, /Plan only, not a trade/);
+  assert.match(html, /What's happening/);
+  assert.match(html, /Tight pattern, just \$2\.50 under the breakout price <strong>\$272\.50<\/strong>/);
+  assert.match(html, /<strong>\$300\.00<\/strong> call expiring Dec 18/);
+  assert.match(html, /Most you can lose <strong>\$156\.30<\/strong>/);
+  assert.match(html, /Watch for a close above <strong>\$272\.50<\/strong> on strong volume/);
+  assert.ok(!html.includes("TradingView"));
+  assert.ok(!html.includes("Set a TradingView alert"));
+  assert.ok(!html.includes("data-log"));
+  assert.ok(!html.includes("Cheaper"));
+  assert.ok(!html.includes("Safer"));
+  assert.ok(!html.includes("CALL_DEBIT_SPREAD"));
+  assert.ok(!html.includes("$320.00 call") && !html.includes("buy the 2026-12-18"));
+  assert.match(html, /More details/);
+  assert.match(html, /class="more-btn"/);
+  assert.match(html, /CME \$300\.00 call, expiring Dec 18, 2026/);
+  assert.match(html, /Think of delta as a speedometer/);
+  assert.match(html, /If CME rises <strong>\$1<\/strong>, this call is worth about <strong>\$42\.00<\/strong> more/);
+  assert.match(html, /melting ice cube/);
+  assert.match(html, /Greeks, in plain dollars/);
+  assert.match(html, /Money at stake/);
+  assert.match(html, /What if the stock moves\?/);
+  assert.match(html, /Estimated value/);
+  assert.match(html, /Exit plan/);
+  assert.match(html, /Sources and times/);
+  assert.match(html, /Delayed data, research only, education not advice/);
+  const listed = R.renderSetups([{ ...row, planChoices: [planned] }, { ...row, ticker: "SLN", marketAgainst: false }], D, 1000);
+  assert.match(listed, /class="market-line"/);
+  assert.match(listed, /The broad market is weak, so breakouts fail more often/);
+  assert.match(listed, /Tap a row for four plain lines/);
+  const sln = {
+    ticker: "SLN", company: "Silence", sector: "Health Care", close: 19.79, pivot: 19.86,
+    pctBelowPivot: 0.35, baseLength: 12, depthPct: 8, volumeNeeded: 100000, status: "waiting",
+    nextEarnings: "2026-11-12", earningsSoon: true, marketAgainst: true,
+    planNote: "No contract: next earnings 2026-11-12; must be after 2026-12-03",
+    planChoices: [{ role: "Safer", expiry: "2026-12-18", strike: 2.5, qty: 1, ask: 20, maxLoss: 2001.3, passes: false }],
+  };
+  const slnHtml = R.renderSetup(sln, D, 1000);
+  assert.match(slnHtml, /class="choice wait"/);
+  assert.match(slnHtml, /Waiting: earnings Nov 12 is too soon/);
+  assert.match(slnHtml, /<span class="amber">No contract yet,<\/span> because earnings Nov 12 is too soon/);
+  assert.match(slnHtml, /Does not apply yet/);
+  assert.match(slnHtml, /Watch for a close above <strong>\$19\.86<\/strong> on strong volume/);
+  assert.match(slnHtml, /Wait until earnings are far enough away before planning a contract/);
+  assert.match(slnHtml, /class="none-title">No contract yet</);
+  assert.match(slnHtml, /The Nov 12, 2026 earnings date is too soon/);
+  assert.ok(!slnHtml.includes("$2,001.30") && !slnHtml.includes("$2001.30"));
+  assert.ok(!slnHtml.includes("TradingView"));
+  const unknown = R.renderSetup({
+    ticker: "PCRX", close: 20, pivot: 21, status: "waiting", earningsSoon: true,
+    planNote: "No contract: earnings date unknown",
+  }, D, 1000);
+  assert.match(unknown, /earnings date is unknown/);
+  assert.match(unknown, /The next earnings date is unknown/);
+  const idea = R.renderIdea({
+    ticker: "XYZ", company: "Example", sector: "Technology", nextEarnings: "2027-03-01",
+    signal: { date: "2026-11-09", close: 51, pivot: 50, volRatio: 1.4, baseLength: 12, liveMin: 50, liveMax: 52.5, stop: 48, target: 55 },
+    contracts: [{
+      expiry: "2026-12-18", strike: 50, qty: 1, ask: 1.9, maxLoss: 191.3, dte: 39,
+      breakevenAtExpiry: 51.9,
+      greeks: { delta: 0.5, deltaDollarsPer1: 50, thetaDollarsPerDay: -5, vegaDollarsPerPoint: 10, gamma: 0.02 },
+    }],
+  }, D, 1000, true);
+  assert.match(idea, /class="tag setup">Trade idea</);
+  assert.match(idea, /Watch for a close above <strong>\$50\.00<\/strong> on strong volume/);
+  assert.ok(!idea.includes("TradingView"));
+  assert.ok(!idea.includes("data-log"));
+  assert.ok(!idea.includes("I checked TradingView"));
+});

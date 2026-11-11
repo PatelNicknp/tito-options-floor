@@ -9,7 +9,7 @@ export const MAX_OPEN = 3;
 export const EARNINGS_TRADING_DAYS = 15;
 export const LIVE_CHASE_MAX = 0.05;
 export const FILL_LABEL = "Nick-confirmed fill (TradingView)";
-export const DEFAULT_SETTINGS = Object.freeze({ capDollars: 200, feePerContract: 0.65, startingCash: 1000 });
+export const DEFAULT_SETTINGS = Object.freeze({ capDollars: 200, feePerContract: 0.65, startingCash: 1000, tito_simple_card: true });
 
 const HOLIDAYS = new Set([
   "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25", "2026-06-19", "2026-07-03", "2026-09-07",

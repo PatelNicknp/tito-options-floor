@@ -33,6 +33,10 @@ function render() {
   $("#set-cap").value = settings.capDollars;
   $("#set-fee").value = settings.feePerContract;
   $("#set-cash").value = settings.startingCash;
+  const simpleOn = settings.tito_simple_card !== false;
+  document.body.classList.toggle("tito-simple", simpleOn);
+  const box = $("#set-simple-card");
+  if (box) box.checked = simpleOn;
   const sel = $("#exit-position");
   sel.innerHTML = `<option value="">Choose…</option>` + L.openPositions(log).map((e) => `<option value="${R.esc(e.id)}">${R.esc(e.ticker)} ${R.esc(e.contract.expiry)} $${e.contract.strike} CALL × ${e.entry.qty}</option>`).join("");
 }
@@ -113,7 +117,8 @@ function init() {
     ev.preventDefault();
     const cap = Number($("#set-cap").value), fee = Number($("#set-fee").value), cash = Number($("#set-cash").value);
     if (!(cap > 0) || !(fee >= 0) || !(cash > 0)) { $("#settings-msg").textContent = "Use positive dollar amounts."; return; }
-    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ capDollars: cap, feePerContract: fee, startingCash: cash }));
+    const simpleOn = $("#set-simple-card") ? $("#set-simple-card").checked : true;
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify({ capDollars: cap, feePerContract: fee, startingCash: cash, tito_simple_card: simpleOn }));
     $("#settings-msg").textContent = "Saved. The new max loss applies to future trades only."; render();
   });
   $("#export").addEventListener("click", () => {
