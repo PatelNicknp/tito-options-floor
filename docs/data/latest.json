@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-10 07:45 PM PT",
+ "generatedAtPT": "2026-11-10 07:52 PM PT",
  "signalSession": "2026-11-10",
  "entrySession": "2026-11-11",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -27,7 +27,7 @@
    {
     "name": "US Stock Box market_ok",
     "pass": false,
-    "value": "market_ok = no on 34 buy setups",
+    "value": "market_ok = no on 38 buy setups",
     "limit": "market_ok = yes"
    },
    {
@@ -55,16 +55,16 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
-   "sourceTime": "updated 2026-11-10 16:05 PT, prices as of 2026-11-10, mode full"
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "sourceTime": "updated 2026-11-10 19:42 PT, prices as of 2026-11-10, mode full"
   },
   {
    "id": "stockbox_universe.csv",
    "label": "US Stock Box universe.csv",
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
-   "detail": "1730 rows",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "detail": "2500 rows",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -81,8 +81,8 @@
    "label": "US Stock Box scanner_vcp.csv",
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
-   "detail": "141 rows",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "detail": "198 rows",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -90,8 +90,8 @@
    "label": "US Stock Box scanner_flag.csv",
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
-   "detail": "37 rows",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "detail": "46 rows",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -99,8 +99,8 @@
    "label": "US Stock Box buy_setups.csv",
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
-   "detail": "34 rows",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "detail": "38 rows",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -108,8 +108,8 @@
    "label": "US Stock Box earnings_calendar.csv",
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
-   "detail": "524 rows",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "detail": "2083 rows",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,8 +127,8 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
-   "sourceTime": "Stock Box run 2026-11-10 16:05 PT (full); last bar trusted as complete: True"
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "sourceTime": "Stock Box run 2026-11-10 19:42 PT (full); last bar trusted as complete: True"
   },
   {
    "id": "yahoo_irx",
@@ -136,7 +136,7 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.12%",
-   "retrievedAtPT": "2026-11-10 07:40 PM PT",
+   "retrievedAtPT": "2026-11-10 07:47 PM PT",
    "sourceTime": "2026-11-10"
   },
   {
@@ -144,8 +144,8 @@
    "label": "Yahoo calendarEvents + Nasdaq earnings calendar",
    "url": "https://query2.finance.yahoo.com/v10/finance/quoteSummary",
    "ok": true,
-   "detail": "looked up 26 watch-list or chart-pass names",
-   "retrievedAtPT": "2026-11-10 07:45 PM PT",
+   "detail": "looked up 27 watch-list or chart-pass names",
+   "retrievedAtPT": "2026-11-10 07:51 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -153,8 +153,8 @@
    "label": "Yahoo Finance daily candles (only what Stock Box lacks; completed bars only)",
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
-   "detail": "3 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-10 07:45 PM PT",
+   "detail": "6 tickers needed Yahoo; sector ETFs and ^IRX always",
+   "retrievedAtPT": "2026-11-10 07:52 PM PT",
    "sourceTime": "session close 2026-11-10 1:00 PM PT"
   },
   {
@@ -162,24 +162,483 @@
    "label": "Cboe delayed option quotes",
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
-   "detail": "0 idea chain(s) and 26 setting-up chain(s) loaded",
-   "retrievedAtPT": "2026-11-10 07:45 PM PT",
+   "detail": "0 idea chain(s) and 27 setting-up chain(s) loaded",
+   "retrievedAtPT": "2026-11-10 07:52 PM PT",
    "sourceTime": "not provided"
   }
  ],
  "funnel": {
-  "tickers": 620,
-  "withFreshCandles": 619,
+  "tickers": 689,
+  "withFreshCandles": 688,
   "stockRulesPass": 0,
   "earningsPass": 0,
   "withContracts": 0,
-  "settingUp": 26
+  "settingUp": 27
  },
  "noTradeToday": true,
  "suggestions": [],
  "marketAgainst": [],
  "blocked": [],
  "settingUp": [
+  {
+   "ticker": "SLN",
+   "company": "Silence Therapeutics plc",
+   "sector": "Health Care",
+   "close": 19.79,
+   "pivot": 19.86,
+   "pctBelowPivot": 0.35,
+   "baseLength": 16,
+   "depthPct": 1.5,
+   "volumeNeeded": 3636145,
+   "avg50Volume": 2908916,
+   "lastVolume": 827900,
+   "volRatio": 0.28,
+   "status": "waiting",
+   "nextEarnings": "",
+   "earningsSoon": true,
+   "earningsNote": "earnings date unknown",
+   "note": "Not a trade yet. Set a TradingView alert at $19.86.",
+   "baseLow": 19.56,
+   "earningsEstimated": false,
+   "earningsSource": null,
+   "earningsSources": [],
+   "earningsDisplay": "earnings date unknown",
+   "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
+   "plannedContracts": [],
+   "planChoices": [
+    {
+     "symbol": "SLN261218C00002500",
+     "expiry": "2026-12-18",
+     "strike": 2.5,
+     "dte": 37,
+     "type": "CALL",
+     "bid": 15.0,
+     "ask": 20.0,
+     "estimatedAskAtPivot": null,
+     "mid": 17.5,
+     "spread": 5.0,
+     "oi": 0,
+     "volume": 0,
+     "iv": 4.4731,
+     "hv20": 2.9066,
+     "hv60": 1.7386,
+     "ivRatio": 1.54,
+     "greeks": {
+      "delta": 0.985,
+      "gamma": 0.00134,
+      "deltaDollarsPer1": 98.5,
+      "thetaDollarsPerDay": -1.47,
+      "vegaDollarsPerPoint": 0.24,
+      "rhoDollarsPerPoint": 0.19
+     },
+     "lastTradeTime": null,
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 2000.65,
+     "qty": 1,
+     "maxLoss": 2001.3,
+     "breakevenAtExpiry": 22.51,
+     "optionProfitTargetBid": 60.03,
+     "expiryExitDate": "2026-11-27",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "earnings date unknown",
+     "stage": 6,
+     "whatIfMove": 0.99,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $0.99",
+       "price": 18.87,
+       "value": 1656.33,
+       "pnl": -344.97,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 19.86,
+       "value": 1754.08,
+       "pnl": -247.22,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $0.99",
+       "price": 20.85,
+       "value": 1851.96,
+       "pnl": -149.34,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $0.99",
+       "price": 18.87,
+       "value": 1640.67,
+       "pnl": -360.63,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 19.86,
+       "value": 1739.28,
+       "pnl": -262.02,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $0.99",
+       "price": 20.85,
+       "value": 1837.94,
+       "pnl": -163.36,
+       "estimate": true
+      }
+     ],
+     "role": "Safer",
+     "failedRulePlain": "No contract: earnings date unknown",
+     "whyThisContract": "Safer: this strike ($2.5) is closer to in-the-money (delta 0.985), so it should move more like the stock and needs a smaller rise to help you. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 0 and volume 0 (need at least 500 and 50).",
+     "greeksPlain": {
+      "delta": "If the stock rises $1, this option gains about $98.50.",
+      "gamma": "Delta grows about 0.00134 per $1 move (about $0.13 more gain on the next dollar).",
+      "theta": "Loses about $1.47 per day just from time passing.",
+      "vega": "Gains or loses about $0.24 if expected volatility moves 1 point."
+     },
+     "howFar": "Needs the stock to rise $2.65 (13.3%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $60.03 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $19.86 in the first 3 sessions. Exit if the stock closes below $19.56 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $20.16 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    },
+    {
+     "symbol": "SLN270115C00010000",
+     "expiry": "2027-01-15",
+     "strike": 10.0,
+     "dte": 65,
+     "type": "CALL",
+     "bid": 8.2,
+     "ask": 12.5,
+     "estimatedAskAtPivot": null,
+     "mid": 10.35,
+     "spread": 4.3,
+     "oi": 57,
+     "volume": 0,
+     "iv": 1.5601,
+     "hv20": 2.9066,
+     "hv60": 1.7386,
+     "ivRatio": 0.54,
+     "greeks": {
+      "delta": 0.9166,
+      "gamma": 0.01173,
+      "deltaDollarsPer1": 91.66,
+      "thetaDollarsPerDay": -1.63,
+      "vegaDollarsPerPoint": 1.29,
+      "rhoDollarsPerPoint": 1.35
+     },
+     "lastTradeTime": "2026-10-22T09:30:21",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 1250.65,
+     "qty": 1,
+     "maxLoss": 1251.3,
+     "breakevenAtExpiry": 22.51,
+     "optionProfitTargetBid": 37.53,
+     "expiryExitDate": "2026-12-25",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "earnings date unknown",
+     "stage": 6,
+     "whatIfMove": 0.99,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $0.99",
+       "price": 18.87,
+       "value": 958.26,
+       "pnl": -293.04,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 19.86,
+       "value": 1049.02,
+       "pnl": -202.28,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $0.99",
+       "price": 20.85,
+       "value": 1140.93,
+       "pnl": -110.37,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $0.99",
+       "price": 18.87,
+       "value": 934.15,
+       "pnl": -317.15,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 19.86,
+       "value": 1026.53,
+       "pnl": -224.77,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $0.99",
+       "price": 20.85,
+       "value": 1120.01,
+       "pnl": -131.29,
+       "estimate": true
+      }
+     ],
+     "role": "Balanced",
+     "failedRulePlain": "No contract: earnings date unknown",
+     "whyThisContract": "Balanced: delta 0.9166 is near the middle of the 0.35\u20130.60 range we allow (target 0.47), at strike $10.0. Expiry is 2027-01-15 (65 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 57 and volume 0 (need at least 500 and 50).",
+     "greeksPlain": {
+      "delta": "If the stock rises $1, this option gains about $91.66.",
+      "gamma": "Delta grows about 0.01173 per $1 move (about $1.17 more gain on the next dollar).",
+      "theta": "Loses about $1.63 per day just from time passing.",
+      "vega": "Gains or loses about $1.29 if expected volatility moves 1 point."
+     },
+     "howFar": "Needs the stock to rise $2.65 (13.3%) from the pivot by 2027-01-15 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $37.53 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $19.86 in the first 3 sessions. Exit if the stock closes below $19.56 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $20.16 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    },
+    {
+     "symbol": "SLN270115C00007500",
+     "expiry": "2027-01-15",
+     "strike": 7.5,
+     "dte": 65,
+     "type": "CALL",
+     "bid": 11.5,
+     "ask": 15.0,
+     "estimatedAskAtPivot": null,
+     "mid": 13.25,
+     "spread": 3.5,
+     "oi": 62,
+     "volume": 0,
+     "iv": 2.4698,
+     "hv20": 2.9066,
+     "hv60": 1.7386,
+     "ivRatio": 0.85,
+     "greeks": {
+      "delta": 0.9282,
+      "gamma": 0.00661,
+      "deltaDollarsPer1": 92.82,
+      "thetaDollarsPerDay": -2.24,
+      "vegaDollarsPerPoint": 1.15,
+      "rhoDollarsPerPoint": 0.88
+     },
+     "lastTradeTime": "2026-10-05T15:27:05",
+     "deltaEvaluatedAt": "pivot",
+     "model": null,
+     "speed": null,
+     "gate": null,
+     "entryCost": 1500.65,
+     "qty": 1,
+     "maxLoss": 1501.3,
+     "breakevenAtExpiry": 22.51,
+     "optionProfitTargetBid": 45.03,
+     "expiryExitDate": "2026-12-25",
+     "maxEntryAsk": 1.98,
+     "passes": false,
+     "failedRule": "earnings date unknown",
+     "stage": 6,
+     "whatIfMove": 0.99,
+     "whatIf": [
+      {
+       "when": "About 1 week",
+       "stock": "Pivot \u2212 $0.99",
+       "price": 18.87,
+       "value": 1242.19,
+       "pnl": -259.11,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Flat at the pivot",
+       "price": 19.86,
+       "value": 1334.08,
+       "pnl": -167.22,
+       "estimate": true
+      },
+      {
+       "when": "About 1 week",
+       "stock": "Pivot + $0.99",
+       "price": 20.85,
+       "value": 1426.63,
+       "pnl": -74.67,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot \u2212 $0.99",
+       "price": 18.87,
+       "value": 1208.9,
+       "pnl": -292.4,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Flat at the pivot",
+       "price": 19.86,
+       "value": 1301.79,
+       "pnl": -199.51,
+       "estimate": true
+      },
+      {
+       "when": "About 3 weeks",
+       "stock": "Pivot + $0.99",
+       "price": 20.85,
+       "value": 1395.35,
+       "pnl": -105.95,
+       "estimate": true
+      }
+     ],
+     "role": "Cheaper",
+     "failedRulePlain": "No contract: earnings date unknown",
+     "whyThisContract": "Cheaper: this lower-delta call (delta 0.9282, strike $7.5) costs less but needs a bigger rise in the stock to pay off. Expiry is 2027-01-15 (65 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 62 and volume 0 (need at least 500 and 50).",
+     "greeksPlain": {
+      "delta": "If the stock rises $1, this option gains about $92.82.",
+      "gamma": "Delta grows about 0.00661 per $1 move (about $0.66 more gain on the next dollar).",
+      "theta": "Loses about $2.24 per day just from time passing.",
+      "vega": "Gains or loses about $1.15 if expected volatility moves 1 point."
+     },
+     "howFar": "Needs the stock to rise $2.65 (13.3%) from the pivot by 2027-01-15 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $45.03 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $19.86 in the first 3 sessions. Exit if the stock closes below $19.56 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $20.16 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
+    }
+   ],
+   "planSpread": {
+    "type": "CALL_DEBIT_SPREAD",
+    "passes": false,
+    "failedRule": "earnings date unknown",
+    "failedRulePlain": "No contract: earnings date unknown",
+    "highlight": false,
+    "qty": 1,
+    "expiry": "2027-01-15",
+    "dte": 65,
+    "long": {
+     "symbol": "SLN270115C00010000",
+     "strike": 10.0,
+     "bid": 8.2,
+     "ask": 12.5,
+     "estimatedAskAtPivot": 12.56,
+     "oi": 57,
+     "volume": 0
+    },
+    "short": {
+     "symbol": "SLN270115C00012500",
+     "strike": 12.5,
+     "bid": 5.7,
+     "ask": 7.6,
+     "estimatedBidAtPivot": 7.36,
+     "oi": 186,
+     "volume": 0
+    },
+    "netDebit": 5.2,
+    "todayNetDebit": 6.8,
+    "width": 2.5,
+    "maxLoss": 522.6,
+    "maxProfit": -272.6,
+    "breakevenAtExpiry": 15.23,
+    "maxEntryNetDebit": 1.97,
+    "fees": 2.6,
+    "howFar": "Breaks even if the stock stays above $15.23 ($4.63 / 23.3% below the pivot) by 2027-01-15.",
+    "whyThisContract": "Call debit spread: buy the 2027-01-15 $10.00 call and sell the $12.50 call (width $2.50). The sale cuts what you pay (estimated net debit $5.20 at the pivot) and caps the gain at the short strike. Both legs are checked for a two-sided quote, a tight spread, open interest \u2265 500 and volume \u2265 50. The $200 cap uses fees on both legs (open and close).",
+    "exitPlan": "Sell the whole spread (both legs together) if the stock reaches the short strike or the spread\u2019s value is near its max profit. Exit if the stock closes back below the pivot $19.86 in the first 3 sessions. Exit if the stock closes below $19.56 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $20.16 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+    "whatIfMove": 0.99,
+    "whatIf": [
+     {
+      "when": "About 1 week",
+      "stock": "Pivot \u2212 $0.99",
+      "price": 18.87,
+      "value": 313.12,
+      "pnl": -209.48,
+      "estimate": true
+     },
+     {
+      "when": "About 1 week",
+      "stock": "Flat at the pivot",
+      "price": 19.86,
+      "value": 304.88,
+      "pnl": -217.72,
+      "estimate": true
+     },
+     {
+      "when": "About 1 week",
+      "stock": "Pivot + $0.99",
+      "price": 20.85,
+      "value": 297.78,
+      "pnl": -224.82,
+      "estimate": true
+     },
+     {
+      "when": "About 3 weeks",
+      "stock": "Pivot \u2212 $0.99",
+      "price": 18.87,
+      "value": 290.96,
+      "pnl": -231.64,
+      "estimate": true
+     },
+     {
+      "when": "About 3 weeks",
+      "stock": "Flat at the pivot",
+      "price": 19.86,
+      "value": 284.34,
+      "pnl": -238.26,
+      "estimate": true
+     },
+     {
+      "when": "About 3 weeks",
+      "stock": "Pivot + $0.99",
+      "price": 20.85,
+      "value": 278.82,
+      "pnl": -243.78,
+      "estimate": true
+     }
+    ]
+   },
+   "levels": {
+    "timeStopDate": "2026-12-03"
+   },
+   "planSignal": {
+    "pivot": 19.86,
+    "target": 20.16,
+    "stop": 19.56,
+    "liveMin": 19.86,
+    "liveMax": 20.85
+   },
+   "planRejects": {
+    "expiry outside 35-70 days": 48,
+    "delta outside 0.35-0.60": 7,
+    "IV missing": 6,
+    "no two-sided quote": 3,
+    "strike not below target": 8
+   },
+   "whatIfMove": 0.99,
+   "quoteSource": {
+    "label": "Cboe delayed quotes",
+    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SLN.json",
+    "fileTimestamp": "2026-11-11 00:36:52 (time zone not stated by Cboe)",
+    "quoteTime": "quote time not provided",
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+   },
+   "planNote": "No contract: earnings date unknown",
+   "marketAgainst": true,
+   "tag": "Market against you",
+   "marketNote": "The market is weak, so breakouts fail more often."
+  },
   {
    "ticker": "PCRX",
    "company": "Pacira BioSciences, Inc.",
@@ -191,7 +650,7 @@
    "depthPct": 1.1,
    "volumeNeeded": 1833005,
    "avg50Volume": 1466404,
-   "lastVolume": 1877285,
+   "lastVolume": 1877300,
    "volRatio": 1.28,
    "status": "waiting",
    "nextEarnings": null,
@@ -632,7 +1091,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PCRX.json",
     "fileTimestamp": "2026-11-11 03:30:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -650,7 +1109,7 @@
    "depthPct": 14.0,
    "volumeNeeded": 1346983,
    "avg50Volume": 1077586,
-   "lastVolume": 722255,
+   "lastVolume": 722300,
    "volRatio": 0.67,
    "status": "waiting",
    "nextEarnings": "2027-02-09",
@@ -1098,7 +1557,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DGX.json",
     "fileTimestamp": "2026-11-10 23:58:54 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -1116,7 +1575,7 @@
    "depthPct": 15.1,
    "volumeNeeded": 2833970,
    "avg50Volume": 2267176,
-   "lastVolume": 1792896,
+   "lastVolume": 1792900,
    "volRatio": 0.79,
    "status": "waiting",
    "nextEarnings": "2027-01-28",
@@ -1564,7 +2023,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/TMO.json",
     "fileTimestamp": "2026-11-11 02:29:19 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -1582,7 +2041,7 @@
    "depthPct": 24.3,
    "volumeNeeded": 3285348,
    "avg50Volume": 2628278,
-   "lastVolume": 1606698,
+   "lastVolume": 1609100,
    "volRatio": 0.61,
    "status": "waiting",
    "nextEarnings": "2027-01-26",
@@ -2031,7 +2490,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RCL.json",
     "fileTimestamp": "2026-11-11 00:29:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -2049,7 +2508,7 @@
    "depthPct": 14.4,
    "volumeNeeded": 1530425,
    "avg50Volume": 1224340,
-   "lastVolume": 912180,
+   "lastVolume": 915100,
    "volRatio": 0.75,
    "status": "light_volume",
    "nextEarnings": "2027-02-05",
@@ -2498,7 +2957,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CBOE.json",
     "fileTimestamp": "2026-11-11 01:34:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -2516,7 +2975,7 @@
    "depthPct": 13.5,
    "volumeNeeded": 3933778,
    "avg50Volume": 3147022,
-   "lastVolume": 4043011,
+   "lastVolume": 4043000,
    "volRatio": 1.28,
    "status": "waiting",
    "nextEarnings": "2027-02-04",
@@ -2964,7 +3423,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ICE.json",
     "fileTimestamp": "2026-11-11 02:06:08 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -2982,8 +3441,8 @@
    "depthPct": 12.6,
    "volumeNeeded": 5742915,
    "avg50Volume": 4594332,
-   "lastVolume": 3908585,
-   "volRatio": 0.85,
+   "lastVolume": 4038400,
+   "volRatio": 0.88,
    "status": "waiting",
    "nextEarnings": "2027-02-10",
    "earningsSoon": false,
@@ -3431,7 +3890,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/AIG.json",
     "fileTimestamp": "2026-11-11 03:05:55 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -3449,7 +3908,7 @@
    "depthPct": 15.2,
    "volumeNeeded": 5293895,
    "avg50Volume": 4235116,
-   "lastVolume": 3378049,
+   "lastVolume": 3396000,
    "volRatio": 0.8,
    "status": "waiting",
    "nextEarnings": "2027-01-27",
@@ -3896,7 +4355,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DHR.json",
     "fileTimestamp": "2026-11-10 23:28:48 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -3914,7 +4373,7 @@
    "depthPct": 17.2,
    "volumeNeeded": 2439205,
    "avg50Volume": 1951364,
-   "lastVolume": 1772688,
+   "lastVolume": 1772700,
    "volRatio": 0.91,
    "status": "waiting",
    "nextEarnings": "2027-02-03",
@@ -4363,7 +4822,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CME.json",
     "fileTimestamp": "2026-11-11 01:43:12 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Speed check above 1.0",
    "marketAgainst": true,
@@ -4381,7 +4840,7 @@
    "depthPct": 21.5,
    "volumeNeeded": 630738,
    "avg50Volume": 504590,
-   "lastVolume": 378076,
+   "lastVolume": 378100,
    "volRatio": 0.75,
    "status": "waiting",
    "nextEarnings": "2026-12-03",
@@ -4830,7 +5289,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ULTA.json",
     "fileTimestamp": "2026-11-11 02:46:14 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -4848,7 +5307,7 @@
    "depthPct": 19.1,
    "volumeNeeded": 1476773,
    "avg50Volume": 1181418,
-   "lastVolume": 847438,
+   "lastVolume": 847400,
    "volRatio": 0.72,
    "status": "light_volume",
    "nextEarnings": null,
@@ -5290,7 +5749,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CHDN.json",
     "fileTimestamp": "2026-11-10 21:21:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -5308,7 +5767,7 @@
    "depthPct": 24.0,
    "volumeNeeded": 28864158,
    "avg50Volume": 23091326,
-   "lastVolume": 10654687,
+   "lastVolume": 10735600,
    "volRatio": 0.46,
    "status": "waiting",
    "nextEarnings": "2026-12-18",
@@ -5757,7 +6216,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CCL.json",
     "fileTimestamp": "2026-11-11 01:33:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -5775,7 +6234,7 @@
    "depthPct": 6.0,
    "volumeNeeded": 7033088,
    "avg50Volume": 5626470,
-   "lastVolume": 5648461,
+   "lastVolume": 5648400,
    "volRatio": 1.0,
    "status": "waiting",
    "nextEarnings": null,
@@ -6217,7 +6676,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CART.json",
     "fileTimestamp": "2026-11-10 23:02:46 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -6235,7 +6694,7 @@
    "depthPct": 17.7,
    "volumeNeeded": 3183958,
    "avg50Volume": 2547166,
-   "lastVolume": 2089539,
+   "lastVolume": 2089500,
    "volRatio": 0.82,
    "status": "waiting",
    "nextEarnings": null,
@@ -6281,7 +6740,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SHO.json",
     "fileTimestamp": "2026-11-11 03:02:50 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -6299,7 +6758,7 @@
    "depthPct": 21.7,
    "volumeNeeded": 4138448,
    "avg50Volume": 3310758,
-   "lastVolume": 2594765,
+   "lastVolume": 2594800,
    "volRatio": 0.78,
    "status": "waiting",
    "nextEarnings": "2026-11-24",
@@ -6747,7 +7206,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/BBY.json",
     "fileTimestamp": "2026-11-11 01:22:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -6765,8 +7224,8 @@
    "depthPct": 21.4,
    "volumeNeeded": 2403693,
    "avg50Volume": 1922954,
-   "lastVolume": 1161191,
-   "volRatio": 0.6,
+   "lastVolume": 1286100,
+   "volRatio": 0.67,
    "status": "waiting",
    "nextEarnings": "2027-02-09",
    "earningsSoon": false,
@@ -7215,7 +7674,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SPGI.json",
     "fileTimestamp": "2026-11-11 00:29:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -7233,8 +7692,8 @@
    "depthPct": 19.8,
    "volumeNeeded": 2866230,
    "avg50Volume": 2292984,
-   "lastVolume": 1698389,
-   "volRatio": 0.74,
+   "lastVolume": 2059600,
+   "volRatio": 0.9,
    "status": "waiting",
    "nextEarnings": "2026-11-23",
    "earningsSoon": true,
@@ -7681,7 +8140,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/A.json",
     "fileTimestamp": "2026-11-11 02:57:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-23; must be after 2026-12-03",
    "marketAgainst": true,
@@ -7699,7 +8158,7 @@
    "depthPct": 22.9,
    "volumeNeeded": 503008,
    "avg50Volume": 402406,
-   "lastVolume": 226644,
+   "lastVolume": 226600,
    "volRatio": 0.56,
    "status": "waiting",
    "nextEarnings": null,
@@ -8138,7 +8597,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/EGBN.json",
     "fileTimestamp": "2026-11-11 00:23:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -8156,7 +8615,7 @@
    "depthPct": 11.7,
    "volumeNeeded": 1768538,
    "avg50Volume": 1414830,
-   "lastVolume": 1088552,
+   "lastVolume": 1088600,
    "volRatio": 0.77,
    "status": "waiting",
    "nextEarnings": "2027-01-26",
@@ -8603,7 +9062,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/HCA.json",
     "fileTimestamp": "2026-11-11 01:55:17 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -8621,7 +9080,7 @@
    "depthPct": 22.3,
    "volumeNeeded": 3301450,
    "avg50Volume": 2641160,
-   "lastVolume": 1757482,
+   "lastVolume": 1760200,
    "volRatio": 0.67,
    "status": "waiting",
    "nextEarnings": "2027-01-28",
@@ -9069,7 +9528,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MRSH.json",
     "fileTimestamp": "2026-11-10 23:03:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -9087,7 +9546,7 @@
    "depthPct": 16.7,
    "volumeNeeded": 3371195,
    "avg50Volume": 2696956,
-   "lastVolume": 2623846,
+   "lastVolume": 2624700,
    "volRatio": 0.97,
    "status": "waiting",
    "nextEarnings": "2027-01-27",
@@ -9536,7 +9995,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PGR.json",
     "fileTimestamp": "2026-11-10 23:52:04 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -9554,7 +10013,7 @@
    "depthPct": 15.4,
    "volumeNeeded": 2019518,
    "avg50Volume": 1615614,
-   "lastVolume": 969059,
+   "lastVolume": 969900,
    "volRatio": 0.6,
    "status": "waiting",
    "nextEarnings": "2027-02-02",
@@ -10002,7 +10461,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CB.json",
     "fileTimestamp": "2026-11-11 01:39:42 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -10020,8 +10479,8 @@
    "depthPct": 19.7,
    "volumeNeeded": 9155808,
    "avg50Volume": 7324646,
-   "lastVolume": 3562741,
-   "volRatio": 0.49,
+   "lastVolume": 3769100,
+   "volRatio": 0.51,
    "status": "waiting",
    "nextEarnings": "2026-12-03",
    "earningsSoon": true,
@@ -10469,7 +10928,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/KR.json",
     "fileTimestamp": "2026-11-10 21:49:22 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -10487,7 +10946,7 @@
    "depthPct": 10.4,
    "volumeNeeded": 24295353,
    "avg50Volume": 19436282,
-   "lastVolume": 5052947,
+   "lastVolume": 5053100,
    "volRatio": 0.26,
    "status": "waiting",
    "nextEarnings": "2026-11-24",
@@ -10936,7 +11395,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MDT.json",
     "fileTimestamp": "2026-11-10 23:05:11 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:51 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -10954,10 +11413,10 @@
    "depthPct": 21.5,
    "volumeNeeded": 2277198,
    "avg50Volume": 1821758,
-   "lastVolume": 1359088,
+   "lastVolume": 1359300,
    "volRatio": 0.75,
    "status": "waiting",
-   "nextEarnings": null,
+   "nextEarnings": "",
    "earningsSoon": true,
    "earningsNote": "earnings date unknown",
    "note": "Not a trade yet. Set a TradingView alert at $116.32.",
@@ -11396,7 +11855,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/VSXY.json",
     "fileTimestamp": "2026-11-10 15:53:27 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -11414,7 +11873,7 @@
    "depthPct": 13.0,
    "volumeNeeded": 2571148,
    "avg50Volume": 2056918,
-   "lastVolume": 1148653,
+   "lastVolume": 1148700,
    "volRatio": 0.56,
    "status": "waiting",
    "nextEarnings": "2027-02-01",
@@ -11861,7 +12320,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RVTY.json",
     "fileTimestamp": "2026-11-11 03:38:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:45 PM PT"
+    "retrievedAtPT": "2026-11-10 07:52 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -11889,17 +12348,17 @@
   {
    "field": "Daily candle history (stocks and SPY)",
    "from": "US Stock Box",
-   "how": "data/ohlc and index_ohlc/SPY.csv for 618 tickers"
+   "how": "data/ohlc and index_ohlc/SPY.csv for 684 tickers"
   },
   {
    "field": "Newest completed bar",
    "from": "US Stock Box",
-   "how": "Stock Box run 2026-11-10 16:05 PT mode full; 617 from Stock Box, 0 topped up from Yahoo, 1 dropped unconfirmed bar"
+   "how": "Stock Box run 2026-11-10 19:42 PT mode full; 683 from Stock Box, 0 topped up from Yahoo, 1 dropped unconfirmed bar"
   },
   {
    "field": "Full candle history where Stock Box had none",
    "from": "Yahoo (fetched directly)",
-   "how": "3 tickers; 0 with no data"
+   "how": "6 tickers; 0 with no data"
   },
   {
    "field": "Moving averages, relative strength, base, volume ratios, breakout",
@@ -11963,7 +12422,7 @@
   "ABNB": {
    "date": "2026-11-10",
    "close": 186.9,
-   "low": 184.06,
+   "low": 184.05,
    "sma10": 174.86,
    "sma20": 173.87
   },
@@ -12023,10 +12482,17 @@
    "sma10": 298.16,
    "sma20": 295.85
   },
+  "ADPT": {
+   "date": "2026-11-10",
+   "close": 29.36,
+   "low": 28.94,
+   "sma10": 27.52,
+   "sma20": 26.4
+  },
   "ADSK": {
    "date": "2026-11-10",
    "close": 260.11,
-   "low": 257.86,
+   "low": 257.87,
    "sma10": 256.84,
    "sma20": 250.72
   },
@@ -12048,8 +12514,8 @@
    "date": "2026-11-10",
    "close": 127.84,
    "low": 125.37,
-   "sma10": 128.67,
-   "sma20": 128.17
+   "sma10": 127.79,
+   "sma20": 127.25
   },
   "AES": {
    "date": "2026-11-10",
@@ -12064,6 +12530,13 @@
    "low": 125.18,
    "sma10": 124.53,
    "sma20": 122.36
+  },
+  "AGL": {
+   "date": "2026-11-10",
+   "close": 113.52,
+   "low": 110.1,
+   "sma10": 98.72,
+   "sma20": 94.03
   },
   "AIG": {
    "date": "2026-11-10",
@@ -12124,14 +12597,14 @@
   "ALL": {
    "date": "2026-11-10",
    "close": 261.12,
-   "low": 254.95,
+   "low": 254.89,
    "sma10": 259.7,
    "sma20": 254.42
   },
   "ALLE": {
    "date": "2026-11-10",
    "close": 189.49,
-   "low": 187.8,
+   "low": 187.76,
    "sma10": 188.05,
    "sma20": 176.55
   },
@@ -12166,14 +12639,14 @@
   "AME": {
    "date": "2026-11-10",
    "close": 238.31,
-   "low": 236.38,
+   "low": 236.01,
    "sma10": 239.68,
    "sma20": 242.65
   },
   "AMGN": {
    "date": "2026-11-10",
    "close": 465.23,
-   "low": 459.73,
+   "low": 459.45,
    "sma10": 463.49,
    "sma20": 450.44
   },
@@ -12191,6 +12664,13 @@
    "sma10": 189.0,
    "sma20": 186.15
   },
+  "AMTB": {
+   "date": "2026-11-10",
+   "close": 30.23,
+   "low": 29.77,
+   "sma10": 29.91,
+   "sma20": 29.6
+  },
   "AMZN": {
    "date": "2026-11-10",
    "close": 270.87,
@@ -12205,6 +12685,13 @@
    "sma10": 175.35,
    "sma20": 178.38
   },
+  "ANRO": {
+   "date": "2026-11-10",
+   "close": 28.61,
+   "low": 27.05,
+   "sma10": 24.1,
+   "sma20": 23.37
+  },
   "AON": {
    "date": "2026-11-10",
    "close": 336.34,
@@ -12215,21 +12702,21 @@
   "AOS": {
    "date": "2026-11-10",
    "close": 64.36,
-   "low": 63.57,
+   "low": 63.55,
    "sma10": 64.37,
    "sma20": 62.13
   },
   "APA": {
    "date": "2026-11-10",
    "close": 45.12,
-   "low": 42.97,
+   "low": 42.96,
    "sma10": 47.43,
    "sma20": 48.48
   },
   "APD": {
    "date": "2026-11-10",
    "close": 312.25,
-   "low": 308.47,
+   "low": 308.22,
    "sma10": 312.09,
    "sma20": 307.09
   },
@@ -12257,7 +12744,7 @@
   "APP": {
    "date": "2026-11-10",
    "close": 395.51,
-   "low": 383.34,
+   "low": 383.31,
    "sma10": 304.23,
    "sma20": 285.38
   },
@@ -12289,6 +12776,20 @@
    "sma10": 132.49,
    "sma20": 124.99
   },
+  "ARHS": {
+   "date": "2026-11-10",
+   "close": 14.89,
+   "low": 14.63,
+   "sma10": 13.15,
+   "sma20": 11.96
+  },
+  "ARQT": {
+   "date": "2026-11-10",
+   "close": 27.39,
+   "low": 25.82,
+   "sma10": 29.89,
+   "sma20": 30.34
+  },
   "ATO": {
    "date": "2026-11-10",
    "close": 175.37,
@@ -12296,12 +12797,26 @@
    "sma10": 173.48,
    "sma20": 170.88
   },
+  "AVAH": {
+   "date": "2026-11-10",
+   "close": 13.19,
+   "low": 12.87,
+   "sma10": 13.34,
+   "sma20": 13.08
+  },
   "AVGO": {
    "date": "2026-11-10",
    "close": 331.98,
    "low": 316.69,
    "sma10": 323.94,
    "sma20": 329.1
+  },
+  "AVPT": {
+   "date": "2026-11-10",
+   "close": 16.89,
+   "low": 16.33,
+   "sma10": 16.84,
+   "sma20": 16.16
   },
   "AVY": {
    "date": "2026-11-10",
@@ -12373,6 +12888,13 @@
    "sma10": 65.93,
    "sma20": 64.85
   },
+  "BATRK": {
+   "date": "2026-11-10",
+   "close": 52.21,
+   "low": 51.58,
+   "sma10": 50.87,
+   "sma20": 50.22
+  },
   "BAX": {
    "date": "2026-11-10",
    "close": 26.42,
@@ -12383,7 +12905,7 @@
   "BBY": {
    "date": "2026-11-10",
    "close": 104.1,
-   "low": 102.05,
+   "low": 102.04,
    "sma10": 99.38,
    "sma20": 97.25
   },
@@ -12418,9 +12940,23 @@
   "BG": {
    "date": "2026-11-10",
    "close": 99.42,
-   "low": 97.91,
+   "low": 97.9,
    "sma10": 97.77,
    "sma20": 100.9
+  },
+  "BHC": {
+   "date": "2026-11-10",
+   "close": 8.29,
+   "low": 8.16,
+   "sma10": 8.14,
+   "sma20": 7.23
+  },
+  "BHVN": {
+   "date": "2026-11-10",
+   "close": 15.11,
+   "low": 14.35,
+   "sma10": 15.22,
+   "sma20": 13.93
   },
   "BIIB": {
    "date": "2026-11-10",
@@ -12440,8 +12976,8 @@
    "date": "2026-11-10",
    "close": 47.77,
    "low": 46.2,
-   "sma10": 51.04,
-   "sma20": 53.39
+   "sma10": 50.82,
+   "sma20": 53.15
   },
   "BLK": {
    "date": "2026-11-10",
@@ -12449,6 +12985,20 @@
    "low": 1210.0,
    "sma10": 1182.09,
    "sma20": 1153.6
+  },
+  "BLMN": {
+   "date": "2026-11-10",
+   "close": 9.93,
+   "low": 9.89,
+   "sma10": 10.38,
+   "sma20": 10.05
+  },
+  "BMBL": {
+   "date": "2026-11-10",
+   "close": 5.99,
+   "low": 5.98,
+   "sma10": 5.98,
+   "sma20": 5.97
   },
   "BMY": {
    "date": "2026-11-10",
@@ -12467,7 +13017,7 @@
   "BR": {
    "date": "2026-11-10",
    "close": 192.96,
-   "low": 190.35,
+   "low": 190.36,
    "sma10": 186.08,
    "sma20": 181.96
   },
@@ -12506,6 +13056,13 @@
    "sma10": 66.71,
    "sma20": 63.9
   },
+  "BWIN": {
+   "date": "2026-11-10",
+   "close": 32.18,
+   "low": 32.0,
+   "sma10": 32.0,
+   "sma20": 31.96
+  },
   "BX": {
    "date": "2026-11-10",
    "close": 122.53,
@@ -12516,7 +13073,7 @@
   "BXP": {
    "date": "2026-11-10",
    "close": 63.54,
-   "low": 63.37,
+   "low": 63.36,
    "sma10": 63.93,
    "sma20": 61.92
   },
@@ -12530,7 +13087,7 @@
   "CAH": {
    "date": "2026-11-10",
    "close": 276.79,
-   "low": 272.88,
+   "low": 272.83,
    "sma10": 260.62,
    "sma20": 256.63
   },
@@ -12558,7 +13115,7 @@
   "CAT": {
    "date": "2026-11-10",
    "close": 584.57,
-   "low": 566.16,
+   "low": 566.12,
    "sma10": 610.81,
    "sma20": 664.87
   },
@@ -12579,14 +13136,14 @@
   "CBRE": {
    "date": "2026-11-10",
    "close": 134.79,
-   "low": 134.74,
+   "low": 134.73,
    "sma10": 133.93,
    "sma20": 131.77
   },
   "CCEP": {
    "date": "2026-11-10",
    "close": 117.55,
-   "low": 116.26,
+   "low": 116.25,
    "sma10": 114.67,
    "sma20": 113.0
   },
@@ -12610,6 +13167,20 @@
    "low": 30.42,
    "sma10": 29.6,
    "sma20": 28.08
+  },
+  "CCNE": {
+   "date": "2026-11-10",
+   "close": 36.11,
+   "low": 35.43,
+   "sma10": 35.99,
+   "sma20": 35.31
+  },
+  "CCSI": {
+   "date": "2026-11-10",
+   "close": 43.05,
+   "low": 41.73,
+   "sma10": 38.71,
+   "sma20": 37.59
   },
   "CDNS": {
    "date": "2026-11-10",
@@ -12656,7 +13227,7 @@
   "CHDN": {
    "date": "2026-11-10",
    "close": 101.96,
-   "low": 98.12,
+   "low": 98.13,
    "sma10": 95.95,
    "sma20": 89.24
   },
@@ -12670,7 +13241,7 @@
   "CHRW": {
    "date": "2026-11-10",
    "close": 128.99,
-   "low": 126.96,
+   "low": 126.97,
    "sma10": 128.73,
    "sma20": 134.88
   },
@@ -12708,6 +13279,13 @@
    "low": 97.5,
    "sma10": 96.32,
    "sma20": 94.94
+  },
+  "CLDT": {
+   "date": "2026-11-10",
+   "close": 16.3,
+   "low": 15.73,
+   "sma10": 15.24,
+   "sma20": 14.7
   },
   "CLX": {
    "date": "2026-11-10",
@@ -12747,7 +13325,7 @@
   "CMI": {
    "date": "2026-11-10",
    "close": 454.18,
-   "low": 451.25,
+   "low": 451.14,
    "sma10": 484.19,
    "sma20": 506.11
   },
@@ -12779,6 +13357,13 @@
    "sma10": 56.77,
    "sma20": 55.63
   },
+  "CNOB": {
+   "date": "2026-11-10",
+   "close": 32.82,
+   "low": 32.47,
+   "sma10": 32.65,
+   "sma20": 32.03
+  },
   "CNP": {
    "date": "2026-11-10",
    "close": 41.24,
@@ -12789,14 +13374,14 @@
   "COF": {
    "date": "2026-11-10",
    "close": 195.84,
-   "low": 195.18,
+   "low": 195.11,
    "sma10": 204.44,
    "sma20": 202.9
   },
   "COHR": {
    "date": "2026-11-10",
    "close": 214.66,
-   "low": 207.15,
+   "low": 207.12,
    "sma10": 209.21,
    "sma20": 220.73
   },
@@ -12806,6 +13391,13 @@
    "low": 129.41,
    "sma10": 144.1,
    "sma20": 157.08
+  },
+  "COLD": {
+   "date": "2026-11-10",
+   "close": 16.14,
+   "low": 15.55,
+   "sma10": 15.14,
+   "sma20": 14.62
   },
   "COO": {
    "date": "2026-11-10",
@@ -12835,10 +13427,17 @@
    "sma10": 1034.59,
    "sma20": 1014.38
   },
+  "CPA": {
+   "date": "2026-11-10",
+   "close": 148.22,
+   "low": 147.8,
+   "sma10": 139.03,
+   "sma20": 135.97
+  },
   "CPAY": {
    "date": "2026-11-10",
    "close": 459.64,
-   "low": 451.63,
+   "low": 451.59,
    "sma10": 424.9,
    "sma20": 414.34
   },
@@ -12859,7 +13458,7 @@
   "CPT": {
    "date": "2026-11-10",
    "close": 99.89,
-   "low": 99.46,
+   "low": 99.45,
    "sma10": 101.13,
    "sma20": 100.57
   },
@@ -12873,7 +13472,7 @@
   "CRH": {
    "date": "2026-11-10",
    "close": 96.86,
-   "low": 96.34,
+   "low": 96.33,
    "sma10": 94.17,
    "sma20": 89.19
   },
@@ -12992,14 +13591,14 @@
   "DASH": {
    "date": "2026-11-10",
    "close": 178.25,
-   "low": 172.26,
+   "low": 172.19,
    "sma10": 181.83,
    "sma20": 182.92
   },
   "DD": {
    "date": "2026-11-10",
    "close": 156.88,
-   "low": 153.37,
+   "low": 153.32,
    "sma10": 146.83,
    "sma20": 140.04
   },
@@ -13041,14 +13640,14 @@
   "DFIN": {
    "date": "2026-11-10",
    "close": 68.02,
-   "low": 66.35,
+   "low": 66.33,
    "sma10": 65.64,
    "sma20": 59.28
   },
   "DG": {
    "date": "2026-11-10",
    "close": 137.31,
-   "low": 134.7,
+   "low": 134.69,
    "sma10": 134.22,
    "sma20": 133.35
   },
@@ -13069,7 +13668,7 @@
   "DHR": {
    "date": "2026-11-10",
    "close": 236.11,
-   "low": 231.98,
+   "low": 231.74,
    "sma10": 232.41,
    "sma20": 230.85
   },
@@ -13097,7 +13696,7 @@
   "DOC": {
    "date": "2026-11-10",
    "close": 20.41,
-   "low": 20.17,
+   "low": 20.16,
    "sma10": 19.71,
    "sma20": 19.31
   },
@@ -13111,7 +13710,7 @@
   "DOW": {
    "date": "2026-11-10",
    "close": 31.48,
-   "low": 29.59,
+   "low": 29.58,
    "sma10": 32.89,
    "sma20": 32.05
   },
@@ -13139,14 +13738,14 @@
   "DTE": {
    "date": "2026-11-10",
    "close": 138.99,
-   "low": 136.94,
+   "low": 136.92,
    "sma10": 135.69,
    "sma20": 132.93
   },
   "DUK": {
    "date": "2026-11-10",
    "close": 128.94,
-   "low": 127.17,
+   "low": 127.14,
    "sma10": 127.62,
    "sma20": 124.86
   },
@@ -13216,7 +13815,7 @@
   "EFX": {
    "date": "2026-11-10",
    "close": 188.23,
-   "low": 183.64,
+   "low": 183.33,
    "sma10": 187.25,
    "sma20": 178.99
   },
@@ -13230,7 +13829,7 @@
   "EGBN": {
    "date": "2026-11-10",
    "close": 34.04,
-   "low": 33.51,
+   "low": 33.5,
    "sma10": 33.75,
    "sma20": 31.96
   },
@@ -13258,7 +13857,7 @@
   "EME": {
    "date": "2026-11-10",
    "close": 645.39,
-   "low": 636.53,
+   "low": 636.0,
    "sma10": 657.89,
    "sma20": 676.84
   },
@@ -13272,7 +13871,7 @@
   "EOG": {
    "date": "2026-11-10",
    "close": 151.51,
-   "low": 145.79,
+   "low": 145.66,
    "sma10": 154.08,
    "sma20": 156.14
   },
@@ -13321,7 +13920,7 @@
   "ESS": {
    "date": "2026-11-10",
    "close": 275.75,
-   "low": 273.31,
+   "low": 272.24,
    "sma10": 268.76,
    "sma20": 270.99
   },
@@ -13329,13 +13928,13 @@
    "date": "2026-11-10",
    "close": 354.22,
    "low": 344.78,
-   "sma10": 364.97,
-   "sma20": 375.55
+   "sma10": 363.96,
+   "sma20": 374.45
   },
   "ETR": {
    "date": "2026-11-10",
    "close": 111.71,
-   "low": 110.31,
+   "low": 110.3,
    "sma10": 110.3,
    "sma20": 108.15
   },
@@ -13374,6 +13973,13 @@
    "sma10": 131.18,
    "sma20": 129.69
   },
+  "EWTX": {
+   "date": "2026-11-10",
+   "close": 46.53,
+   "low": 44.79,
+   "sma10": 41.08,
+   "sma20": 39.93
+  },
   "EXC": {
    "date": "2026-11-10",
    "close": 45.53,
@@ -13384,7 +13990,7 @@
   "EXE": {
    "date": "2026-11-10",
    "close": 87.94,
-   "low": 84.86,
+   "low": 84.8,
    "sma10": 88.31,
    "sma20": 90.58
   },
@@ -13413,13 +14019,13 @@
    "date": "2026-11-10",
    "close": 12.28,
    "low": 12.19,
-   "sma10": 12.39,
-   "sma20": 12.19
+   "sma10": 12.26,
+   "sma20": 12.05
   },
   "FANG": {
    "date": "2026-11-10",
    "close": 178.08,
-   "low": 172.19,
+   "low": 172.08,
    "sma10": 191.45,
    "sma20": 196.63
   },
@@ -13447,14 +14053,14 @@
   "FDS": {
    "date": "2026-11-10",
    "close": 325.98,
-   "low": 312.52,
+   "low": 312.45,
    "sma10": 330.19,
    "sma20": 321.51
   },
   "FDX": {
    "date": "2026-11-10",
    "close": 319.48,
-   "low": 313.35,
+   "low": 313.23,
    "sma10": 315.46,
    "sma20": 306.8
   },
@@ -13475,7 +14081,7 @@
   "FERG": {
    "date": "2026-11-10",
    "close": 259.44,
-   "low": 253.43,
+   "low": 253.44,
    "sma10": 243.13,
    "sma20": 235.46
   },
@@ -13503,9 +14109,16 @@
   "FICO": {
    "date": "2026-11-10",
    "close": 730.66,
-   "low": 706.97,
+   "low": 706.98,
    "sma10": 713.46,
    "sma20": 740.49
+  },
+  "FIGS": {
+   "date": "2026-11-10",
+   "close": 22.39,
+   "low": 21.09,
+   "sma10": 21.16,
+   "sma20": 20.51
   },
   "FIS": {
    "date": "2026-11-10",
@@ -13538,16 +14151,23 @@
   "FIX": {
    "date": "2026-11-10",
    "close": 1105.93,
-   "low": 1095.91,
+   "low": 1095.0,
    "sma10": 1168.28,
    "sma20": 1269.02
   },
   "FLEX": {
    "date": "2026-11-10",
    "close": 76.09,
-   "low": 73.28,
+   "low": 73.27,
    "sma10": 81.29,
    "sma20": 83.85
+  },
+  "FLYW": {
+   "date": "2026-11-10",
+   "close": 22.35,
+   "low": 21.54,
+   "sma10": 20.57,
+   "sma20": 19.68
   },
   "FMX": {
    "date": "2026-11-10",
@@ -13577,6 +14197,13 @@
    "sma10": 112.09,
    "sma20": 109.57
   },
+  "FSBC": {
+   "date": "2026-11-10",
+   "close": 44.2,
+   "low": 43.48,
+   "sma10": 44.76,
+   "sma20": 44.05
+  },
   "FSLR": {
    "date": "2026-11-10",
    "close": 180.98,
@@ -13605,10 +14232,24 @@
    "sma10": 66.28,
    "sma20": 62.64
   },
+  "GABC": {
+   "date": "2026-11-10",
+   "close": 50.12,
+   "low": 49.49,
+   "sma10": 49.64,
+   "sma20": 49.69
+  },
+  "GCMG": {
+   "date": "2026-11-10",
+   "close": 13.92,
+   "low": 13.55,
+   "sma10": 12.88,
+   "sma20": 12.67
+  },
   "GD": {
    "date": "2026-11-10",
    "close": 367.44,
-   "low": 361.21,
+   "low": 360.89,
    "sma10": 365.05,
    "sma20": 355.45
   },
@@ -13618,6 +14259,13 @@
    "low": 111.2,
    "sma10": 113.74,
    "sma20": 111.06
+  },
+  "GDYN": {
+   "date": "2026-11-10",
+   "close": 14.06,
+   "low": 13.04,
+   "sma10": 12.64,
+   "sma20": 10.45
   },
   "GE": {
    "date": "2026-11-10",
@@ -13647,10 +14295,17 @@
    "sma10": 840.8,
    "sma20": 865.5
   },
+  "GIC": {
+   "date": "2026-11-10",
+   "close": 47.29,
+   "low": 45.77,
+   "sma10": 45.48,
+   "sma20": 44.9
+  },
   "GILD": {
    "date": "2026-11-10",
    "close": 170.87,
-   "low": 167.6,
+   "low": 167.61,
    "sma10": 168.24,
    "sma20": 162.18
   },
@@ -13667,6 +14322,13 @@
    "low": 161.22,
    "sma10": 159.93,
    "sma20": 162.36
+  },
+  "GLBE": {
+   "date": "2026-11-10",
+   "close": 41.99,
+   "low": 41.6,
+   "sma10": 42.68,
+   "sma20": 41.65
   },
   "GLW": {
    "date": "2026-11-10",
@@ -13724,10 +14386,17 @@
    "sma10": 95.16,
    "sma20": 89.26
   },
+  "GRDN": {
+   "date": "2026-11-10",
+   "close": 49.85,
+   "low": 46.56,
+   "sma10": 42.36,
+   "sma20": 41.1
+  },
   "GRMN": {
    "date": "2026-11-10",
    "close": 288.66,
-   "low": 283.82,
+   "low": 283.62,
    "sma10": 281.24,
    "sma20": 285.06
   },
@@ -13748,7 +14417,7 @@
   "GWW": {
    "date": "2026-11-10",
    "close": 1472.91,
-   "low": 1439.46,
+   "low": 1439.39,
    "sma10": 1413.01,
    "sma20": 1375.78
   },
@@ -13762,7 +14431,7 @@
   "HAS": {
    "date": "2026-11-10",
    "close": 121.82,
-   "low": 118.93,
+   "low": 118.94,
    "sma10": 119.64,
    "sma20": 114.1
   },
@@ -13772,6 +14441,13 @@
    "low": 15.69,
    "sma10": 15.82,
    "sma20": 15.66
+  },
+  "HBT": {
+   "date": "2026-11-10",
+   "close": 37.53,
+   "low": 37.13,
+   "sma10": 36.91,
+   "sma20": 36.26
   },
   "HCA": {
    "date": "2026-11-10",
@@ -13794,12 +14470,33 @@
    "sma10": 340.38,
    "sma20": 327.09
   },
+  "HELE": {
+   "date": "2026-11-10",
+   "close": 38.2,
+   "low": 36.79,
+   "sma10": 33.55,
+   "sma20": 31.19
+  },
   "HFWA": {
    "date": "2026-11-10",
    "close": 28.39,
-   "low": 28.11,
+   "low": 28.12,
    "sma10": 28.6,
    "sma20": 28.21
+  },
+  "HG": {
+   "date": "2026-11-10",
+   "close": 38.82,
+   "low": 37.37,
+   "sma10": 36.43,
+   "sma20": 36.27
+  },
+  "HGTY": {
+   "date": "2026-11-10",
+   "close": 16.94,
+   "low": 16.84,
+   "sma10": 16.86,
+   "sma20": 16.18
   },
   "HIG": {
    "date": "2026-11-10",
@@ -13811,9 +14508,16 @@
   "HII": {
    "date": "2026-11-10",
    "close": 313.57,
-   "low": 301.78,
+   "low": 301.11,
    "sma10": 304.31,
    "sma20": 288.9
+  },
+  "HLMN": {
+   "date": "2026-11-10",
+   "close": 8.17,
+   "low": 8.16,
+   "sma10": 8.21,
+   "sma20": 7.73
   },
   "HLT": {
    "date": "2026-11-10",
@@ -13825,7 +14529,7 @@
   "HMC": {
    "date": "2026-11-10",
    "close": 34.88,
-   "low": 34.04,
+   "low": 33.9,
    "sma10": 34.78,
    "sma20": 34.45
   },
@@ -13871,17 +14575,24 @@
    "sma10": 29.43,
    "sma20": 30.67
   },
+  "HQH": {
+   "date": "2026-11-10",
+   "close": 21.8,
+   "low": 21.49,
+   "sma10": 21.24,
+   "sma20": 20.57
+  },
   "HRL": {
    "date": "2026-11-10",
    "close": 22.21,
-   "low": 21.92,
+   "low": 21.93,
    "sma10": 21.73,
    "sma20": 21.16
   },
   "HSIC": {
    "date": "2026-11-10",
    "close": 88.74,
-   "low": 87.92,
+   "low": 87.89,
    "sma10": 86.22,
    "sma20": 85.72
   },
@@ -13909,9 +14620,16 @@
   "HUM": {
    "date": "2026-11-10",
    "close": 438.06,
-   "low": 422.69,
+   "low": 422.63,
    "sma10": 419.47,
    "sma20": 420.07
+  },
+  "HUN": {
+   "date": "2026-11-10",
+   "close": 9.5,
+   "low": 9.22,
+   "sma10": 9.54,
+   "sma20": 9.06
   },
   "HWM": {
    "date": "2026-11-10",
@@ -13923,14 +14641,14 @@
   "HZO": {
    "date": "2026-11-10",
    "close": 52.77,
-   "low": 52.74,
+   "low": 52.73,
    "sma10": 52.69,
    "sma20": 52.53
   },
   "IBKR": {
    "date": "2026-11-10",
    "close": 77.59,
-   "low": 76.71,
+   "low": 76.72,
    "sma10": 77.61,
    "sma20": 80.2
   },
@@ -13938,20 +14656,20 @@
    "date": "2026-11-10",
    "close": 244.53,
    "low": 242.7,
-   "sma10": 250.89,
-   "sma20": 247.11
+   "sma10": 249.34,
+   "sma20": 245.5
   },
   "IBN": {
    "date": "2026-11-10",
    "close": 34.88,
-   "low": 34.6,
+   "low": 34.55,
    "sma10": 31.45,
    "sma20": 30.43
   },
   "IBP": {
    "date": "2026-11-10",
    "close": 212.45,
-   "low": 211.89,
+   "low": 211.76,
    "sma10": 217.28,
    "sma20": 204.54
   },
@@ -13979,7 +14697,7 @@
   "IEX": {
    "date": "2026-11-10",
    "close": 236.9,
-   "low": 234.04,
+   "low": 234.05,
    "sma10": 234.17,
    "sma20": 233.75
   },
@@ -14049,7 +14767,7 @@
   "IR": {
    "date": "2026-11-10",
    "close": 85.86,
-   "low": 85.22,
+   "low": 85.21,
    "sma10": 82.46,
    "sma20": 79.56
   },
@@ -14059,6 +14777,13 @@
    "low": 108.38,
    "sma10": 113.48,
    "sma20": 112.96
+  },
+  "IRON": {
+   "date": "2026-11-10",
+   "close": 84.64,
+   "low": 80.53,
+   "sma10": 81.32,
+   "sma20": 76.2
   },
   "ISRG": {
    "date": "2026-11-10",
@@ -14105,21 +14830,21 @@
   "J": {
    "date": "2026-11-10",
    "close": 157.11,
-   "low": 155.17,
+   "low": 154.83,
    "sma10": 154.84,
    "sma20": 149.04
   },
   "JBHT": {
    "date": "2026-11-10",
    "close": 226.27,
-   "low": 222.63,
+   "low": 222.33,
    "sma10": 222.58,
    "sma20": 225.43
   },
   "JBL": {
    "date": "2026-11-10",
    "close": 249.82,
-   "low": 243.94,
+   "low": 243.9,
    "sma10": 262.59,
    "sma20": 271.29
   },
@@ -14133,7 +14858,7 @@
   "JHX": {
    "date": "2026-11-10",
    "close": 29.05,
-   "low": 28.67,
+   "low": 28.68,
    "sma10": 28.03,
    "sma20": 27.0
   },
@@ -14144,12 +14869,26 @@
    "sma10": 168.32,
    "sma20": 162.7
   },
+  "JMKE": {
+   "date": "2026-11-10",
+   "close": 19.61,
+   "low": 18.97,
+   "sma10": 19.19,
+   "sma20": 18.34
+  },
   "JNJ": {
    "date": "2026-11-10",
    "close": 280.78,
-   "low": 279.21,
+   "low": 279.19,
    "sma10": 274.39,
    "sma20": 267.2
+  },
+  "JOE": {
+   "date": "2026-11-10",
+   "close": 72.91,
+   "low": 72.81,
+   "sma10": 70.42,
+   "sma20": 69.22
   },
   "JPM": {
    "date": "2026-11-10",
@@ -14168,7 +14907,7 @@
   "KDP": {
    "date": "2026-11-10",
    "close": 37.59,
-   "low": 36.67,
+   "low": 36.68,
    "sma10": 36.25,
    "sma20": 35.38
   },
@@ -14186,12 +14925,26 @@
    "sma10": 297.56,
    "sma20": 315.32
   },
+  "KFRC": {
+   "date": "2026-11-10",
+   "close": 55.01,
+   "low": 54.0,
+   "sma10": 56.58,
+   "sma20": 54.99
+  },
   "KHC": {
    "date": "2026-11-10",
    "close": 24.24,
    "low": 23.95,
    "sma10": 24.56,
    "sma20": 24.22
+  },
+  "KIDS": {
+   "date": "2026-11-10",
+   "close": 33.48,
+   "low": 32.99,
+   "sma10": 32.0,
+   "sma20": 27.66
   },
   "KIM": {
    "date": "2026-11-10",
@@ -14228,6 +14981,13 @@
    "sma10": 31.95,
    "sma20": 32.69
   },
+  "KMTS": {
+   "date": "2026-11-10",
+   "close": 29.55,
+   "low": 29.2,
+   "sma10": 29.65,
+   "sma20": 28.97
+  },
   "KO": {
    "date": "2026-11-10",
    "close": 96.91,
@@ -14235,12 +14995,26 @@
    "sma10": 94.94,
    "sma20": 93.93
   },
+  "KOD": {
+   "date": "2026-11-10",
+   "close": 108.06,
+   "low": 104.49,
+   "sma10": 99.71,
+   "sma20": 93.92
+  },
   "KR": {
    "date": "2026-11-10",
    "close": 68.6,
    "low": 67.42,
    "sma10": 67.56,
    "sma20": 66.12
+  },
+  "KRNT": {
+   "date": "2026-11-10",
+   "close": 17.47,
+   "low": 17.07,
+   "sma10": 17.37,
+   "sma20": 17.44
   },
   "KYMR": {
    "date": "2026-11-10",
@@ -14256,6 +15030,13 @@
    "sma10": 110.79,
    "sma20": 110.89
   },
+  "LBRX": {
+   "date": "2026-11-10",
+   "close": 44.94,
+   "low": 43.4,
+   "sma10": 41.01,
+   "sma20": 39.68
+  },
   "LDOS": {
    "date": "2026-11-10",
    "close": 137.24,
@@ -14269,13 +15050,6 @@
    "low": 86.61,
    "sma10": 88.37,
    "sma20": 84.11
-  },
-  "LEN-B": {
-   "date": "2026-11-10",
-   "close": 84.73,
-   "low": 84.64,
-   "sma10": 86.85,
-   "sma20": 83.01
   },
   "LFST": {
    "date": "2026-11-10",
@@ -14315,7 +15089,7 @@
   "LIN": {
    "date": "2026-11-10",
    "close": 521.78,
-   "low": 517.05,
+   "low": 517.01,
    "sma10": 516.01,
    "sma20": 509.29
   },
@@ -14364,7 +15138,7 @@
   "LOW": {
    "date": "2026-11-10",
    "close": 231.87,
-   "low": 227.34,
+   "low": 227.33,
    "sma10": 219.14,
    "sma20": 207.86
   },
@@ -14392,7 +15166,7 @@
   "LVS": {
    "date": "2026-11-10",
    "close": 40.82,
-   "low": 40.0,
+   "low": 39.99,
    "sma10": 38.92,
    "sma20": 37.91
   },
@@ -14420,7 +15194,7 @@
   "MAA": {
    "date": "2026-11-10",
    "close": 118.86,
-   "low": 117.83,
+   "low": 117.84,
    "sma10": 118.89,
    "sma20": 118.3
   },
@@ -14441,14 +15215,28 @@
   "MAS": {
    "date": "2026-11-10",
    "close": 84.8,
-   "low": 83.8,
+   "low": 83.75,
    "sma10": 82.4,
    "sma20": 78.15
+  },
+  "MAX": {
+   "date": "2026-11-10",
+   "close": 14.37,
+   "low": 13.93,
+   "sma10": 14.28,
+   "sma20": 12.96
+  },
+  "MBX": {
+   "date": "2026-11-10",
+   "close": 56.33,
+   "low": 51.52,
+   "sma10": 53.66,
+   "sma20": 52.4
   },
   "MCD": {
    "date": "2026-11-10",
    "close": 282.17,
-   "low": 277.4,
+   "low": 277.28,
    "sma10": 269.31,
    "sma20": 257.68
   },
@@ -14494,6 +15282,13 @@
    "sma10": 100.26,
    "sma20": 97.41
   },
+  "MEOH": {
+   "date": "2026-11-10",
+   "close": 68.07,
+   "low": 63.6,
+   "sma10": 66.78,
+   "sma20": 65.13
+  },
   "MET": {
    "date": "2026-11-10",
    "close": 102.44,
@@ -14518,9 +15313,16 @@
   "MGM": {
    "date": "2026-11-10",
    "close": 33.06,
-   "low": 32.2,
+   "low": 32.19,
    "sma10": 31.13,
    "sma20": 29.93
+  },
+  "MITK": {
+   "date": "2026-11-10",
+   "close": 18.53,
+   "low": 17.51,
+   "sma10": 18.16,
+   "sma20": 17.82
   },
   "MKC": {
    "date": "2026-11-10",
@@ -14546,14 +15348,14 @@
   "MMM": {
    "date": "2026-11-10",
    "close": 189.37,
-   "low": 186.86,
+   "low": 186.84,
    "sma10": 182.48,
    "sma20": 176.04
   },
   "MNST": {
    "date": "2026-11-10",
    "close": 45.34,
-   "low": 45.18,
+   "low": 45.17,
    "sma10": 46.78,
    "sma20": 46.45
   },
@@ -14595,7 +15397,7 @@
   "MRK": {
    "date": "2026-11-10",
    "close": 148.05,
-   "low": 145.57,
+   "low": 145.58,
    "sma10": 147.06,
    "sma20": 146.3
   },
@@ -14612,6 +15414,13 @@
    "low": 202.73,
    "sma10": 203.49,
    "sma20": 197.03
+  },
+  "MRVI": {
+   "date": "2026-11-10",
+   "close": 7.86,
+   "low": 7.62,
+   "sma10": 7.75,
+   "sma20": 7.5
   },
   "MRVL": {
    "date": "2026-11-10",
@@ -14637,7 +15446,7 @@
   "MSFT": {
    "date": "2026-11-10",
    "close": 533.16,
-   "low": 526.36,
+   "low": 526.37,
    "sma10": 531.18,
    "sma20": 531.09
   },
@@ -14669,6 +15478,13 @@
    "sma10": 156.11,
    "sma20": 152.98
   },
+  "MTW": {
+   "date": "2026-11-10",
+   "close": 24.27,
+   "low": 23.81,
+   "sma10": 23.33,
+   "sma20": 22.77
+  },
   "MU": {
    "date": "2026-11-10",
    "close": 725.11,
@@ -14679,9 +15495,16 @@
   "NATL": {
    "date": "2026-11-10",
    "close": 48.2,
-   "low": 47.6,
+   "low": 47.59,
    "sma10": 46.78,
    "sma20": 46.61
+  },
+  "NAVN": {
+   "date": "2026-11-10",
+   "close": 24.68,
+   "low": 24.06,
+   "sma10": 25.86,
+   "sma20": 25.95
   },
   "NCLH": {
    "date": "2026-11-10",
@@ -14714,7 +15537,7 @@
   "NEM": {
    "date": "2026-11-10",
    "close": 119.96,
-   "low": 118.94,
+   "low": 118.93,
    "sma10": 115.27,
    "sma20": 114.83
   },
@@ -14749,14 +15572,14 @@
   "NOW": {
    "date": "2026-11-10",
    "close": 99.61,
-   "low": 97.45,
+   "low": 97.0,
    "sma10": 109.56,
    "sma20": 130.15
   },
   "NRG": {
    "date": "2026-11-10",
    "close": 97.11,
-   "low": 95.13,
+   "low": 94.89,
    "sma10": 92.66,
    "sma20": 95.09
   },
@@ -14798,14 +15621,14 @@
   "NVR": {
    "date": "2026-11-10",
    "close": 6036.42,
-   "low": 6025.0,
+   "low": 6021.86,
    "sma10": 6152.41,
    "sma20": 6022.58
   },
   "NWBI": {
    "date": "2026-11-10",
    "close": 15.33,
-   "low": 15.15,
+   "low": 15.16,
    "sma10": 15.29,
    "sma20": 15.11
   },
@@ -14910,7 +15733,7 @@
   "OXY": {
    "date": "2026-11-10",
    "close": 56.9,
-   "low": 53.88,
+   "low": 53.86,
    "sma10": 59.38,
    "sma20": 61.0
   },
@@ -14920,6 +15743,13 @@
    "low": 98.0,
    "sma10": 114.1,
    "sma20": 121.95
+  },
+  "PACS": {
+   "date": "2026-11-10",
+   "close": 49.1,
+   "low": 48.26,
+   "sma10": 48.67,
+   "sma20": 47.92
   },
   "PANW": {
    "date": "2026-11-10",
@@ -14946,8 +15776,8 @@
    "date": "2026-11-10",
    "close": 105.57,
    "low": 103.97,
-   "sma10": 103.53,
-   "sma20": 105.94
+   "sma10": 103.22,
+   "sma20": 105.61
   },
   "PCG": {
    "date": "2026-11-10",
@@ -14963,6 +15793,13 @@
    "sma10": 36.42,
    "sma20": 36.39
   },
+  "PDM": {
+   "date": "2026-11-10",
+   "close": 9.96,
+   "low": 9.93,
+   "sma10": 9.76,
+   "sma20": 9.5
+  },
   "PEB": {
    "date": "2026-11-10",
    "close": 22.22,
@@ -14973,14 +15810,14 @@
   "PEG": {
    "date": "2026-11-10",
    "close": 74.68,
-   "low": 74.43,
+   "low": 74.42,
    "sma10": 73.62,
    "sma20": 72.52
   },
   "PEP": {
    "date": "2026-11-10",
    "close": 143.61,
-   "low": 140.82,
+   "low": 140.8,
    "sma10": 139.34,
    "sma20": 136.42
   },
@@ -14994,7 +15831,7 @@
   "PFG": {
    "date": "2026-11-10",
    "close": 115.99,
-   "low": 114.36,
+   "low": 114.37,
    "sma10": 113.5,
    "sma20": 111.2
   },
@@ -15029,7 +15866,7 @@
   "PHM": {
    "date": "2026-11-10",
    "close": 130.6,
-   "low": 129.81,
+   "low": 129.75,
    "sma10": 129.71,
    "sma20": 122.74
   },
@@ -15054,10 +15891,17 @@
    "sma10": 128.75,
    "sma20": 127.78
   },
+  "PLGO": {
+   "date": "2026-11-10",
+   "close": 28.33,
+   "low": 28.08,
+   "sma10": 27.04,
+   "sma20": 26.26
+  },
   "PLMR": {
    "date": "2026-11-10",
    "close": 161.08,
-   "low": 153.76,
+   "low": 153.65,
    "sma10": 147.44,
    "sma20": 143.37
   },
@@ -15071,21 +15915,21 @@
   "PM": {
    "date": "2026-11-10",
    "close": 194.25,
-   "low": 193.82,
+   "low": 193.75,
    "sma10": 203.43,
    "sma20": 202.45
   },
   "PNC": {
    "date": "2026-11-10",
    "close": 231.3,
-   "low": 229.21,
+   "low": 229.2,
    "sma10": 229.72,
    "sma20": 225.44
   },
   "PNR": {
    "date": "2026-11-10",
    "close": 69.63,
-   "low": 68.31,
+   "low": 68.3,
    "sma10": 68.65,
    "sma20": 61.52
   },
@@ -15099,7 +15943,7 @@
   "PODD": {
    "date": "2026-11-10",
    "close": 148.06,
-   "low": 145.93,
+   "low": 145.94,
    "sma10": 152.51,
    "sma20": 148.08
   },
@@ -15107,8 +15951,8 @@
    "date": "2026-11-10",
    "close": 124.42,
    "low": 122.73,
-   "sma10": 122.67,
-   "sma20": 116.01
+   "sma10": 122.02,
+   "sma20": 115.36
   },
   "PPL": {
    "date": "2026-11-10",
@@ -15116,6 +15960,13 @@
    "low": 35.17,
    "sma10": 35.72,
    "sma20": 35.27
+  },
+  "PRCH": {
+   "date": "2026-11-10",
+   "close": 21.95,
+   "low": 20.53,
+   "sma10": 20.36,
+   "sma20": 19.01
   },
   "PRGS": {
    "date": "2026-11-10",
@@ -15127,7 +15978,7 @@
   "PRU": {
    "date": "2026-11-10",
    "close": 123.3,
-   "low": 121.53,
+   "low": 121.51,
    "sma10": 119.95,
    "sma20": 117.66
   },
@@ -15197,7 +16048,7 @@
   "RCL": {
    "date": "2026-11-10",
    "close": 339.85,
-   "low": 334.06,
+   "low": 334.01,
    "sma10": 321.01,
    "sma20": 301.97
   },
@@ -15225,9 +16076,16 @@
   "RF": {
    "date": "2026-11-10",
    "close": 28.7,
-   "low": 28.53,
+   "low": 28.54,
    "sma10": 28.68,
    "sma20": 28.28
+  },
+  "RGA": {
+   "date": "2026-11-10",
+   "close": 274.06,
+   "low": 267.47,
+   "sma10": 265.26,
+   "sma20": 265.58
   },
   "RHI": {
    "date": "2026-11-10",
@@ -15249,6 +16107,13 @@
    "low": 394.66,
    "sma10": 394.34,
    "sma20": 388.68
+  },
+  "RLJ": {
+   "date": "2026-11-10",
+   "close": 13.26,
+   "low": 12.76,
+   "sma10": 12.7,
+   "sma20": 12.34
   },
   "RMD": {
    "date": "2026-11-10",
@@ -15274,7 +16139,7 @@
   "ROK": {
    "date": "2026-11-10",
    "close": 397.16,
-   "low": 388.4,
+   "low": 388.41,
    "sma10": 420.53,
    "sma20": 424.34
   },
@@ -15288,9 +16153,9 @@
   "ROL": {
    "date": "2026-11-10",
    "close": 38.42,
-   "low": 37.52,
-   "sma10": 36.85,
-   "sma20": 35.33
+   "low": 37.51,
+   "sma10": 36.68,
+   "sma20": 35.16
   },
   "ROP": {
    "date": "2026-11-10",
@@ -15316,7 +16181,7 @@
   "RTX": {
    "date": "2026-11-10",
    "close": 200.27,
-   "low": 196.02,
+   "low": 195.87,
    "sma10": 197.81,
    "sma20": 195.01
   },
@@ -15334,6 +16199,13 @@
    "sma10": 27.85,
    "sma20": 28.31
   },
+  "S": {
+   "date": "2026-11-10",
+   "close": 23.43,
+   "low": 22.64,
+   "sma10": 23.63,
+   "sma20": 23.41
+  },
   "SAIC": {
    "date": "2026-11-10",
    "close": 152.53,
@@ -15344,7 +16216,7 @@
   "SBAC": {
    "date": "2026-11-10",
    "close": 191.43,
-   "low": 187.85,
+   "low": 187.86,
    "sma10": 188.61,
    "sma20": 185.42
   },
@@ -15386,7 +16258,7 @@
   "SHO": {
    "date": "2026-11-10",
    "close": 12.78,
-   "low": 12.51,
+   "low": 12.5,
    "sma10": 12.75,
    "sma20": 12.51
   },
@@ -15396,6 +16268,13 @@
    "low": 352.06,
    "sma10": 344.66,
    "sma20": 339.6
+  },
+  "SIBN": {
+   "date": "2026-11-10",
+   "close": 25.1,
+   "low": 24.85,
+   "sma10": 23.36,
+   "sma20": 21.97
   },
   "SJM": {
    "date": "2026-11-10",
@@ -15418,6 +16297,13 @@
    "sma10": 51.71,
    "sma20": 51.17
   },
+  "SLN": {
+   "date": "2026-11-10",
+   "close": 19.79,
+   "low": 19.72,
+   "sma10": 19.76,
+   "sma20": 18.12
+  },
   "SMCI": {
    "date": "2026-11-10",
    "close": 27.79,
@@ -15428,14 +16314,14 @@
   "SMG": {
    "date": "2026-11-10",
    "close": 65.13,
-   "low": 64.42,
+   "low": 64.41,
    "sma10": 64.04,
    "sma20": 60.09
   },
   "SNA": {
    "date": "2026-11-10",
    "close": 373.28,
-   "low": 370.36,
+   "low": 370.13,
    "sma10": 364.64,
    "sma20": 363.61
   },
@@ -15463,7 +16349,7 @@
   "SOLV": {
    "date": "2026-11-10",
    "close": 90.08,
-   "low": 88.01,
+   "low": 87.9,
    "sma10": 86.37,
    "sma20": 86.22
   },
@@ -15484,7 +16370,7 @@
   "SPNT": {
    "date": "2026-11-10",
    "close": 27.38,
-   "low": 26.47,
+   "low": 26.45,
    "sma10": 26.11,
    "sma20": 25.78
   },
@@ -15502,10 +16388,17 @@
    "sma10": 242.11,
    "sma20": 233.85
   },
+  "STGW": {
+   "date": "2026-11-10",
+   "close": 11.28,
+   "low": 11.1,
+   "sma10": 10.7,
+   "sma20": 9.81
+  },
   "STLD": {
    "date": "2026-11-10",
    "close": 236.12,
-   "low": 226.49,
+   "low": 226.48,
    "sma10": 240.25,
    "sma20": 241.5
   },
@@ -15540,7 +16433,7 @@
   "SWK": {
    "date": "2026-11-10",
    "close": 116.44,
-   "low": 114.21,
+   "low": 114.1,
    "sma10": 110.17,
    "sma20": 102.74
   },
@@ -15551,10 +16444,24 @@
    "sma10": 84.67,
    "sma20": 83.04
   },
+  "SXC": {
+   "date": "2026-11-10",
+   "close": 10.66,
+   "low": 10.03,
+   "sma10": 10.57,
+   "sma20": 10.32
+  },
+  "SYBT": {
+   "date": "2026-11-10",
+   "close": 80.38,
+   "low": 79.73,
+   "sma10": 79.67,
+   "sma20": 78.51
+  },
   "SYF": {
    "date": "2026-11-10",
    "close": 71.7,
-   "low": 71.51,
+   "low": 71.5,
    "sma10": 74.54,
    "sma20": 74.09
   },
@@ -15575,7 +16482,7 @@
   "SYY": {
    "date": "2026-11-10",
    "close": 77.63,
-   "low": 77.22,
+   "low": 77.23,
    "sma10": 78.85,
    "sma20": 80.51
   },
@@ -15585,6 +16492,13 @@
    "low": 21.61,
    "sma10": 21.49,
    "sma20": 21.94
+  },
+  "TBBB": {
+   "date": "2026-11-10",
+   "close": 67.83,
+   "low": 66.67,
+   "sma10": 61.99,
+   "sma20": 59.8
   },
   "TDC": {
    "date": "2026-11-10",
@@ -15603,7 +16517,7 @@
   "TDY": {
    "date": "2026-11-10",
    "close": 646.13,
-   "low": 625.01,
+   "low": 622.99,
    "sma10": 645.66,
    "sma20": 636.62
   },
@@ -15617,9 +16531,16 @@
   "TEL": {
    "date": "2026-11-10",
    "close": 217.76,
-   "low": 216.24,
+   "low": 216.17,
    "sma10": 216.44,
    "sma20": 214.8
+  },
+  "TENB": {
+   "date": "2026-11-10",
+   "close": 41.96,
+   "low": 39.38,
+   "sma10": 46.5,
+   "sma20": 44.08
   },
   "TER": {
    "date": "2026-11-10",
@@ -15631,7 +16552,7 @@
   "TFC": {
    "date": "2026-11-10",
    "close": 50.26,
-   "low": 49.71,
+   "low": 49.7,
    "sma10": 49.68,
    "sma20": 48.58
   },
@@ -15645,9 +16566,9 @@
   "TGT": {
    "date": "2026-11-10",
    "close": 161.78,
-   "low": 157.93,
-   "sma10": 157.51,
-   "sma20": 155.42
+   "low": 157.92,
+   "sma10": 156.52,
+   "sma20": 154.39
   },
   "THC": {
    "date": "2026-11-10",
@@ -15659,7 +16580,7 @@
   "TJX": {
    "date": "2026-11-10",
    "close": 136.92,
-   "low": 136.07,
+   "low": 136.08,
    "sma10": 139.24,
    "sma20": 142.17
   },
@@ -15701,14 +16622,14 @@
   "TPC": {
    "date": "2026-11-10",
    "close": 97.43,
-   "low": 94.88,
+   "low": 94.51,
    "sma10": 85.29,
    "sma20": 81.9
   },
   "TPL": {
    "date": "2026-11-10",
    "close": 274.63,
-   "low": 273.05,
+   "low": 273.0,
    "sma10": 303.86,
    "sma20": 322.88
   },
@@ -15764,14 +16685,14 @@
   "TSLA": {
    "date": "2026-11-10",
    "close": 379.78,
-   "low": 370.43,
+   "low": 370.4,
    "sma10": 385.46,
    "sma20": 380.65
   },
   "TSN": {
    "date": "2026-11-10",
    "close": 60.29,
-   "low": 59.5,
+   "low": 59.48,
    "sma10": 58.27,
    "sma20": 56.85
   },
@@ -15796,6 +16717,13 @@
    "sma10": 203.51,
    "sma20": 204.25
   },
+  "TW": {
+   "date": "2026-11-10",
+   "close": 129.63,
+   "low": 127.5,
+   "sma10": 125.11,
+   "sma20": 121.45
+  },
   "TWLO": {
    "date": "2026-11-10",
    "close": 214.21,
@@ -15806,7 +16734,7 @@
   "TXN": {
    "date": "2026-11-10",
    "close": 300.52,
-   "low": 287.24,
+   "low": 287.25,
    "sma10": 299.83,
    "sma20": 291.53
   },
@@ -15820,7 +16748,7 @@
   "TYL": {
    "date": "2026-11-10",
    "close": 421.66,
-   "low": 410.75,
+   "low": 410.58,
    "sma10": 405.13,
    "sma20": 389.32
   },
@@ -15834,7 +16762,7 @@
   "UBER": {
    "date": "2026-11-10",
    "close": 70.05,
-   "low": 69.2,
+   "low": 69.19,
    "sma10": 67.8,
    "sma20": 68.16
   },
@@ -15876,7 +16804,7 @@
   "UNP": {
    "date": "2026-11-10",
    "close": 300.62,
-   "low": 294.94,
+   "low": 294.84,
    "sma10": 300.84,
    "sma20": 296.15
   },
@@ -15898,8 +16826,8 @@
    "date": "2026-11-10",
    "close": 1104.94,
    "low": 1098.68,
-   "sma10": 1135.02,
-   "sma20": 1104.69
+   "sma10": 1133.23,
+   "sma20": 1102.86
   },
   "USB": {
    "date": "2026-11-10",
@@ -15925,14 +16853,14 @@
   "V": {
    "date": "2026-11-10",
    "close": 423.0,
-   "low": 419.15,
-   "sma10": 419.76,
-   "sma20": 411.85
+   "low": 419.13,
+   "sma10": 419.06,
+   "sma20": 411.13
   },
   "VCEL": {
    "date": "2026-11-10",
    "close": 59.03,
-   "low": 57.83,
+   "low": 57.81,
    "sma10": 47.52,
    "sma20": 44.51
   },
@@ -15946,7 +16874,7 @@
   "VEEV": {
    "date": "2026-11-10",
    "close": 305.55,
-   "low": 301.75,
+   "low": 301.73,
    "sma10": 308.77,
    "sma20": 312.09
   },
@@ -15960,7 +16888,7 @@
   "VIR": {
    "date": "2026-11-10",
    "close": 13.15,
-   "low": 13.11,
+   "low": 13.1,
    "sma10": 11.9,
    "sma20": 11.25
   },
@@ -16008,7 +16936,7 @@
   },
   "VRSN": {
    "date": "2026-11-10",
-   "close": 311.11,
+   "close": 311.12,
    "low": 304.13,
    "sma10": 309.82,
    "sma20": 307.2
@@ -16016,7 +16944,7 @@
   "VRT": {
    "date": "2026-11-10",
    "close": 194.22,
-   "low": 188.54,
+   "low": 188.49,
    "sma10": 214.14,
    "sma20": 210.27
   },
@@ -16030,7 +16958,7 @@
   "VST": {
    "date": "2026-11-10",
    "close": 131.18,
-   "low": 129.31,
+   "low": 129.3,
    "sma10": 131.93,
    "sma20": 140.14
   },
@@ -16072,14 +17000,14 @@
   "VZ": {
    "date": "2026-11-10",
    "close": 46.31,
-   "low": 45.47,
+   "low": 45.48,
    "sma10": 45.22,
    "sma20": 44.75
   },
   "WAB": {
    "date": "2026-11-10",
    "close": 303.49,
-   "low": 295.58,
+   "low": 295.59,
    "sma10": 288.46,
    "sma20": 285.51
   },
@@ -16093,14 +17021,14 @@
   "WAT": {
    "date": "2026-11-10",
    "close": 475.52,
-   "low": 467.71,
+   "low": 466.87,
    "sma10": 465.96,
    "sma20": 457.28
   },
   "WDAY": {
    "date": "2026-11-10",
    "close": 188.89,
-   "low": 185.81,
+   "low": 185.78,
    "sma10": 196.77,
    "sma20": 199.0
   },
@@ -16122,13 +17050,13 @@
    "date": "2026-11-10",
    "close": 247.66,
    "low": 243.4,
-   "sma10": 240.86,
-   "sma20": 237.9
+   "sma10": 240.12,
+   "sma20": 237.13
   },
   "WFC": {
    "date": "2026-11-10",
    "close": 85.76,
-   "low": 85.33,
+   "low": 85.34,
    "sma10": 84.72,
    "sma20": 83.35
   },
@@ -16149,7 +17077,7 @@
   "WMB": {
    "date": "2026-11-10",
    "close": 67.46,
-   "low": 65.42,
+   "low": 65.41,
    "sma10": 69.73,
    "sma20": 70.61
   },
@@ -16170,7 +17098,7 @@
   "WSM": {
    "date": "2026-11-10",
    "close": 261.55,
-   "low": 255.62,
+   "low": 255.59,
    "sma10": 258.18,
    "sma20": 254.77
   },
@@ -16178,13 +17106,13 @@
    "date": "2026-11-10",
    "close": 412.55,
    "low": 408.8,
-   "sma10": 407.45,
-   "sma20": 398.08
+   "sma10": 407.22,
+   "sma20": 397.84
   },
   "WTW": {
    "date": "2026-11-10",
    "close": 332.87,
-   "low": 325.18,
+   "low": 325.16,
    "sma10": 328.26,
    "sma20": 322.89
   },
@@ -16216,6 +17144,13 @@
    "sma10": 79.5,
    "sma20": 78.16
   },
+  "XERS": {
+   "date": "2026-11-10",
+   "close": 15.83,
+   "low": 15.22,
+   "sma10": 12.3,
+   "sma20": 11.39
+  },
   "XHR": {
    "date": "2026-11-10",
    "close": 22.22,
@@ -16244,6 +17179,13 @@
    "sma10": 81.28,
    "sma20": 79.25
   },
+  "YSWY": {
+   "date": "2026-11-10",
+   "close": 25.78,
+   "low": 25.22,
+   "sma10": 24.99,
+   "sma20": 24.32
+  },
   "YUM": {
    "date": "2026-11-10",
    "close": 160.21,
@@ -16261,7 +17203,7 @@
   "ZBRA": {
    "date": "2026-11-10",
    "close": 321.38,
-   "low": 315.09,
+   "low": 314.98,
    "sma10": 343.82,
    "sma20": 362.44
   },
