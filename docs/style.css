@@ -205,4 +205,3 @@ details.card-fold > .card-expanded { padding: 0 var(--space-4) var(--space-4); m
 .simple-footer { font-size: var(--fs-small); color: var(--muted) !important; }
 details.more-details { margin: var(--space-2) 0 0; padding-top: 4px; }
 details.more-details > summary { color: var(--accent); font-weight: 600; }
-@import url("tito-simple.css");
