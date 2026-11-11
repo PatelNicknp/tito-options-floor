@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-10 09:30 PM PT",
+ "generatedAtPT": "2026-11-11 06:18 AM PT",
  "signalSession": "2026-11-10",
  "entrySession": "2026-11-11",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -39,7 +39,7 @@
    {
     "name": "Interest rate for the model",
     "pass": true,
-    "value": "0.0412",
+    "value": "0.0411",
     "limit": "available"
    }
   ]
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "updated 2026-11-10 19:42 PT, prices as of 2026-11-10, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "2500 rows",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "198 rows",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "46 rows",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "38 rows",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "2083 rows",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "Stock Box run 2026-11-10 19:42 PT (full); last bar trusted as complete: True"
   },
   {
@@ -135,8 +135,8 @@
    "label": "13-week T-bill yield (^IRX) for the model rate",
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
-   "detail": "4.12%",
-   "retrievedAtPT": "2026-11-10 09:27 PM PT",
+   "detail": "4.11%",
+   "retrievedAtPT": "2026-11-11 06:15 AM PT",
    "sourceTime": "2026-11-10"
   },
   {
@@ -145,7 +145,7 @@
    "url": "https://finance.yahoo.com/",
    "ok": true,
    "detail": "looked up 27 names; Yahoo quote page 27, Yahoo calendarEvents 27, Nasdaq earnings-date 0, Nasdaq calendar 0 ok / 47 failed; Nasdaq by-date scan stopped after repeated failures (hosted runners are often blocked)",
-   "retrievedAtPT": "2026-11-10 09:30 PM PT",
+   "retrievedAtPT": "2026-11-11 06:18 AM PT",
    "sourceTime": "not provided"
   },
   {
@@ -154,7 +154,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "6 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-10 09:30 PM PT",
+   "retrievedAtPT": "2026-11-11 06:18 AM PT",
    "sourceTime": "session close 2026-11-10 1:00 PM PT"
   },
   {
@@ -163,7 +163,7 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "0 idea chain(s) and 27 setting-up chain(s) loaded",
-   "retrievedAtPT": "2026-11-10 09:30 PM PT",
+   "retrievedAtPT": "2026-11-11 06:18 AM PT",
    "sourceTime": "not provided"
   }
  ],
@@ -242,7 +242,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SLN.json",
     "fileTimestamp": "2026-11-11 00:36:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
    "marketAgainst": true,
@@ -403,7 +403,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PCRX.json",
     "fileTimestamp": "2026-11-11 03:30:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -580,7 +580,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DGX.json",
     "fileTimestamp": "2026-11-10 23:58:54 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -652,7 +652,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/TMO.json",
     "fileTimestamp": "2026-11-11 02:29:19 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -830,7 +830,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RCL.json",
     "fileTimestamp": "2026-11-11 00:29:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -902,7 +902,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CBOE.json",
     "fileTimestamp": "2026-11-11 01:34:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1079,7 +1079,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ICE.json",
     "fileTimestamp": "2026-11-11 02:06:08 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1254,9 +1254,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/AIG.json",
-    "fileTimestamp": "2026-11-11 03:05:55 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:09:38 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1431,9 +1431,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DHR.json",
-    "fileTimestamp": "2026-11-10 23:28:48 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:03:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1610,7 +1610,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CME.json",
     "fileTimestamp": "2026-11-11 01:43:12 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1680,9 +1680,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ULTA.json",
-    "fileTimestamp": "2026-11-11 02:46:14 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:12:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -1738,7 +1738,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CHDN.json",
     "fileTimestamp": "2026-11-10 21:21:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -1799,7 +1799,7 @@
      "estimatedAskAtPivot": null,
      "mid": 1.145,
      "spread": 0.31,
-     "oi": 5323,
+     "oi": 5373,
      "volume": 75,
      "iv": 0.4088,
      "hv20": 0.49,
@@ -1880,7 +1880,7 @@
       }
      ],
      "failedRulePlain": "The delayed bid and ask are too far apart (more than 12% of the mid, or 5 cents).",
-     "whyThisContract": "Why this one: the $32.0 call is a middle-speed pick (delta 0.48), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 5323, volume 75).",
+     "whyThisContract": "Why this one: the $32.0 call is a middle-speed pick (delta 0.48), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 5373, volume 75).",
      "greeksPlain": {
       "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $48.17 (for 1 contract).",
       "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $9.75 more.",
@@ -1915,9 +1915,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CCL.json",
-    "fileTimestamp": "2026-11-11 01:33:06 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:05:21 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -1961,7 +1961,7 @@
      "estimatedAskAtPivot": null,
      "mid": 0.65,
      "spread": 0.6,
-     "oi": 6947,
+     "oi": 6922,
      "volume": 63,
      "iv": 0.1484,
      "hv20": 0.4912,
@@ -2042,7 +2042,7 @@
       }
      ],
      "failedRulePlain": "No contract: earnings date unknown",
-     "whyThisContract": "Why this one: the $60.0 call is a middle-speed pick (delta 0.51), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 6947, volume 63).",
+     "whyThisContract": "Why this one: the $60.0 call is a middle-speed pick (delta 0.51), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 6922, volume 63).",
      "greeksPlain": {
       "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $51.08 (for 1 contract).",
       "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $14.12 more.",
@@ -2076,9 +2076,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CART.json",
-    "fileTimestamp": "2026-11-10 23:02:46 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:04:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -2132,9 +2132,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SHO.json",
-    "fileTimestamp": "2026-11-11 05:00:06 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 09:23:15 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -2195,7 +2195,7 @@
      "estimatedAskAtPivot": null,
      "mid": 1.05,
      "spread": 0.3,
-     "oi": 37,
+     "oi": 43,
      "volume": 7,
      "iv": 0.4925,
      "hv20": 0.5451,
@@ -2276,7 +2276,7 @@
       }
      ],
      "failedRulePlain": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
-     "whyThisContract": "Why this one: the $125.0 call is a middle-speed pick (delta 0.18), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 37, volume 7).",
+     "whyThisContract": "Why this one: the $125.0 call is a middle-speed pick (delta 0.18), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 43, volume 7).",
      "greeksPlain": {
       "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $18.49 (for 1 contract).",
       "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $1.59 more.",
@@ -2309,9 +2309,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/BBY.json",
-    "fileTimestamp": "2026-11-11 01:22:41 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:10:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -2372,7 +2372,7 @@
      "estimatedAskAtPivot": null,
      "mid": 1.375,
      "spread": 1.05,
-     "oi": 56,
+     "oi": 57,
      "volume": 1,
      "iv": 0.2457,
      "hv20": 0.258,
@@ -2453,7 +2453,7 @@
       }
      ],
      "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
-     "whyThisContract": "Why this one: the $560.0 call is a middle-speed pick (delta 0.11), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2027-01-15 (65 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 56, volume 1).",
+     "whyThisContract": "Why this one: the $560.0 call is a middle-speed pick (delta 0.11), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2027-01-15 (65 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 57, volume 1).",
      "greeksPlain": {
       "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $10.66 (for 1 contract).",
       "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $0.36 more.",
@@ -2488,9 +2488,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SPGI.json",
-    "fileTimestamp": "2026-11-11 00:29:52 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:09:36 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -2560,9 +2560,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/A.json",
-    "fileTimestamp": "2026-11-11 02:57:31 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:00:56 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-11-23; must be after 2026-12-03",
    "marketAgainst": true,
@@ -2629,7 +2629,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/EGBN.json",
     "fileTimestamp": "2026-11-11 00:23:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -2701,7 +2701,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/HCA.json",
     "fileTimestamp": "2026-11-11 01:55:17 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -2879,7 +2879,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MRSH.json",
     "fileTimestamp": "2026-11-10 23:03:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -3055,9 +3055,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PGR.json",
-    "fileTimestamp": "2026-11-10 23:52:04 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:09:11 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -3130,7 +3130,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CB.json",
     "fileTimestamp": "2026-11-11 01:39:42 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
@@ -3307,9 +3307,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/KR.json",
-    "fileTimestamp": "2026-11-10 21:49:22 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:04:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -3370,7 +3370,7 @@
      "estimatedAskAtPivot": null,
      "mid": 1.075,
      "spread": 0.19,
-     "oi": 1100,
+     "oi": 1144,
      "volume": 65,
      "iv": 0.2794,
      "hv20": 0.3451,
@@ -3451,7 +3451,7 @@
       }
      ],
      "failedRulePlain": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
-     "whyThisContract": "Why this one: the $110.0 call is a middle-speed pick (delta 0.38), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 1100, volume 65).",
+     "whyThisContract": "Why this one: the $110.0 call is a middle-speed pick (delta 0.38), so it can follow the stock without costing as much as a closer-to-the-money call. It expires 2026-12-18 (37 days out), which gives a breakout some time to happen. Enough people are trading it (open interest 1144, volume 65).",
      "greeksPlain": {
       "delta": "Delta is the speedometer: if the stock goes up $1, this option goes up about $38.06 (for 1 contract).",
       "gamma": "Gamma is how fast that speedometer speeds up: after a $1 rise, the next $1 would add about $4.03 more.",
@@ -3485,9 +3485,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MDT.json",
-    "fileTimestamp": "2026-11-10 23:05:11 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 11:07:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -3554,7 +3554,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/VSXY.json",
     "fileTimestamp": "2026-11-11 04:07:49 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -3624,9 +3624,9 @@
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RVTY.json",
-    "fileTimestamp": "2026-11-11 04:10:34 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 05:39:18 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 09:30 PM PT"
+    "retrievedAtPT": "2026-11-11 06:18 AM PT"
    },
    "planNote": "No contract fits your $200 limit",
    "marketAgainst": true,
