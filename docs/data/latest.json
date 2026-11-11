@@ -2,7 +2,7 @@
  "version": 1,
  "label": "DELAYED \u00b7 research only \u00b7 not advice",
  "disclaimer": "Education, not advice. Prices are free delayed data and may be stale. This page never places, opens, closes or fills any trade. Check the live chart and price in TradingView before you log anything.",
- "generatedAtPT": "2026-11-10 07:52 PM PT",
+ "generatedAtPT": "2026-11-10 08:02 PM PT",
  "signalSession": "2026-11-10",
  "entrySession": "2026-11-11",
  "entryWindowPT": "7:00 AM \u2013 12:30 PM PT",
@@ -55,7 +55,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/meta.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "updated 2026-11-10 19:42 PT, prices as of 2026-11-10, mode full"
   },
   {
@@ -64,7 +64,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/universe.csv",
    "ok": true,
    "detail": "2500 rows",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -73,7 +73,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/watchlist.csv",
    "ok": true,
    "detail": "5 rows",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -82,7 +82,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_vcp.csv",
    "ok": true,
    "detail": "198 rows",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -91,7 +91,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/scanner_flag.csv",
    "ok": true,
    "detail": "46 rows",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -100,7 +100,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/buy_setups.csv",
    "ok": true,
    "detail": "38 rows",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -109,7 +109,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/earnings_calendar.csv",
    "ok": true,
    "detail": "2083 rows",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -118,7 +118,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/cache/stamps.json",
    "ok": true,
    "detail": "read",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -127,7 +127,7 @@
    "url": "https://raw.githubusercontent.com/PatelNicknp/nicks-stock-desk/main/data/ohlc/",
    "ok": true,
    "detail": "used first for every ticker",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "Stock Box run 2026-11-10 19:42 PT (full); last bar trusted as complete: True"
   },
   {
@@ -136,16 +136,16 @@
    "url": "https://finance.yahoo.com/quote/%5EIRX",
    "ok": true,
    "detail": "4.12%",
-   "retrievedAtPT": "2026-11-10 07:47 PM PT",
+   "retrievedAtPT": "2026-11-10 07:57 PM PT",
    "sourceTime": "2026-11-10"
   },
   {
    "id": "earnings_fallback",
-   "label": "Yahoo calendarEvents + Nasdaq earnings calendar",
-   "url": "https://query2.finance.yahoo.com/v10/finance/quoteSummary",
+   "label": "Yahoo quote page, calendarEvents, and Nasdaq earnings calendar",
+   "url": "https://finance.yahoo.com/",
    "ok": true,
-   "detail": "looked up 27 watch-list or chart-pass names",
-   "retrievedAtPT": "2026-11-10 07:51 PM PT",
+   "detail": "looked up 27 names; Yahoo quote page 27, Yahoo calendarEvents 27, Nasdaq earnings-date 0, Nasdaq calendar 0 ok / 47 failed; Nasdaq by-date scan stopped after repeated failures (hosted runners are often blocked)",
+   "retrievedAtPT": "2026-11-10 08:01 PM PT",
    "sourceTime": "not provided"
   },
   {
@@ -154,7 +154,7 @@
    "url": "https://query1.finance.yahoo.com/v8/finance/chart/",
    "ok": true,
    "detail": "6 tickers needed Yahoo; sector ETFs and ^IRX always",
-   "retrievedAtPT": "2026-11-10 07:52 PM PT",
+   "retrievedAtPT": "2026-11-10 08:02 PM PT",
    "sourceTime": "session close 2026-11-10 1:00 PM PT"
   },
   {
@@ -163,7 +163,7 @@
    "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/",
    "ok": true,
    "detail": "0 idea chain(s) and 27 setting-up chain(s) loaded",
-   "retrievedAtPT": "2026-11-10 07:52 PM PT",
+   "retrievedAtPT": "2026-11-10 08:02 PM PT",
    "sourceTime": "not provided"
   }
  ],
@@ -194,15 +194,27 @@
    "lastVolume": 827900,
    "volRatio": 0.28,
    "status": "waiting",
-   "nextEarnings": "",
+   "nextEarnings": "2026-11-12",
    "earningsSoon": true,
-   "earningsNote": "earnings date unknown",
+   "earningsNote": "next earnings 2026-11-12; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $19.86.",
    "baseLow": 19.56,
-   "earningsEstimated": false,
-   "earningsSource": null,
-   "earningsSources": [],
-   "earningsDisplay": "earnings date unknown",
+   "earningsEstimated": true,
+   "earningsSource": "Yahoo Finance quote page; Yahoo Finance calendarEvents",
+   "earningsSources": [
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-11-12",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-11-12",
+     "estimated": true
+    }
+   ],
+   "earningsDisagreementDays": 0,
+   "earningsDisplay": "2026-11-12 (estimated) \u00b7 source: Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -244,7 +256,7 @@
      "expiryExitDate": "2026-11-27",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "next earnings 2026-11-12; must be after 2026-12-03",
      "stage": 6,
      "whatIfMove": 0.99,
      "whatIf": [
@@ -298,7 +310,7 @@
       }
      ],
      "role": "Safer",
-     "failedRulePlain": "No contract: earnings date unknown",
+     "failedRulePlain": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
      "whyThisContract": "Safer: this strike ($2.5) is closer to in-the-money (delta 0.985), so it should move more like the stock and needs a smaller rise to help you. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 0 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
       "delta": "If the stock rises $1, this option gains about $98.50.",
@@ -348,7 +360,7 @@
      "expiryExitDate": "2026-12-25",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "next earnings 2026-11-12; must be after 2026-12-03",
      "stage": 6,
      "whatIfMove": 0.99,
      "whatIf": [
@@ -402,7 +414,7 @@
       }
      ],
      "role": "Balanced",
-     "failedRulePlain": "No contract: earnings date unknown",
+     "failedRulePlain": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
      "whyThisContract": "Balanced: delta 0.9166 is near the middle of the 0.35\u20130.60 range we allow (target 0.47), at strike $10.0. Expiry is 2027-01-15 (65 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 57 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
       "delta": "If the stock rises $1, this option gains about $91.66.",
@@ -452,7 +464,7 @@
      "expiryExitDate": "2026-12-25",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "next earnings 2026-11-12; must be after 2026-12-03",
      "stage": 6,
      "whatIfMove": 0.99,
      "whatIf": [
@@ -506,7 +518,7 @@
       }
      ],
      "role": "Cheaper",
-     "failedRulePlain": "No contract: earnings date unknown",
+     "failedRulePlain": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
      "whyThisContract": "Cheaper: this lower-delta call (delta 0.9282, strike $7.5) costs less but needs a bigger rise in the stock to pay off. Expiry is 2027-01-15 (65 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 62 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
       "delta": "If the stock rises $1, this option gains about $92.82.",
@@ -522,8 +534,8 @@
    "planSpread": {
     "type": "CALL_DEBIT_SPREAD",
     "passes": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
+    "failedRule": "next earnings 2026-11-12; must be after 2026-12-03",
+    "failedRulePlain": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
     "highlight": false,
     "qty": 1,
     "expiry": "2027-01-15",
@@ -632,9 +644,9 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SLN.json",
     "fileTimestamp": "2026-11-11 00:36:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
-   "planNote": "No contract: earnings date unknown",
+   "planNote": "No contract: next earnings 2026-11-12; must be after 2026-12-03",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -1091,7 +1103,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PCRX.json",
     "fileTimestamp": "2026-11-11 03:30:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -1123,6 +1135,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-09",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-10-22",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-10-22",
      "estimated": false
     }
    ],
@@ -1557,7 +1579,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DGX.json",
     "fileTimestamp": "2026-11-10 23:58:54 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -1583,17 +1605,27 @@
    "earningsNote": "next earnings 2027-01-28; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $723.08.",
    "baseLow": 613.95,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-01-28",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-28",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-28",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-01-28 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-01-28 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -2023,7 +2055,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/TMO.json",
     "fileTimestamp": "2026-11-11 02:29:19 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -2049,17 +2081,27 @@
    "earningsNote": "next earnings 2027-01-26; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $342.32.",
    "baseLow": 259.0,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-01-26",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-26",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-26",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-01-26 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-01-26 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -2490,7 +2532,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RCL.json",
     "fileTimestamp": "2026-11-11 00:29:02 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -2522,6 +2564,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-05",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-10-30",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-10-30",
      "estimated": false
     }
    ],
@@ -2957,7 +3009,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CBOE.json",
     "fileTimestamp": "2026-11-11 01:34:26 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -2989,6 +3041,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-04",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-10-29",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-10-29",
      "estimated": false
     }
    ],
@@ -3423,7 +3485,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ICE.json",
     "fileTimestamp": "2026-11-11 02:06:08 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -3455,6 +3517,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-10",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-11-03",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-11-03",
      "estimated": false
     }
    ],
@@ -3890,7 +3962,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/AIG.json",
     "fileTimestamp": "2026-11-11 03:05:55 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:01 PM PT"
    },
    "planNote": "Open interest < 500 or volume < 50",
    "marketAgainst": true,
@@ -3916,17 +3988,27 @@
    "earningsNote": "next earnings 2027-01-27; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $238.46.",
    "baseLow": 202.26,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-01-27",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-27",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-27",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-01-27 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-01-27 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -4355,7 +4437,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/DHR.json",
     "fileTimestamp": "2026-11-10 23:28:48 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -4387,6 +4469,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-03",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-10-21",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-10-21",
      "estimated": false
     }
    ],
@@ -4822,7 +4914,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CME.json",
     "fileTimestamp": "2026-11-11 01:43:12 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Speed check above 1.0",
    "marketAgainst": true,
@@ -4849,16 +4941,26 @@
    "note": "Not a trade yet. Set a TradingView alert at $674.04.",
    "baseLow": 529.01,
    "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2026-12-03",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-12-03",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-12-03",
+     "estimated": false
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2026-12-03 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2026-12-03 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -5289,7 +5391,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/ULTA.json",
     "fileTimestamp": "2026-11-11 02:46:14 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -5749,7 +5851,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CHDN.json",
     "fileTimestamp": "2026-11-10 21:21:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -5775,17 +5877,27 @@
    "earningsNote": "next earnings 2026-12-18; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $31.41.",
    "baseLow": 23.88,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2026-12-18",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-12-18",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-12-18",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2026-12-18 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2026-12-18 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -6216,7 +6328,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CCL.json",
     "fileTimestamp": "2026-11-11 01:33:06 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -6676,7 +6788,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CART.json",
     "fileTimestamp": "2026-11-10 23:02:46 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -6740,7 +6852,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SHO.json",
     "fileTimestamp": "2026-11-11 03:02:50 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: earnings date unknown",
    "marketAgainst": true,
@@ -6767,16 +6879,26 @@
    "note": "Not a trade yet. Set a TradingView alert at $106.83.",
    "baseLow": 83.65,
    "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2026-11-24",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-11-24",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-11-24",
+     "estimated": false
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2026-11-24 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2026-11-24 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -7206,7 +7328,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/BBY.json",
     "fileTimestamp": "2026-11-11 01:22:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -7238,6 +7360,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-09",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-10-27",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-10-27",
      "estimated": false
     }
    ],
@@ -7674,7 +7806,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/SPGI.json",
     "fileTimestamp": "2026-11-11 00:29:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -7701,16 +7833,26 @@
    "note": "Not a trade yet. Set a TradingView alert at $182.99.",
    "baseLow": 146.78,
    "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2026-11-23",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-11-23",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-11-23",
+     "estimated": false
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2026-11-23 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2026-11-23 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -8140,7 +8282,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/A.json",
     "fileTimestamp": "2026-11-11 02:57:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:01 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-23; must be after 2026-12-03",
    "marketAgainst": true,
@@ -8161,15 +8303,27 @@
    "lastVolume": 226600,
    "volRatio": 0.56,
    "status": "waiting",
-   "nextEarnings": null,
-   "earningsSoon": true,
-   "earningsNote": "earnings date unknown",
+   "nextEarnings": "2027-01-20",
+   "earningsSoon": false,
+   "earningsNote": "next earnings 2027-01-20; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $35.04.",
    "baseLow": 27.0,
-   "earningsEstimated": false,
-   "earningsSource": null,
-   "earningsSources": [],
-   "earningsDisplay": "earnings date unknown",
+   "earningsEstimated": true,
+   "earningsSource": "Yahoo Finance quote page; Yahoo Finance calendarEvents",
+   "earningsSources": [
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-20",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-20",
+     "estimated": true
+    }
+   ],
+   "earningsDisagreementDays": 0,
+   "earningsDisplay": "2027-01-20 (estimated) \u00b7 source: Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -8211,7 +8365,7 @@
      "expiryExitDate": "2026-11-27",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "delta outside 0.35-0.60",
      "stage": 6,
      "whatIfMove": 0.73,
      "whatIf": [
@@ -8265,7 +8419,7 @@
       }
      ],
      "role": "Safer",
-     "failedRulePlain": "No contract: earnings date unknown",
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
      "whyThisContract": "Safer: this strike ($15.0) is closer to in-the-money (delta 0.9812), so it should move more like the stock and needs a smaller rise to help you. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 1 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
       "delta": "If the stock rises $1, this option gains about $98.12.",
@@ -8315,7 +8469,7 @@
      "expiryExitDate": "2026-11-27",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "delta outside 0.35-0.60",
      "stage": 6,
      "whatIfMove": 0.73,
      "whatIf": [
@@ -8369,7 +8523,7 @@
       }
      ],
      "role": "Balanced",
-     "failedRulePlain": "No contract: earnings date unknown",
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
      "whyThisContract": "Balanced: delta 0.8449 is near the middle of the 0.35\u20130.60 range we allow (target 0.47), at strike $30.0. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 21 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
       "delta": "If the stock rises $1, this option gains about $84.49.",
@@ -8419,7 +8573,7 @@
      "expiryExitDate": "2026-11-27",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "delta outside 0.35-0.60",
      "stage": 6,
      "whatIfMove": 0.73,
      "whatIf": [
@@ -8473,7 +8627,7 @@
       }
      ],
      "role": "Cheaper",
-     "failedRulePlain": "No contract: earnings date unknown",
+     "failedRulePlain": "Delta at the planned entry is outside 0.35\u20130.60, so this strike is not in the range we allow.",
      "whyThisContract": "Cheaper: this lower-delta call (delta 0.9474, strike $25.0) costs less but needs a bigger rise in the stock to pay off. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 1 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
       "delta": "If the stock rises $1, this option gains about $94.74.",
@@ -8489,8 +8643,8 @@
    "planSpread": {
     "type": "CALL_DEBIT_SPREAD",
     "passes": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
+    "failedRule": "over the dollar cap (skipped, not replaced)",
+    "failedRulePlain": "The estimated ask at the pivot is above the $200 cap after fees, so it does not fit the max-loss budget.",
     "highlight": false,
     "qty": 1,
     "expiry": "2026-12-18",
@@ -8597,9 +8751,9 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/EGBN.json",
     "fileTimestamp": "2026-11-11 00:23:31 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
-   "planNote": "No contract: earnings date unknown",
+   "planNote": "Delta outside 0.35-0.60",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -8623,17 +8777,27 @@
    "earningsNote": "next earnings 2027-01-26; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $521.48.",
    "baseLow": 460.68,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-01-26",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-26",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-26",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-01-26 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-01-26 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -9062,7 +9226,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/HCA.json",
     "fileTimestamp": "2026-11-11 01:55:17 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -9088,17 +9252,27 @@
    "earningsNote": "next earnings 2027-01-28; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $214.00.",
    "baseLow": 166.27,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-01-28",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-28",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-28",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-01-28 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-01-28 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -9528,7 +9702,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MRSH.json",
     "fileTimestamp": "2026-11-10 23:03:41 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -9554,17 +9728,27 @@
    "earningsNote": "next earnings 2027-01-27; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $241.02.",
    "baseLow": 200.86,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-01-27",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-01-27",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-01-27",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-01-27 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-01-27 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -9995,7 +10179,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/PGR.json",
     "fileTimestamp": "2026-11-10 23:52:04 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -10027,6 +10211,16 @@
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-02",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-10-20",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-10-20",
      "estimated": false
     }
    ],
@@ -10461,7 +10655,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/CB.json",
     "fileTimestamp": "2026-11-11 01:39:42 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
@@ -10488,16 +10682,26 @@
    "note": "Not a trade yet. Set a TradingView alert at $71.64.",
    "baseLow": 57.56,
    "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2026-12-03",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-12-03",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-12-03",
+     "estimated": false
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2026-12-03 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2026-12-03 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -10928,7 +11132,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/KR.json",
     "fileTimestamp": "2026-11-10 21:49:22 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
@@ -10955,16 +11159,26 @@
    "note": "Not a trade yet. Set a TradingView alert at $106.20.",
    "baseLow": 95.17,
    "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2026-11-24",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-11-24",
+     "estimated": false
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-11-24",
+     "estimated": false
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2026-11-24 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2026-11-24 \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -11395,7 +11609,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/MDT.json",
     "fileTimestamp": "2026-11-10 23:05:11 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:51 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "No contract: next earnings 2026-11-24; must be after 2026-12-03",
    "marketAgainst": true,
@@ -11416,57 +11630,69 @@
    "lastVolume": 1359300,
    "volRatio": 0.75,
    "status": "waiting",
-   "nextEarnings": "",
+   "nextEarnings": "2026-12-03",
    "earningsSoon": true,
-   "earningsNote": "earnings date unknown",
+   "earningsNote": "next earnings 2026-12-03; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $116.32.",
    "baseLow": 91.36,
-   "earningsEstimated": false,
-   "earningsSource": null,
-   "earningsSources": [],
-   "earningsDisplay": "earnings date unknown",
+   "earningsEstimated": true,
+   "earningsSource": "Yahoo Finance quote page; Yahoo Finance calendarEvents",
+   "earningsSources": [
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2026-12-03",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2026-12-03",
+     "estimated": true
+    }
+   ],
+   "earningsDisagreementDays": 0,
+   "earningsDisplay": "2026-12-03 (estimated) \u00b7 source: Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
     {
-     "symbol": "VSXY261218C00070000",
+     "symbol": "VSXY261218C00060000",
      "expiry": "2026-12-18",
-     "strike": 70.0,
+     "strike": 60.0,
      "dte": 37,
      "type": "CALL",
-     "bid": 40.3,
-     "ask": 43.1,
+     "bid": 49.2,
+     "ask": 53.1,
      "estimatedAskAtPivot": null,
-     "mid": 41.7,
-     "spread": 2.8,
-     "oi": 40,
+     "mid": 51.15,
+     "spread": 3.9,
+     "oi": 26,
      "volume": 0,
-     "iv": 0.5512,
+     "iv": 0.6439,
      "hv20": 0.5022,
      "hv60": 0.5629,
-     "ivRatio": 0.98,
+     "ivRatio": 1.14,
      "greeks": {
-      "delta": 0.9987,
-      "gamma": 0.00021,
-      "deltaDollarsPer1": 99.87,
-      "thetaDollarsPerDay": -0.9,
-      "vegaDollarsPerPoint": 0.16,
-      "rhoDollarsPerPoint": 7.05
+      "delta": 0.9996,
+      "gamma": 6e-05,
+      "deltaDollarsPer1": 99.96,
+      "thetaDollarsPerDay": -0.72,
+      "vegaDollarsPerPoint": 0.05,
+      "rhoDollarsPerPoint": 6.05
      },
-     "lastTradeTime": "2026-11-04T12:14:47",
+     "lastTradeTime": "2026-10-19T15:12:18",
      "deltaEvaluatedAt": "pivot",
      "model": null,
      "speed": null,
      "gate": null,
-     "entryCost": 4310.65,
+     "entryCost": 5310.65,
      "qty": 1,
-     "maxLoss": 4311.3,
+     "maxLoss": 5311.3,
      "breakevenAtExpiry": 113.11,
-     "optionProfitTargetBid": 129.33,
+     "optionProfitTargetBid": 159.33,
      "expiryExitDate": "2026-11-27",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
      "stage": 6,
      "whatIfMove": 3.16,
      "whatIf": [
@@ -11474,62 +11700,62 @@
        "when": "About 1 week",
        "stock": "Pivot \u2212 $3.16",
        "price": 113.16,
-       "value": 4340.07,
-       "pnl": 28.77,
+       "value": 5336.36,
+       "pnl": 25.06,
        "estimate": true
       },
       {
        "when": "About 1 week",
        "stock": "Flat at the pivot",
        "price": 116.32,
-       "value": 4655.87,
-       "pnl": 344.57,
+       "value": 5652.32,
+       "pnl": 341.02,
        "estimate": true
       },
       {
        "when": "About 1 week",
        "stock": "Pivot + $3.16",
        "price": 119.48,
-       "value": 4971.76,
-       "pnl": 660.46,
+       "value": 5968.29,
+       "pnl": 656.99,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Pivot \u2212 $3.16",
        "price": 113.16,
-       "value": 4328.62,
-       "pnl": 17.32,
+       "value": 5326.81,
+       "pnl": 15.51,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Flat at the pivot",
        "price": 116.32,
-       "value": 4644.62,
-       "pnl": 333.32,
+       "value": 5642.81,
+       "pnl": 331.51,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Pivot + $3.16",
        "price": 119.48,
-       "value": 4960.62,
-       "pnl": 649.32,
+       "value": 5958.81,
+       "pnl": 647.51,
        "estimate": true
       }
      ],
      "role": "Safer",
-     "failedRulePlain": "No contract: earnings date unknown",
-     "whyThisContract": "Safer: this strike ($70.0) is closer to in-the-money (delta 0.9987), so it should move more like the stock and needs a smaller rise to help you. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 40 and volume 0 (need at least 500 and 50).",
+     "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
+     "whyThisContract": "Safer: this strike ($60.0) is closer to in-the-money (delta 0.9996), so it should move more like the stock and needs a smaller rise to help you. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 26 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
-      "delta": "If the stock rises $1, this option gains about $99.87.",
-      "gamma": "Delta grows about 0.00021 per $1 move (about $0.02 more gain on the next dollar).",
-      "theta": "Loses about $0.90 per day just from time passing.",
-      "vega": "Gains or loses about $0.16 if expected volatility moves 1 point."
+      "delta": "If the stock rises $1, this option gains about $99.96.",
+      "gamma": "Delta grows about 6e-05 per $1 move (about $0.01 more gain on the next dollar).",
+      "theta": "Loses about $0.72 per day just from time passing.",
+      "vega": "Gains or loses about $0.05 if expected volatility moves 1 point."
      },
      "howFar": "Breaks even if the stock stays above $113.11 ($3.21 / 2.8% below the pivot) by 2026-12-18.",
-     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $129.33 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $159.33 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
      "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
     },
     {
@@ -11538,39 +11764,39 @@
      "strike": 125.0,
      "dte": 65,
      "type": "CALL",
-     "bid": 7.0,
-     "ask": 8.7,
+     "bid": 6.5,
+     "ask": 8.6,
      "estimatedAskAtPivot": null,
-     "mid": 7.85,
-     "spread": 1.7,
+     "mid": 7.55,
+     "spread": 2.1,
      "oi": 15,
-     "volume": 0,
-     "iv": 0.662,
+     "volume": 1,
+     "iv": 0.6557,
      "hv20": 0.5022,
      "hv60": 0.5629,
-     "ivRatio": 1.18,
+     "ivRatio": 1.16,
      "greeks": {
-      "delta": 0.4635,
-      "gamma": 0.01223,
-      "deltaDollarsPer1": 46.35,
-      "thetaDollarsPerDay": -10.43,
-      "vegaDollarsPerPoint": 19.5,
-      "rhoDollarsPerPoint": 7.85
+      "delta": 0.4621,
+      "gamma": 0.01234,
+      "deltaDollarsPer1": 46.21,
+      "thetaDollarsPerDay": -10.33,
+      "vegaDollarsPerPoint": 19.49,
+      "rhoDollarsPerPoint": 7.84
      },
-     "lastTradeTime": "2026-11-09T12:26:27",
+     "lastTradeTime": "2026-11-10T14:19:36",
      "deltaEvaluatedAt": "pivot",
      "model": null,
      "speed": null,
      "gate": null,
-     "entryCost": 870.65,
+     "entryCost": 860.65,
      "qty": 1,
-     "maxLoss": 871.3,
-     "breakevenAtExpiry": 133.71,
-     "optionProfitTargetBid": 26.13,
+     "maxLoss": 861.3,
+     "breakevenAtExpiry": 133.61,
+     "optionProfitTargetBid": 25.83,
      "expiryExitDate": "2026-12-25",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
      "stage": 7,
      "whatIfMove": 3.16,
      "whatIf": [
@@ -11578,62 +11804,62 @@
        "when": "About 1 week",
        "stock": "Pivot \u2212 $3.16",
        "price": 113.16,
-       "value": 770.49,
-       "pnl": -100.81,
+       "value": 759.43,
+       "pnl": -101.87,
        "estimate": true
       },
       {
        "when": "About 1 week",
        "stock": "Flat at the pivot",
        "price": 116.32,
-       "value": 907.42,
-       "pnl": 36.12,
+       "value": 895.85,
+       "pnl": 34.55,
        "estimate": true
       },
       {
        "when": "About 1 week",
        "stock": "Pivot + $3.16",
        "price": 119.48,
-       "value": 1057.24,
-       "pnl": 185.94,
+       "value": 1045.27,
+       "pnl": 183.97,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Pivot \u2212 $3.16",
        "price": 113.16,
-       "value": 615.79,
-       "pnl": -255.51,
+       "value": 606.35,
+       "pnl": -254.95,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Flat at the pivot",
        "price": 116.32,
-       "value": 744.3,
-       "pnl": -127.0,
+       "value": 734.31,
+       "pnl": -126.99,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Pivot + $3.16",
        "price": 119.48,
-       "value": 887.47,
-       "pnl": 16.17,
+       "value": 877.06,
+       "pnl": 15.76,
        "estimate": true
       }
      ],
      "role": "Balanced",
-     "failedRulePlain": "No contract: earnings date unknown",
-     "whyThisContract": "Balanced: delta 0.4635 is near the middle of the 0.35\u20130.60 range we allow (target 0.47), at strike $125.0. Expiry is 2027-01-15 (65 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 15 and volume 0 (need at least 500 and 50).",
+     "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
+     "whyThisContract": "Balanced: delta 0.4621 is near the middle of the 0.35\u20130.60 range we allow (target 0.47), at strike $125.0. Expiry is 2027-01-15 (65 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 15 and volume 1 (need at least 500 and 50).",
      "greeksPlain": {
-      "delta": "If the stock rises $1, this option gains about $46.35.",
-      "gamma": "Delta grows about 0.01223 per $1 move (about $1.22 more gain on the next dollar).",
-      "theta": "Loses about $10.43 per day just from time passing.",
-      "vega": "Gains or loses about $19.50 if expected volatility moves 1 point."
+      "delta": "If the stock rises $1, this option gains about $46.21.",
+      "gamma": "Delta grows about 0.01234 per $1 move (about $1.23 more gain on the next dollar).",
+      "theta": "Loses about $10.33 per day just from time passing.",
+      "vega": "Gains or loses about $19.49 if expected volatility moves 1 point."
      },
-     "howFar": "Needs the stock to rise $17.39 (15.0%) from the pivot by 2027-01-15 just to break even.",
-     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $26.13 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "howFar": "Needs the stock to rise $17.29 (14.9%) from the pivot by 2027-01-15 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $25.83 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
      "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
     },
     {
@@ -11642,39 +11868,39 @@
      "strike": 140.0,
      "dte": 37,
      "type": "CALL",
-     "bid": 1.55,
-     "ask": 3.3,
+     "bid": 1.3,
+     "ask": 3.4,
      "estimatedAskAtPivot": null,
-     "mid": 2.425,
-     "spread": 1.75,
+     "mid": 2.35,
+     "spread": 2.1,
      "oi": 15,
      "volume": 0,
-     "iv": 0.7036,
+     "iv": 0.7077,
      "hv20": 0.5022,
      "hv60": 0.5629,
-     "ivRatio": 1.25,
+     "ivRatio": 1.26,
      "greeks": {
-      "delta": 0.243,
-      "gamma": 0.01201,
-      "deltaDollarsPer1": 24.3,
-      "thetaDollarsPerDay": -11.3,
-      "vegaDollarsPerPoint": 11.59,
-      "rhoDollarsPerPoint": 2.52
+      "delta": 0.2447,
+      "gamma": 0.01199,
+      "deltaDollarsPer1": 24.47,
+      "thetaDollarsPerDay": -11.41,
+      "vegaDollarsPerPoint": 11.64,
+      "rhoDollarsPerPoint": 2.54
      },
      "lastTradeTime": "2026-11-09T15:21:16",
      "deltaEvaluatedAt": "pivot",
      "model": null,
      "speed": null,
      "gate": null,
-     "entryCost": 330.65,
+     "entryCost": 340.65,
      "qty": 1,
-     "maxLoss": 331.3,
-     "breakevenAtExpiry": 143.31,
-     "optionProfitTargetBid": 9.93,
+     "maxLoss": 341.3,
+     "breakevenAtExpiry": 143.41,
+     "optionProfitTargetBid": 10.23,
      "expiryExitDate": "2026-11-27",
      "maxEntryAsk": 1.98,
      "passes": false,
-     "failedRule": "earnings date unknown",
+     "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
      "stage": 6,
      "whatIfMove": 3.16,
      "whatIf": [
@@ -11682,70 +11908,70 @@
        "when": "About 1 week",
        "stock": "Pivot \u2212 $3.16",
        "price": 113.16,
-       "value": 195.55,
-       "pnl": -135.75,
+       "value": 198.98,
+       "pnl": -142.32,
        "estimate": true
       },
       {
        "when": "About 1 week",
        "stock": "Flat at the pivot",
        "price": 116.32,
-       "value": 256.42,
-       "pnl": -74.88,
+       "value": 260.38,
+       "pnl": -80.92,
        "estimate": true
       },
       {
        "when": "About 1 week",
        "stock": "Pivot + $3.16",
        "price": 119.48,
-       "value": 329.59,
-       "pnl": -1.71,
+       "value": 334.08,
+       "pnl": -7.22,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Pivot \u2212 $3.16",
        "price": 113.16,
-       "value": 63.08,
-       "pnl": -268.22,
+       "value": 64.63,
+       "pnl": -276.67,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Flat at the pivot",
        "price": 116.32,
-       "value": 95.71,
-       "pnl": -235.59,
+       "value": 97.72,
+       "pnl": -243.58,
        "estimate": true
       },
       {
        "when": "About 3 weeks",
        "stock": "Pivot + $3.16",
        "price": 119.48,
-       "value": 140.04,
-       "pnl": -191.26,
+       "value": 142.55,
+       "pnl": -198.75,
        "estimate": true
       }
      ],
      "role": "Cheaper",
-     "failedRulePlain": "No contract: earnings date unknown",
-     "whyThisContract": "Cheaper: this lower-delta call (delta 0.243, strike $140.0) costs less but needs a bigger rise in the stock to pay off. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 15 and volume 0 (need at least 500 and 50).",
+     "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
+     "whyThisContract": "Cheaper: this lower-delta call (delta 0.2447, strike $140.0) costs less but needs a bigger rise in the stock to pay off. Expiry is 2026-12-18 (37 days), inside the 35\u201370 day window so there is time for a breakout without going too far out. Liquidity: open interest 15 and volume 0 (need at least 500 and 50).",
      "greeksPlain": {
-      "delta": "If the stock rises $1, this option gains about $24.30.",
-      "gamma": "Delta grows about 0.01201 per $1 move (about $1.20 more gain on the next dollar).",
-      "theta": "Loses about $11.30 per day just from time passing.",
-      "vega": "Gains or loses about $11.59 if expected volatility moves 1 point."
+      "delta": "If the stock rises $1, this option gains about $24.47.",
+      "gamma": "Delta grows about 0.01199 per $1 move (about $1.20 more gain on the next dollar).",
+      "theta": "Loses about $11.41 per day just from time passing.",
+      "vega": "Gains or loses about $11.64 if expected volatility moves 1 point."
      },
-     "howFar": "Needs the stock to rise $26.99 (23.2%) from the pivot by 2026-12-18 just to break even.",
-     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $9.93 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
+     "howFar": "Needs the stock to rise $27.09 (23.3%) from the pivot by 2026-12-18 just to break even.",
+     "exitPlan": "Sell the whole position (the Floor does not scale out) if the option bid reaches $10.23 (about 3\u00d7 the planned debit). Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-11-27 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
      "maxProfit": "No fixed limit (a long call can keep rising with the stock)"
     }
    ],
    "planSpread": {
     "type": "CALL_DEBIT_SPREAD",
     "passes": false,
-    "failedRule": "earnings date unknown",
-    "failedRulePlain": "No contract: earnings date unknown",
+    "failedRule": "next earnings 2026-12-03; must be after 2026-12-03",
+    "failedRulePlain": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
     "highlight": false,
     "qty": 1,
     "expiry": "2027-01-15",
@@ -11753,31 +11979,31 @@
     "long": {
      "symbol": "VSXY270115C00125000",
      "strike": 125.0,
-     "bid": 7.0,
-     "ask": 8.7,
-     "estimatedAskAtPivot": 11.09,
+     "bid": 6.5,
+     "ask": 8.6,
+     "estimatedAskAtPivot": 10.98,
      "oi": 15,
-     "volume": 0
+     "volume": 1
     },
     "short": {
      "symbol": "VSXY270115C00130000",
      "strike": 130.0,
-     "bid": 5.0,
+     "bid": 4.8,
      "ask": 7.2,
-     "estimatedBidAtPivot": 7.05,
+     "estimatedBidAtPivot": 6.85,
      "oi": 56,
      "volume": 0
     },
-    "netDebit": 4.04,
-    "todayNetDebit": 3.7,
+    "netDebit": 4.13,
+    "todayNetDebit": 3.8,
     "width": 5.0,
-    "maxLoss": 406.6,
-    "maxProfit": 93.4,
-    "breakevenAtExpiry": 129.07,
+    "maxLoss": 415.6,
+    "maxProfit": 84.4,
+    "breakevenAtExpiry": 129.16,
     "maxEntryNetDebit": 1.97,
     "fees": 2.6,
-    "howFar": "Needs the stock to rise $12.75 (11.0%) from the pivot by 2027-01-15 just to break even.",
-    "whyThisContract": "Call debit spread: buy the 2027-01-15 $125.00 call and sell the $130.00 call (width $5.00). The sale cuts what you pay (estimated net debit $4.04 at the pivot) and caps the gain at the short strike. Both legs are checked for a two-sided quote, a tight spread, open interest \u2265 500 and volume \u2265 50. The $200 cap uses fees on both legs (open and close).",
+    "howFar": "Needs the stock to rise $12.84 (11.0%) from the pivot by 2027-01-15 just to break even.",
+    "whyThisContract": "Call debit spread: buy the 2027-01-15 $125.00 call and sell the $130.00 call (width $5.00). The sale cuts what you pay (estimated net debit $4.13 at the pivot) and caps the gain at the short strike. Both legs are checked for a two-sided quote, a tight spread, open interest \u2265 500 and volume \u2265 50. The $200 cap uses fees on both legs (open and close).",
     "exitPlan": "Sell the whole spread (both legs together) if the stock reaches the short strike or the spread\u2019s value is near its max profit. Exit if the stock closes back below the pivot $116.32 in the first 3 sessions. Exit if the stock closes below $91.36 (planned stop: the base low until a breakout-day low prints). Exit if the stock closes at or above $141.28 (stock target) or closes below the 20-day average. Time exit on 2026-12-03 (15 trading days) or on 2026-12-25 (21 days before expiry), before theta usually speeds up. Ex-dividend dates are not checked.",
     "whatIfMove": 3.16,
     "whatIf": [
@@ -11785,48 +12011,48 @@
       "when": "About 1 week",
       "stock": "Pivot \u2212 $3.16",
       "price": 113.16,
-      "value": 178.52,
-      "pnl": -228.08,
+      "value": 161.95,
+      "pnl": -253.65,
       "estimate": true
      },
      {
       "when": "About 1 week",
       "stock": "Flat at the pivot",
       "price": 116.32,
-      "value": 198.95,
-      "pnl": -207.65,
+      "value": 181.51,
+      "pnl": -234.09,
       "estimate": true
      },
      {
       "when": "About 1 week",
       "stock": "Pivot + $3.16",
       "price": 119.48,
-      "value": 219.4,
-      "pnl": -187.2,
+      "value": 201.26,
+      "pnl": -214.34,
       "estimate": true
      },
      {
       "when": "About 3 weeks",
       "stock": "Pivot \u2212 $3.16",
       "price": 113.16,
-      "value": 164.06,
-      "pnl": -242.54,
+      "value": 150.02,
+      "pnl": -265.58,
       "estimate": true
      },
      {
       "when": "About 3 weeks",
       "stock": "Flat at the pivot",
       "price": 116.32,
-      "value": 186.86,
-      "pnl": -219.74,
+      "value": 171.89,
+      "pnl": -243.71,
       "estimate": true
      },
      {
       "when": "About 3 weeks",
       "stock": "Pivot + $3.16",
       "price": 119.48,
-      "value": 209.93,
-      "pnl": -196.67,
+      "value": 194.23,
+      "pnl": -221.37,
       "estimate": true
      }
     ]
@@ -11843,21 +12069,20 @@
    },
    "planRejects": {
     "expiry outside 35-70 days": 164,
-    "IV missing": 50,
-    "delta outside 0.35-0.60": 23,
-    "open interest < 500 or volume < 50": 4,
-    "bid-ask spread too wide": 4,
+    "delta outside 0.35-0.60": 35,
+    "IV missing": 38,
+    "bid-ask spread too wide": 8,
     "strike not below target": 8
    },
    "whatIfMove": 3.16,
    "quoteSource": {
     "label": "Cboe delayed quotes",
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/VSXY.json",
-    "fileTimestamp": "2026-11-10 15:53:27 (time zone not stated by Cboe)",
+    "fileTimestamp": "2026-11-11 04:02:13 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
-   "planNote": "No contract: earnings date unknown",
+   "planNote": "No contract: next earnings 2026-12-03; must be after 2026-12-03",
    "marketAgainst": true,
    "tag": "Market against you",
    "marketNote": "The market is weak, so breakouts fail more often."
@@ -11881,17 +12106,27 @@
    "earningsNote": "next earnings 2027-02-01; must be after 2026-12-03",
    "note": "Not a trade yet. Set a TradingView alert at $171.74.",
    "baseLow": 149.38,
-   "earningsEstimated": false,
-   "earningsSource": "US Stock Box earnings_calendar.csv",
+   "earningsEstimated": true,
+   "earningsSource": "US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "earningsSources": [
     {
      "source": "US Stock Box earnings_calendar.csv",
      "date": "2027-02-01",
      "estimated": false
+    },
+    {
+     "source": "Yahoo Finance quote page",
+     "date": "2027-02-01",
+     "estimated": true
+    },
+    {
+     "source": "Yahoo Finance calendarEvents",
+     "date": "2027-02-01",
+     "estimated": true
     }
    ],
    "earningsDisagreementDays": 0,
-   "earningsDisplay": "2027-02-01 \u00b7 source: US Stock Box earnings_calendar.csv",
+   "earningsDisplay": "2027-02-01 (estimated) \u00b7 source: US Stock Box earnings_calendar.csv; Yahoo Finance quote page; Yahoo Finance calendarEvents",
    "planDisclaimer": "Plan only \u2014 not a trade until it closes above the pivot on volume; recheck live price in TradingView",
    "plannedContracts": [],
    "planChoices": [
@@ -12320,7 +12555,7 @@
     "url": "https://cdn.cboe.com/api/global/delayed_quotes/options/RVTY.json",
     "fileTimestamp": "2026-11-11 03:38:52 (time zone not stated by Cboe)",
     "quoteTime": "quote time not provided",
-    "retrievedAtPT": "2026-11-10 07:52 PM PT"
+    "retrievedAtPT": "2026-11-10 08:02 PM PT"
    },
    "planNote": "Bid-ask spread too wide",
    "marketAgainst": true,
