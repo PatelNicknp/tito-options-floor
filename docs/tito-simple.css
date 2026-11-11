@@ -242,7 +242,8 @@ body.tito-simple .tito-card .footer {
   text-align: center;
 }
 
-body.tito-simple .tito-card .details {
+body.tito-simple .tito-card .details,
+body.tito-simple .tito-card details.more-details[open] > .details {
   margin-top: 24px;
   display: flex;
   flex-direction: column;
