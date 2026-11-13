@@ -193,6 +193,12 @@ def test_keeper_makes_up_a_missing_day_and_stops():
     assert keeper.decide(morning, None, [])[0] == "none"
     active = [{"id": 9, "status": "in_progress", "created_at": "2026-11-09T14:05:00Z"}]
     assert keeper.decide(morning, missing, active)[0] == "none"
+    ghost = [{"id": 43097135921, "status": "queued", "created_at": "2026-11-11T20:37:13Z"}]
+    assert keeper.decide(datetime(2026, 11, 13, 6, 15, tzinfo=PT),
+                         {"lastSuccessSession": "2026-11-11", "lastSuccessPT": "2026-11-12 12:21 PM PT"}, ghost)[0] == "dispatch"
+    fresh_queue = [{"id": 10, "status": "queued", "created_at": "2026-11-09T13:50:00Z"}]
+    assert keeper.decide(morning, missing, fresh_queue)[0] == "none"     # queued 25 min ago still counts as live
+    assert keeper.decide(morning, missing, [{"id": 11, "status": "queued"}])[0] == "none"  # no time: stay safe
     recent = [{"id": 1, "status": "completed", "conclusion": "failure", "created_at": "2026-11-09T14:15:00Z"}]
     assert keeper.decide(datetime(2026, 11, 9, 6, 25, tzinfo=PT), missing, recent)[0] == "none"
     assert keeper.decide(datetime(2026, 11, 9, 6, 55, tzinfo=PT), missing, recent)[0] == "dispatch"

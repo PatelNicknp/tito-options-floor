@@ -33,6 +33,10 @@ SLOTS = ((6, 0), (6, 40), (9, 0), (11, 30), (12, 30))
 ACTIVE = frozenset({"queued", "in_progress", "waiting", "requested", "pending"})
 ATTEMPT = frozenset({"success", "failure", "timed_out"})
 SETTINGS = {"check_after_min": 15, "chunk_min": 330, "min_gap_min": 15, "max_tries": 2, "lookback_min": 20}
+# A Daily update job stops after 45 minutes. GitHub can leave a run "queued" forever
+# (one sat queued from Nov 11 to Nov 13, 2026 and blocked every make-up). An update run
+# that has been queued or running longer than this is treated as stuck, not as live.
+STALE_UPDATE_MIN = 90
 
 
 def self_heal_on(cfg: dict | None) -> bool:
@@ -93,6 +97,23 @@ def attempts_since_open(runs: list[dict], day) -> list[dict]:
     return out
 
 
+def live_update_runs(runs: list[dict], now_pt: datetime, stale_min: int = STALE_UPDATE_MIN) -> tuple[list[dict], list[dict]]:
+    """(live, stuck) among queued or running update runs. Stuck = older than stale_min.
+
+    A run with no readable start time stays live, so an odd API reply never starts a second build.
+    """
+    live, stuck = [], []
+    for run in runs:
+        if run.get("status") not in ACTIVE:
+            continue
+        started = run_started(run)
+        if started is not None and (now_pt - started).total_seconds() / 60.0 > stale_min:
+            stuck.append(run)
+        else:
+            live.append(run)
+    return live, stuck
+
+
 def decide(now_pt: datetime, status: dict | None, runs: list[dict] | None, *, max_tries: int = 2, min_gap_min: int = 15) -> tuple[str, str]:
     """What to do at a slot. 'dispatch' starts one build, 'gave_up' stops for the day, 'none' waits.
 
@@ -108,9 +129,11 @@ def decide(now_pt: datetime, status: dict | None, runs: list[dict] | None, *, ma
         return "none", "after 1:00 PM PT"
     if data_already_produced(status, now_pt):
         return "none", f"today's data was already produced at {status.get('lastSuccessPT')}"
-    active = [r for r in runs if r.get("status") in ACTIVE]
+    active, stuck = live_update_runs(runs, now_pt)
     if active:
         return "none", f"update run {active[0].get('id')} is {active[0].get('status')}"
+    if stuck:
+        print(f"ignoring stuck update run {stuck[0].get('id')} ({stuck[0].get('status')} since {stuck[0].get('created_at')})", flush=True)
     done = attempts_since_open(runs, now_pt.date())
     if len(done) >= max_tries:
         return "gave_up", f"{len(done)} runs since 6:00 AM PT did not publish today's data; not starting another"
